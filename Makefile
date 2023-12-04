@@ -5,7 +5,7 @@ OS 			= $(shell uname -s)
 NAME 		= cub3D
 SRC_DIR		= src/
 OBJ_DIR 	= .obj/
-FSANITIZE 	= -fsanitize=address
+FSANITIZE 	= #-fsanitize=address
 CFLAGS 		= -Wall -Werror -Wextra -g $(FSANITIZE)
 CC 			= cc
 MAIN = main
