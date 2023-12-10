@@ -1,4 +1,5 @@
-#include "mlx_linux/mlx.h"
+// #include "mlx_linux/mlx.h"
+#include <mlx.h>
 #include <unistd.h>
 #include <stdlib.h>
 
