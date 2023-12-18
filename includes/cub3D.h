@@ -17,6 +17,16 @@ typedef struct s_img
 	int		len;
 }	t_img;
 
+typedef struct s_player
+{
+	int	x;
+	int	y;
+	int	turn;
+	int	walk;
+	int	rot;
+	int	spd;
+}	t_player;
+
 typedef struct s_mlx
 {
 	unsigned int	height;
@@ -26,6 +36,7 @@ typedef struct s_mlx
 	void			*mlx_ptr;
 	void			*win_ptr;
 	t_img			img;
+	t_player		*player;
 }	t_mlx;
 
 #endif
