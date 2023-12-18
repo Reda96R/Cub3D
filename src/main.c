@@ -12,25 +12,21 @@
 
 #include "../includes/cub3D.h"
 
-#define MAP_X 6
-#define MAP_Y 5
+#define MAP_X 9
+#define MAP_Y 7
 
-#define WIN_X 500
-#define WIN_Y 500
+int	g_size = 100;
 
 #define SPACE 2
 
-int	g_min_dimension = (WIN_X < WIN_Y) ? WIN_X : WIN_Y;
-int	g_size;
-int	g_row_size;
-int	g_col_size;
-
-int	g_test[][6] = {
-{1, 1, 1, 1, 1, 1},
-{1, 0, 0, 0, 0, 1},
-{1, 0, 0, 1, 0, 1},
-{1, 0, 0, 0, 0, 1},
-{1, 1, 1, 1, 1, 1}
+int	g_test[][9] = {
+{1, 1, 1, 1, 1, 1, 1, 1, 1},
+{1, 0, 0, 0, 0, 1, 0, 0, 1},
+{1, 1, 1, 0, 0, 0, 0, 0, 1},
+{1, 0, 0, 0, 0, 0, 0, 0, 1},
+{1, 0, 0, 0, 1, 0, 0, 0, 1},
+{1, 0, 0, 0, 1, 0, 0, 0, 1},
+{1, 1, 1, 1, 1, 1, 1, 1, 1}
 };
 
 void	ft_put_pixel(t_mlx *mlx, int x, int y, int color)
@@ -51,9 +47,6 @@ void	draw_square(t_mlx *mlx, int x, int y, int color)
 
 	w = 0;
 	h = 0;
-	g_row_size = (g_min_dimension - (MAP_Y + 1) * SPACE) / MAP_Y;
-	g_col_size = (g_min_dimension - (MAP_X + 1) * SPACE) / MAP_X;
-	g_size = (g_row_size < g_col_size) ? g_row_size : g_col_size;
 	while (w < g_size)
 	{
 		h = 0;
@@ -97,8 +90,8 @@ void	ft_draw_map(t_mlx *mlx)
 int	ft_canvas_maker(t_mlx *mlx)
 
 {
-	mlx->win_x = WIN_X;
-	mlx->win_y = WIN_Y;
+	mlx->win_x = (g_size + SPACE) * MAP_X;
+	mlx->win_y = (g_size + SPACE) * MAP_Y;
 	mlx->mlx_ptr = mlx_init();
 	if (!mlx->mlx_ptr)
 		return (0);
