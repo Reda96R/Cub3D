@@ -47,11 +47,11 @@ void	ft_put_pixel(t_mlx *mlx, int x, int y, int color)
 	}
 }
 
-void	ft_draw_line(t_mlx *mlx, int x0, int y0, int x1, int y1)
+void	ft_draw_line(t_mlx *mlx, float x0, float y0, float x1, float y1)
 {
 	float	max;
 
-	max = fmax(abs(x1 - x0), abs(y1 - y0));
+	max = fmax(fabs(x1 - x0), fabs(y1 - y0));
 	while (max >= 0)
 	{
 		ft_put_pixel(mlx, x0, y0, 0xFFFF00);
@@ -237,8 +237,8 @@ int	ft_player_init(t_player **player, int x, int y)
 	(*player)->spd = 5;
 	(*player)->walk = 0;
 	(*player)->turn = 0;
-	(*player)->rot = M_PI / 2;
-	(*player)->rot_spd = 45 * (M_PI / 180);
+	(*player)->rot = -M_PI / 2;
+	(*player)->rot_spd = 5 * (M_PI / 180);
 	return (1);
 }
 
