@@ -179,8 +179,8 @@ void	ft_draw_player(t_mlx *mlx, int x, int y)
 	int	xf;
 	int	yf;
 	// int	s;
-	mlx->player->rot += (mlx->player->turn * mlx->player->rot_spd);
-	mlx->player->turn = 0;
+	// mlx->player->rot += (mlx->player->turn * mlx->player->rot_spd);
+	// mlx->player->turn = 0;
 	xf = x + cos (mlx->player->rot) * 40;
 	yf = y + sin (mlx->player->rot) * 40;
 	// g_size = 45;
@@ -199,9 +199,11 @@ int	key_press(int keycode, t_mlx *mlx)
 	else if (keycode == KEY_S)
 		mlx->player->walk = -1;
 	else if (keycode == KEY_A)
-		mlx->player->turn = -1;
+	    mlx->player->rot -= mlx->player->rot_spd;
+		// mlx->player->turn = -1;
 	else if (keycode == KEY_D)
-		mlx->player->turn = 1;
+	    mlx->player->rot += mlx->player->rot_spd;
+		// mlx->player->turn = 1;
 	else if (keycode == ESCAPE_KEY)
 		exit (0);
 
