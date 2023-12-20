@@ -25,7 +25,8 @@ int	g_size = 100;
 #define KEY_S 115  // S key
 #define KEY_A 97   // A key
 #define KEY_D 100   // D key
-
+#define KEY_L_A 65361 
+#define KEY_R_A 65363 
 // int	g_test[][9] = {
 // {1, 1, 1, 1, 1, 1, 1, 1, 1},
 // {1, 0, 0, 0, 0, 1, 0, 0, 1},
@@ -188,51 +189,82 @@ void	ft_draw_player(t_mlx *mlx, int x, int y)
 {
 	int	xf;
 	int	yf;
-	// int	s;
-	// mlx->player->rot += (mlx->player->turn * mlx->player->rot_spd);
-	// mlx->player->turn = 0;
+
 	xf = x + cos (mlx->player->rot) * (mlx->player->r * 2);
 	yf = y + sin (mlx->player->rot) * (mlx->player->r * 2);
-	// g_size = 45;
 	ft_draw_circle(mlx, x, y);
 	ft_draw_line(mlx, x, y, xf, yf);
-	// s = g_size;
-	// ft_draw_square(mlx, x, y, 0xFF0000);
-	// g_size = s;
+}
+
+int	ft_pos_update(t_mlx *mlx)
+{
+	if (mlx->player->m_f)
+	{
+		mlx->player->x += cos(mlx->player->rot) * mlx->player->spd;
+		mlx->player->y += sin(mlx->player->rot) * mlx->player->spd;
+	}
+	if (mlx->player->m_b)
+	{
+		mlx->player->x -= cos(mlx->player->rot) * mlx->player->spd;
+		mlx->player->y -= sin(mlx->player->rot) * mlx->player->spd;
+	}
+	if (mlx->player->m_l)
+	{
+		mlx->player->x -= cos(mlx->player->rot + M_PI_2) * mlx->player->spd;
+		mlx->player->y -= sin(mlx->player->rot + M_PI_2) * mlx->player->spd;
+	}
+	if (mlx->player->m_r)
+	{
+		mlx->player->x += cos(mlx->player->rot + M_PI_2) * mlx->player->spd;
+		mlx->player->y += sin(mlx->player->rot + M_PI_2) * mlx->player->spd;
+	}
+	if (mlx->player->t_l)
+		mlx->player->rot -= mlx->player->rot_spd;
+	if (mlx->player->t_r)
+		mlx->player->rot += mlx->player->rot_spd;
+	return (0);
 }
 
 int	key_press(int keycode, t_mlx *mlx)
 {
-	// ft_clear_player(mlx->mlx_ptr, mlx->player->x, mlx->player->y, 45);
 	if (keycode == KEY_W)
-		mlx->player->walk = 1;
+		mlx->player->m_f = 1;
 	else if (keycode == KEY_S)
-		mlx->player->walk = -1;
+		mlx->player->m_b = 1;
 	else if (keycode == KEY_A)
-		mlx->player->rot -= mlx->player->rot_spd;
-		// mlx->player->turn = -1;
+		mlx->player->m_l = 1;
 	else if (keycode == KEY_D)
-		mlx->player->rot += mlx->player->rot_spd;
-		// mlx->player->turn = 1;
+		mlx->player->m_r = 1;
+	else if (keycode == KEY_L_A)
+		mlx->player->t_l = 1;
+	else if (keycode == KEY_R_A)
+		mlx->player->t_r = 1;
 	else if (keycode == ESCAPE_KEY)
 		exit (0);
+	return (0);
+}
 
-	// if (keycode == KEY_W)
-	// 	mlx->player->y -= mlx->player->spd;
-	// else if (keycode == KEY_S)
-	// 	mlx->player->y += mlx->player->spd;
-	// else if (keycode == KEY_A)
-	// 	mlx->player->x -= mlx->player->spd;
-	// else if (keycode == KEY_D)
-	// 	mlx->player->x += mlx->player->spd;
-	// else if (keycode == ESCAPE_KEY)
-	// 	exit (0);
+int	key_release(int keycode, t_mlx *mlx)
+{
+	if (keycode == KEY_W)
+		mlx->player->m_f = 0;
+	else if (keycode == KEY_S)
+		mlx->player->m_b = 0;
+	else if (keycode == KEY_A)
+		mlx->player->m_l = 0;
+	else if (keycode == KEY_D)
+		mlx->player->m_r = 0;
+	else if (keycode == KEY_L_A)
+		mlx->player->t_l = 0;
+	else if (keycode == KEY_R_A)
+		mlx->player->t_r = 0;
 	return (0);
 }
 
 int	update(t_mlx *mlx)
 {
 	ft_draw_map(mlx);
+	ft_pos_update(mlx);
 	ft_draw_player(mlx, mlx->player->x, mlx->player->y);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img.img, 0, 0);
 	return (0);
@@ -246,11 +278,11 @@ int	ft_player_init(t_player **player, int x, int y)
 	(*player)->x = x;
 	(*player)->y = y;
 	(*player)->r = 15;
-	(*player)->spd = 5;
+	(*player)->spd = 1;
 	(*player)->walk = 0;
 	(*player)->turn = 0;
-	(*player)->rot = -M_PI / 2;
-	(*player)->rot_spd = 5 * (M_PI / 180);
+	(*player)->rot = -M_PI_2;
+	(*player)->rot_spd = 1 * (M_PI / 180);
 	return (1);
 }
 
@@ -290,6 +322,7 @@ int	ft_canvas_maker(t_mlx *mlx)
 	ft_draw_player(mlx, mlx->player->x, mlx->player->y);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img.img, 0, 0);
 	mlx_hook(mlx->win_ptr, 2, 1L << 0, key_press, mlx);
+	mlx_hook(mlx->win_ptr, 3, 1L << 1, key_release, mlx);
 	mlx_loop_hook(mlx->mlx_ptr, update, mlx);
 	mlx_loop(mlx->mlx_ptr);
 	return (1);

@@ -19,12 +19,18 @@ typedef struct s_img
 
 typedef struct s_player
 {
+	int		m_f;
+	int		m_b;
+	int		m_r;
+	int		m_l;
+	int		t_r;
+	int		t_l;
 	float	x;
 	float	y;
 	float	r;
-	float	spd;
 	float	turn;
 	float	walk;
+	float	spd;
 	float	rot;
 	float	rot_spd;
 }	t_player;
