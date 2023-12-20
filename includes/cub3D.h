@@ -35,6 +35,12 @@ typedef struct s_player
 	float	rot_spd;
 }	t_player;
 
+typedef struct s_pos {
+	float	x;
+	float	y;
+	float	rot;
+}	t_pos;
+
 typedef struct s_mlx
 {
 	unsigned int	height;
@@ -45,6 +51,7 @@ typedef struct s_mlx
 	void			*win_ptr;
 	t_img			img;
 	t_player		*player;
+	t_pos			*pos;
 }	t_mlx;
 
 #endif

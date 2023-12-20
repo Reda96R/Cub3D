@@ -196,8 +196,25 @@ void	ft_draw_player(t_mlx *mlx, int x, int y)
 	ft_draw_line(mlx, x, y, xf, yf);
 }
 
+int	ft_wall_detector(float x, float y)
+{
+	int	map_x;
+	int	map_y;
+
+	map_x = floor(x / g_size);
+	map_y = floor(y / g_size);
+	if (g_test[map_x][map_y] == '0')
+		return (0);
+	return (1);
+}
+
 int	ft_pos_update(t_mlx *mlx)
 {
+	float	x;
+	float	y;
+
+	x = mlx->player->x;
+	y = mlx->player->y;
 	if (mlx->player->m_f)
 	{
 		mlx->player->x += cos(mlx->player->rot) * mlx->player->spd;
@@ -222,7 +239,13 @@ int	ft_pos_update(t_mlx *mlx)
 		mlx->player->rot -= mlx->player->rot_spd;
 	if (mlx->player->t_r)
 		mlx->player->rot += mlx->player->rot_spd;
-	return (0);
+	if (ft_wall_detector(mlx->player->x, mlx->player->y))
+	{
+		mlx->player->x = x;
+		mlx->player->y = y;
+		// mlx->player->rot = r;
+	}
+	return (1);
 }
 
 int	key_press(int keycode, t_mlx *mlx)
