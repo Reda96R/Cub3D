@@ -278,11 +278,11 @@ int	ft_player_init(t_player **player, int x, int y)
 	(*player)->x = x;
 	(*player)->y = y;
 	(*player)->r = 15;
-	(*player)->spd = 1;
+	(*player)->spd = 6;
 	(*player)->walk = 0;
 	(*player)->turn = 0;
 	(*player)->rot = -M_PI_2;
-	(*player)->rot_spd = 1 * (M_PI / 180);
+	(*player)->rot_spd = 6 * (M_PI / 180);
 	return (1);
 }
 
