@@ -201,8 +201,8 @@ int	ft_wall_detector(float x, float y)
 	int	map_x;
 	int	map_y;
 
-	map_x = floor(x / g_size);
-	map_y = floor(y / g_size);
+	map_x = floor(y / g_size);
+	map_y = floor(x / g_size);
 	if (g_test[map_x][map_y] == '0')
 		return (0);
 	return (1);
@@ -243,7 +243,6 @@ int	ft_pos_update(t_mlx *mlx)
 	{
 		mlx->player->x = x;
 		mlx->player->y = y;
-		// mlx->player->rot = r;
 	}
 	return (1);
 }
@@ -301,11 +300,11 @@ int	ft_player_init(t_player **player, int x, int y)
 	(*player)->x = x;
 	(*player)->y = y;
 	(*player)->r = 15;
-	(*player)->spd = 1;
+	(*player)->spd = 6;
 	(*player)->walk = 0;
 	(*player)->turn = 0;
 	(*player)->rot = -M_PI_2;
-	(*player)->rot_spd = 1 * (M_PI / 180);
+	(*player)->rot_spd = 6 * (M_PI / 180);
 	return (1);
 }
 
