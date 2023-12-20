@@ -15,19 +15,9 @@
 #define MAP_X 9
 #define MAP_Y 7
 
-int	g_size = 100;
-
 #define SPACE 1
 
-int	g_test[][9] = {
-{1, 1, 1, 1, 1, 1, 1, 1, 1},
-{1, 0, 0, 0, 0, 1, 0, 0, 1},
-{1, 1, 1, 0, 0, 0, 0, 0, 1},
-{1, 0, 0, 0, 0, 0, 0, 0, 1},
-{1, 0, 0, 0, 1, 0, 0, 0, 1},
-{1, 0, 0, 0, 1, 0, 0, 0, 1},
-{1, 1, 1, 1, 1, 1, 1, 1, 1}
-};
+int	g_size = 100;
 
 // Define key codes
 #define ESCAPE_KEY 65307 // ESC key
@@ -35,6 +25,26 @@ int	g_test[][9] = {
 #define KEY_S 115  // S key
 #define KEY_A 97   // A key
 #define KEY_D 100   // D key
+
+// int	g_test[][9] = {
+// {1, 1, 1, 1, 1, 1, 1, 1, 1},
+// {1, 0, 0, 0, 0, 1, 0, 0, 1},
+// {1, 1, 1, 0, 0, 0, 0, 0, 1},
+// {1, 0, 0, 0, 0, 0, 0, 0, 1},
+// {1, 0, 0, 0, 1, 0, 0, 0, 1},
+// {1, 0, 0, 0, 1, 0, 0, 0, 1},
+// {1, 1, 1, 1, 1, 1, 1, 1, 1}
+// };
+
+char  g_test[][9] = {
+{'1', '1', '1', '1', '1', '1', '1', '1', '1'},
+{'1', '0', '0', '0', '0', '1', '0', '0', '1'},
+{'1', '1', '1', '0', '0', '0', '0', '0', '1'},
+{'1', '0', '0', '0', '0', '0', '0', '0', '1'},
+{'1', '0', '0', '0', '1', '0', '0', '0', '1'},
+{'1', '0', '0', '0', '1', '0', '0', '0', '1'},
+{'1', '1', '1', '1', '1', '1', '1', '1', '1'}
+};
 
 void	ft_put_pixel(t_mlx *mlx, int x, int y, int color)
 {
@@ -143,7 +153,7 @@ void	ft_draw_map(t_mlx *mlx)
 		j = 0;
 		while (j < MAP_X)
 		{
-			if (g_test[i][j])
+			if (g_test[i][j] != '0')
 				ft_draw_square(mlx, x, y, 0xFFFFFF);
 			else
 				ft_draw_square(mlx, x, y, 0x000000);
@@ -181,8 +191,8 @@ void	ft_draw_player(t_mlx *mlx, int x, int y)
 	// int	s;
 	// mlx->player->rot += (mlx->player->turn * mlx->player->rot_spd);
 	// mlx->player->turn = 0;
-	xf = x + cos (mlx->player->rot) * 40;
-	yf = y + sin (mlx->player->rot) * 40;
+	xf = x + cos (mlx->player->rot) * (mlx->player->r * 2);
+	yf = y + sin (mlx->player->rot) * (mlx->player->r * 2);
 	// g_size = 45;
 	ft_draw_circle(mlx, x, y);
 	ft_draw_line(mlx, x, y, xf, yf);
@@ -193,16 +203,16 @@ void	ft_draw_player(t_mlx *mlx, int x, int y)
 
 int	key_press(int keycode, t_mlx *mlx)
 {
-	ft_clear_player(mlx->mlx_ptr, mlx->player->x, mlx->player->y, 45);
+	// ft_clear_player(mlx->mlx_ptr, mlx->player->x, mlx->player->y, 45);
 	if (keycode == KEY_W)
 		mlx->player->walk = 1;
 	else if (keycode == KEY_S)
 		mlx->player->walk = -1;
 	else if (keycode == KEY_A)
-	    mlx->player->rot -= mlx->player->rot_spd;
+		mlx->player->rot -= mlx->player->rot_spd;
 		// mlx->player->turn = -1;
 	else if (keycode == KEY_D)
-	    mlx->player->rot += mlx->player->rot_spd;
+		mlx->player->rot += mlx->player->rot_spd;
 		// mlx->player->turn = 1;
 	else if (keycode == ESCAPE_KEY)
 		exit (0);
