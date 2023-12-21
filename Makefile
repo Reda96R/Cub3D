@@ -28,7 +28,7 @@ P_FILES =
 P_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix src/parsing/, $(P_FILES))))
 
 #::::::::::::::::RAY:::::::::::::::#
-R_FILES = 
+R_FILES = ft_shapes ft_drawer ft_keylogger
 
 R_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix src/ray_casting/, $(R_FILES))))
 
