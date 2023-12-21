@@ -20,7 +20,7 @@ COMP 		= -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 COMP_O 		= -I/usr/include -Imlx_linux
 endif
 
-all: $(NAME)
+all: os $(NAME)
 
 #::::::::::::::::PRS:::::::::::::::#
 P_FILES = 
@@ -28,7 +28,7 @@ P_FILES =
 P_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix src/parsing/, $(P_FILES))))
 
 #::::::::::::::::RAY:::::::::::::::#
-R_FILES = ft_shapes ft_drawer ft_keylogger ft_math_hub ft_starter
+R_FILES = ft_shapes ft_drawer ft_keylogger ft_maths_hub ft_starter
 
 R_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix src/ray_casting/, $(R_FILES))))
 
@@ -38,7 +38,7 @@ $(NAME): $(M_OBJS) $(P_OBJS) $(R_OBJS)
 	@$(CC) $(CFLAGS) $(M_OBJS) $(P_OBJS) $(R_OBJS) $(COMP) -o $(NAME)
 	@echo $(f_green)":::✅ $(NAME) is ready ✅:::"$(reset)
 
-$(OBJ_DIR)%.o: %.c 
+$(OBJ_DIR)%.o: %.c
 	@echo $(cursive)$(grey)":::Making object files:::"$(reset)
 	@mkdir -p .obj/src .obj/src/parsing .obj/src/ray_casting
 	@$(CC) $(CFLAGS) $(COMP_O) -c $< -o $@
@@ -55,7 +55,32 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re os
+
+os : 
+	@echo $(yellow) "          _____                    _____                    _____          " $(reset)
+	@echo $(yellow) "         /\    \                  /\    \                  /\    \         " $(reset)
+	@echo $(yellow) "        /::\    \                /::\____\                /::\    \        " $(reset)
+	@echo $(yellow) "       /::::\    \              /:::/    /               /::::\    \       " $(reset)
+	@echo $(yellow) "      /::::::\    \            /:::/    /               /::::::\    \      " $(reset)
+	@echo $(yellow) "     /:::/\:::\    \          /:::/    /               /:::/\:::\    \     " $(reset)
+	@echo $(yellow) "    /:::/  \:::\    \        /:::/    /               /:::/__\:::\    \    " $(reset)
+	@echo $(yellow) "   /:::/    \:::\    \      /:::/    /               /::::\   \:::\    \   " $(reset)
+	@echo $(yellow) "  /:::/    / \:::\    \    /:::/    /      _____    /::::::\   \:::\    \  " $(reset)
+	@echo $(yellow) " /:::/    /   \:::\    \  /:::/____/      /\    \  /:::/\:::\   \:::\ ___\ " $(reset)
+	@echo $(yellow) "/:::/____/     \:::\____\|:::|    /      /::\____\/:::/__\:::\   \:::|    |" $(reset)
+	@echo $(yellow) "\:::\    \      \::/    /|:::|____\     /:::/    /\:::\   \:::\  /:::|____|" $(reset)
+	@echo $(yellow) " \:::\    \      \/____/  \:::\    \   /:::/    /  \:::\   \:::\/:::/    / " $(reset)
+	@echo $(yellow) "  \:::\    \               \:::\    \ /:::/    /    \:::\   \::::::/    /  " $(reset)
+	@echo $(yellow) "   \:::\    \               \:::\    /:::/    /      \:::\   \::::/    /   " $(reset)
+	@echo $(yellow) "    \:::\    \               \:::\__/:::/    /        \:::\  /:::/    /    " $(reset)
+	@echo $(yellow) "     \:::\    \               \::::::::/    /          \:::\/:::/    /     " $(reset)
+	@echo $(yellow) "      \:::\    \               \::::::/    /            \::::::/    /      " $(reset)
+	@echo $(yellow) "       \:::\____\               \::::/    /              \::::/    /       " $(reset)
+	@echo $(yellow) "        \::/    /                \::/____/                \::/____/       " $(reset)
+	@echo $(yellow) "         \/____/                  ~~                       ~~              " $(reset)
+	@echo $(green) "                                                                    for $(OS)" $(reset)
+	@echo $(green) "                                                  " $(reset)
 
 #::::::::::::::Colors::::::::::::::#
 black  		= "\033[0;30m"

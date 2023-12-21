@@ -60,7 +60,7 @@ void	ft_draw_square(t_mlx *mlx, int x, int y, int color);
 int		ft_key_press(int keycode, t_mlx *mlx);
 int		ft_key_release(int keycode, t_mlx *mlx);
 
-			/*---ft_math_hub---*/
+			/*---ft_maths_hub---*/
 void	ft_pos_calculator(t_mlx *mlx);
 void	ft_move_calculator(t_mlx *mlx);
 void	ft_turn_calculator(t_mlx *mlx);
