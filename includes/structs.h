@@ -1,14 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   structs.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rerayyad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/21 17:54:40 by rerayyad          #+#    #+#             */
+/*   Updated: 2023/12/21 17:54:40 by rerayyad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef STRUCTS_H
 # define STRUCTS_H
-
-typedef struct s_img
-{
-	void	*img;
-	char	*id;
-	int		endian;
-	int		bpp;
-	int		len;
-}	t_img;
 
 typedef struct s_player
 {
@@ -27,6 +30,15 @@ typedef struct s_player
 	float	rot;
 	float	rot_spd;
 }	t_player;
+
+typedef struct s_img
+{
+	void	*img;
+	char	*id;
+	int		endian;
+	int		bpp;
+	int		len;
+}	t_img;
 
 typedef struct s_pos {
 	float	x;

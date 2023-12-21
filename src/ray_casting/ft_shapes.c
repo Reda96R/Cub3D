@@ -1,15 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_shapes.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rerayyad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/21 17:53:08 by rerayyad          #+#    #+#             */
+/*   Updated: 2023/12/21 17:53:09 by rerayyad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3D.h"
 
-void	ft_draw_line(t_mlx *mlx, float x0, float y0, float x1, float y1)
+void	ft_draw_line(t_mlx *mlx, float c[4])
 {
 	float	max;
 
-	max = fmax(fabs(x1 - x0), fabs(y1 - y0));
+	max = fmax(fabs(c[2] - c[0]), fabs(c[3] - c[1]));
 	while (max >= 0)
 	{
-		ft_put_pixel(mlx, x0, y0, 0xFFFF00);
-		x0 += (x1 - x0) / (float) max;
-		y0 += (y1 - y0) / (float) max;
+		ft_put_pixel(mlx, c[0], c[1], 0xFFFF00);
+		c[0] += (c[2] - c[0]) / (float) max;
+		c[1] += (c[3] - c[1]) / (float) max;
 		max--;
 	}
 }
