@@ -41,7 +41,7 @@ typedef struct s_mlx
 /*::::::::::::::::RAY:::::::::::::::*/
 
 			/*---ft_starter---*/
-t_mlx	*ft_game_init(void);
+t_mlx	*ft_data_init(void);
 void	ft_player_init(t_player **player, int x, int y);
 
 			/*---ft_drawer---*/
@@ -61,8 +61,10 @@ int		ft_key_press(int keycode, t_mlx *mlx);
 int		ft_key_release(int keycode, t_mlx *mlx);
 
 			/*---ft_math_hub---*/
-int		ft_wall_detector(float x, float y, char test[7][9]);
-int		ft_pos_calculator(t_mlx *mlx);
+void	ft_pos_calculator(t_mlx *mlx);
+void	ft_move_calculator(t_mlx *mlx);
+void	ft_turn_calculator(t_mlx *mlx);
+int		ft_wall_detector(float x, float y, char map[MAP_Y][MAP_X]);
 int		update(t_mlx *mlx);
 
 #endif

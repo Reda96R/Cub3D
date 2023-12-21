@@ -12,7 +12,7 @@
 
 #include "../../includes/cub3D.h"
 
-t_mlx	*ft_game_init()
+t_mlx	*ft_data_init(void)
 {
 	t_mlx	*mlx;
 

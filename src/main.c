@@ -38,7 +38,7 @@ int	main(void)
 {
 	t_mlx	*mlx;
 
-	mlx = ft_game_init();
+	mlx = ft_data_init();
 	ft_canvas_maker(mlx);
 	return (0);
 }
