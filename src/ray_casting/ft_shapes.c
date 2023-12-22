@@ -12,14 +12,14 @@
 
 #include "../../includes/cub3D.h"
 
-void	ft_draw_line(t_mlx *mlx, float c[4])
+void	ft_draw_line(t_mlx *mlx, float c[4], int color)
 {
 	float	max;
 
 	max = fmax(fabs(c[2] - c[0]), fabs(c[3] - c[1]));
 	while (max >= 0)
 	{
-		ft_put_pixel(mlx, c[0], c[1], 0xFFFF00);
+		ft_put_pixel(mlx, c[0], c[1], color);
 		c[0] += (c[2] - c[0]) / (float) max;
 		c[1] += (c[3] - c[1]) / (float) max;
 		max--;

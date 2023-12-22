@@ -21,6 +21,7 @@ typedef struct s_player
 	int		m_l;
 	int		t_r;
 	int		t_l;
+	float	fov;
 	float	x;
 	float	y;
 	float	r;
@@ -30,6 +31,11 @@ typedef struct s_player
 	float	rot;
 	float	rot_spd;
 }	t_player;
+
+typedef struct s_rays {
+	float	rays_num;
+	float	ray_size;
+}	t_rays;	
 
 typedef struct s_img
 {

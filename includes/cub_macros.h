@@ -25,6 +25,10 @@
 # define RADIUS 15
 # define SPEED 1.5
 # define ROT_SPEED 2
+# define FOV 60
+
+/*::::Rays propreties::::*/
+# define RAY_SIZE 5
 
 /*::::Key codes::::*/
 # define ESCAPE_KEY 65307 // ESC key

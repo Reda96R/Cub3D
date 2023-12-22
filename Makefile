@@ -20,6 +20,42 @@ COMP 		= -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 COMP_O 		= -I/usr/include -Imlx_linux
 endif
 
+all: $(NAME)
+
+#::::::::::::::::PRS:::::::::::::::#
+P_FILES = 
+
+P_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix src/parsing/, $(P_FILES))))
+
+#::::::::::::::::RAY:::::::::::::::#
+R_FILES = ft_shapes ft_drawer ft_keylogger ft_maths_hub ft_starter ft_rays
+
+R_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix src/ray_casting/, $(R_FILES))))
+
+#:::::::::::::Compile::::::::::::::#
+$(NAME): $(M_OBJS) $(P_OBJS) $(R_OBJS)
+	@echo $(cursive)$(grey)":::Making object files:::"$(reset)
+	@echo $(cursive)$(grey)":::Compiling $(NAME):::"$(reset)
+	@$(CC) $(CFLAGS) $(M_OBJS) $(P_OBJS) $(R_OBJS) $(COMP) -o $(NAME)
+	@echo $(f_green)":::✅ $(NAME) is ready ✅:::"$(reset)
+
+$(OBJ_DIR)%.o: %.c 
+	@mkdir -p .obj/src .obj/src/parsing .obj/src/ray_casting
+	@$(CC) $(CFLAGS) $(COMP_O) -c $< -o $@
+
+clean:
+	@echo $(cursive)$(grey)":::Deleting object files:::"$(reset)
+	@rm -rf $(OBJ_DIR)
+	@echo $(red)":::Deleted:::"$(reset)
+
+fclean: clean
+	@echo $(cursive)$(grey)":::Deleting executable:::"$(reset)
+	@rm -rf $(NAME)
+	@echo $(red)":::Deleted:::"$(reset)
+
+re: fclean all
+
+.PHONY: all clean fclean re os
 
 define os
 	@echo $(yellow) "          _____                    _____                    _____          " $(reset)
@@ -46,45 +82,6 @@ define os
 	@echo $(green) "                                                                    for $(OS)" $(reset)
 	@echo $(green) "                                                  " $(reset)
 endef
-
-all: $(NAME)
-
-#::::::::::::::::PRS:::::::::::::::#
-P_FILES = 
-
-P_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix src/parsing/, $(P_FILES))))
-
-#::::::::::::::::RAY:::::::::::::::#
-R_FILES = ft_shapes ft_drawer ft_keylogger ft_maths_hub ft_starter
-
-R_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix src/ray_casting/, $(R_FILES))))
-
-#:::::::::::::Compile::::::::::::::#
-$(NAME): $(M_OBJS) $(P_OBJS) $(R_OBJS)
-	$(call os)
-	@echo $(cursive)$(grey)":::Making object files:::"$(reset)
-	@echo $(cursive)$(grey)":::Compiling $(NAME):::"$(reset)
-	@$(CC) $(CFLAGS) $(M_OBJS) $(P_OBJS) $(R_OBJS) $(COMP) -o $(NAME)
-	@echo $(f_green)":::✅ $(NAME) is ready ✅:::"$(reset)
-
-$(OBJ_DIR)%.o: %.c 
-	@mkdir -p .obj/src .obj/src/parsing .obj/src/ray_casting
-	@$(CC) $(CFLAGS) $(COMP_O) -c $< -o $@
-
-clean:
-	@echo $(cursive)$(grey)":::Deleting object files:::"$(reset)
-	@rm -rf $(OBJ_DIR)
-	@echo $(red)":::Deleted:::"$(reset)
-
-fclean: clean
-	@echo $(cursive)$(grey)":::Deleting executable:::"$(reset)
-	@rm -rf $(NAME)
-	@echo $(red)":::Deleted:::"$(reset)
-
-re: fclean all
-
-.PHONY: all clean fclean re os
-
 
 #::::::::::::::Colors::::::::::::::#
 black  		= "\033[0;30m"

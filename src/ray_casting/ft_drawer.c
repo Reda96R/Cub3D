@@ -23,6 +23,16 @@ void	ft_put_pixel(t_mlx *mlx, int x, int y, int color)
 	}
 }
 
+int	update(t_mlx *mlx)
+{
+	ft_draw_map(mlx);
+	ft_pos_calculator(mlx);
+	ft_prime_and_cast(mlx);
+	ft_draw_player(mlx, mlx->player->x, mlx->player->y);
+	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img.img, 0, 0);
+	return (0);
+}
+
 void	ft_draw_map(t_mlx *mlx)
 {
 	int	i;
@@ -57,14 +67,14 @@ void	ft_draw_player(t_mlx *mlx, int x, int y)
 	float	xf;
 	float	yf;
 
-	xf = x + cos (mlx->player->rot) * (mlx->player->r * 2);
-	yf = y + sin (mlx->player->rot) * (mlx->player->r * 2);
-	ft_draw_circle(mlx, x, y);
+	xf = x + cos (mlx->player->rot) * mlx->rays->ray_size;
+	yf = y + sin (mlx->player->rot) * mlx->rays->ray_size;
 	coordinates[0] = x;
 	coordinates[1] = y;
 	coordinates[2] = xf;
 	coordinates[3] = yf;
-	ft_draw_line(mlx, coordinates);
+	ft_draw_line(mlx, coordinates, 0xFFFF00);
+	ft_draw_circle(mlx, x, y);
 }
 
 void	ft_clear_map(t_mlx *mlx)

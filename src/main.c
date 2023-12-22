@@ -26,6 +26,7 @@ void	ft_canvas_maker(t_mlx *mlx)
 {
 	memcpy(mlx->map, g_test, sizeof (g_test)); // Will be removed
 	ft_draw_map(mlx);
+	ft_prime_and_cast(mlx);
 	ft_draw_player(mlx, mlx->player->x, mlx->player->y);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img.img, 0, 0);
 	mlx_hook(mlx->win_ptr, 2, 1L << 0, ft_key_press, mlx);

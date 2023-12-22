@@ -74,12 +74,3 @@ void	ft_pos_calculator(t_mlx *mlx)
 		mlx->player->y = y;
 	}
 }
-
-int	update(t_mlx *mlx)
-{
-	ft_draw_map(mlx);
-	ft_pos_calculator(mlx);
-	ft_draw_player(mlx, mlx->player->x, mlx->player->y);
-	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img.img, 0, 0);
-	return (0);
-}

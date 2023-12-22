@@ -34,6 +34,7 @@ typedef struct s_mlx
 	t_img			img;
 	t_player		*player;
 	t_pos			*pos;
+	t_rays			*rays;
 }	t_mlx;
 
 /*::::::::::::::::PRS:::::::::::::::*/
@@ -43,8 +44,14 @@ typedef struct s_mlx
 			/*---ft_starter---*/
 t_mlx	*ft_data_init(void);
 void	ft_player_init(t_player **player, int x, int y);
+void	ft_rays_init(t_rays **rays, t_mlx *mlx);
+
+			/*---ft_starter---*/
+void	ft_prime_and_cast(t_mlx *mlx);
+void	ft_ray_igniter(t_mlx *mlx, float ray_angle);
 
 			/*---ft_drawer---*/
+int		update(t_mlx *mlx);
 void	ft_put_pixel(t_mlx *mlx, int x, int y, int color);
 void	ft_clear_map(t_mlx *mlx);
 void	ft_draw_map(t_mlx *mlx);
@@ -52,7 +59,7 @@ void	ft_clear_player(t_mlx *mlx, int x, int y, int size);
 void	ft_draw_player(t_mlx *mlx, int x, int y);
 
 			/*---ft_shapes---*/
-void	ft_draw_line(t_mlx *mlx, float c[4]);
+void	ft_draw_line(t_mlx *mlx, float c[4], int color);
 void	ft_draw_circle(t_mlx *mlx, int x, int y);
 void	ft_draw_square(t_mlx *mlx, int x, int y, int color);
 
@@ -65,6 +72,6 @@ void	ft_pos_calculator(t_mlx *mlx);
 void	ft_move_calculator(t_mlx *mlx);
 void	ft_turn_calculator(t_mlx *mlx);
 int		ft_wall_detector(float x, float y, char map[MAP_Y][MAP_X]);
-int		update(t_mlx *mlx);
 
 #endif
+
