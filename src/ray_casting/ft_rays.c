@@ -71,8 +71,6 @@ void	ft_prime_and_cast(t_mlx *mlx)
 		mlx->rays->ray_angle += (2 * M_PI);
 	mlx->rays->up = mlx->rays->ray_angle > 0 && mlx->rays->ray_angle > M_PI;
 	mlx->rays->right = mlx->rays->ray_angle < M_PI_2 || mlx->rays->ray_angle > (3 * M_PI_2); // Check more about ||
-	if (mlx->rays->ray_angle < 0)
-		mlx->rays->ray_angle += (2 * M_PI);
 	while (i < 1)//mlx->rays->rays_num)
 	{
 		ft_ray_igniter(mlx, mlx->rays->ray_angle);
