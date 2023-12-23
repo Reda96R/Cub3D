@@ -32,9 +32,16 @@ typedef struct s_player
 	float	rot_spd;
 }	t_player;
 
-typedef struct s_rays {
+typedef struct s_rays
+{
+	int		up;
+	int		right;
 	float	rays_num;
+	float	ray_angle;
 	float	ray_size;
+	float	hit_x;
+	float	hit_y;
+	float	colision_distance;
 }	t_rays;	
 
 typedef struct s_img
@@ -46,7 +53,8 @@ typedef struct s_img
 	int		len;
 }	t_img;
 
-typedef struct s_pos {
+typedef struct s_pos
+{
 	float	x;
 	float	y;
 	float	rot;
