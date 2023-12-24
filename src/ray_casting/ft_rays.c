@@ -12,11 +12,10 @@
 
 #include "../../includes/cub3D.h"
 
-void	ft_ray_igniter(t_mlx *mlx, float ray_angle)
+void	ft_ray_igniter(t_mlx *mlx)
 {
 	float	cord[4];
 
-	(void)ray_angle;
 	cord[0] = mlx->player->x;
 	cord[1] = mlx->player->y;
 	cord[2] = mlx->rays->hit_x;
@@ -171,12 +170,12 @@ void	ft_prime_and_cast(t_mlx *mlx)
 	mlx->rays->ray_angle = mlx->player->rot - (mlx->player->fov / 2);
 	mlx->rays->ray_angle = fmod(mlx->rays->ray_angle, (2 * M_PI)); // Limiting the angle
 	if (mlx->rays->ray_angle < 0)
-		mlx->rays->ray_angle += (2 * M_PI);
+		mlx->rays->ray_angle += (2 * M_PI); 
 	mlx->rays->up = mlx->rays->ray_angle > 0 && mlx->rays->ray_angle > M_PI;
 	mlx->rays->right = mlx->rays->ray_angle < M_PI_2 || mlx->rays->ray_angle > (3 * M_PI_2); // Check more about ||
 	while (i < 1)//mlx->rays->rays_num)
 	{
-		ft_ray_igniter(mlx, mlx->rays->ray_angle);
+		ft_ray_igniter(mlx);
 		ft_hit_detector(mlx);
 		mlx->rays->ray_angle += mlx->player->fov / mlx->rays->rays_num;
 		i++;
@@ -202,7 +201,7 @@ void	ft_prime_and_cast(t_mlx *mlx)
 // 	if (mlx->rays->up)
 // 		diff[1] *= -1;
 // 	diff[0] = CUB_SIZE / tan(mlx->rays->ray_angle) + SPACE;
-// 	if ((!mlx->rays->right && diff[0] > 0) || (mlx->rays->right && diff[0] < 0))// reverify
+// 	if ((!mlx->rays->right && diff[0] > 0) || (mlx->rays->right && diff[0] < 0))
 // 		diff[0] *= -1;
 //
 // 	next_cor[0] = inter_cor[0];
