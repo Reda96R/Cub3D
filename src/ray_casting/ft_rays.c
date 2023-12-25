@@ -12,7 +12,7 @@
 
 #include "../../includes/cub3D.h"
 
-void	ft_ray_igniter(t_mlx *mlx)
+void	ft_ray_igniter(t_mlx *mlx, int color)
 {
 	float	cord[4];
 
@@ -20,32 +20,9 @@ void	ft_ray_igniter(t_mlx *mlx)
 	cord[1] = mlx->player->y;
 	cord[2] = mlx->rays->hit_x;
 	cord[3] = mlx->rays->hit_y;
-	ft_draw_line(mlx, cord, 0xFF999980);
-}
-
-float	*ft_v_hit_calculator(t_mlx *mlx)
-{
-	float	inter_cor[2];
-	float	diff[2];
-	float	*ret;
-
-	inter_cor[0] = floor (mlx->player->x / CUB_SIZE) * CUB_SIZE;
-	if (!mlx->rays->up)
-		inter_cor[0] += CUB_SIZE;
-	inter_cor[1] = (inter_cor[0] - mlx->player->x) * tan(mlx->rays->ray_angle)
-		+ mlx->player->y;
-	diff[0] = CUB_SIZE + SPACE;
-	if (!mlx->rays->right)
-		diff[0] *= -1;
-	diff[1] = CUB_SIZE * tan(mlx->rays->ray_angle) + SPACE;
-	if ((mlx->rays->up && diff[1] > 0) || (!mlx->rays->up && diff[1] < 0))
-		diff[1] *= -1;
-	ret = malloc(sizeof(float) * 4);
-	ret[0] = inter_cor[0];
-	ret[1] = inter_cor[1];
-	ret[2] = diff[0];
-	ret[3] = diff[1];
-	return (ret);
+  // cord[2] = mlx->player->x + cos (mlx->rays->ray_angle) * 500;
+  // cord[3] = mlx->player->y + sin (mlx->rays->ray_angle) * 500;
+	ft_draw_line(mlx, cord, color);
 }
 
 float	*ft_h_hit_calculator(t_mlx *mlx)
@@ -73,6 +50,30 @@ float	*ft_h_hit_calculator(t_mlx *mlx)
 	return (ret);
 }
 
+float	*ft_v_hit_calculator(t_mlx *mlx)
+{
+	float	inter_cor[2];
+	float	diff[2];
+	float	*ret;
+
+	inter_cor[0] = floor (mlx->player->x / CUB_SIZE) * CUB_SIZE;
+	if (mlx->rays->right)
+		inter_cor[0] += CUB_SIZE;
+	inter_cor[1] = (inter_cor[0] - mlx->player->x) * tan(mlx->rays->ray_angle)
+		+ mlx->player->y;
+	diff[0] = CUB_SIZE + SPACE;
+	if (!mlx->rays->right)
+		diff[0] *= -1;
+	diff[1] = CUB_SIZE * tan(mlx->rays->ray_angle) + SPACE;
+	if ((mlx->rays->up && diff[1] > 0) || (!mlx->rays->up && diff[1] < 0))
+		diff[1] *= -1;
+	ret = malloc(sizeof(float) * 4);
+	ret[0] = inter_cor[0];
+	ret[1] = inter_cor[1];
+	ret[2] = diff[0];
+	ret[3] = diff[1];
+	return (ret);
+}
 //ft_v_hit_calculator();
 //will return (hit_x, hit_y)
 float	*ft_vertical_detector(t_mlx *mlx)
@@ -143,7 +144,7 @@ float	ft_hit_distance(float *coor, t_mlx *mlx)
 //ft_vertical_detector()-->detect the V_hit;
 //will find the closest hit;
 //will return the closest (rays(h_x, h_y, h_distance))
-void	ft_hit_detector(t_mlx *mlx)
+int	ft_hit_detector(t_mlx *mlx)
 {
 	float	*v_hit;
 	float	*h_hit;
@@ -154,17 +155,20 @@ void	ft_hit_detector(t_mlx *mlx)
 	{
 		mlx->rays->hit_x = h_hit[0];
 		mlx->rays->hit_y = h_hit[1];
+    return (0x008000);
 	}
 	else
 	{
 		mlx->rays->hit_x = v_hit[0];
 		mlx->rays->hit_y = v_hit[1];
+    return (0xFF0000);
 	}
 }
 
 void	ft_prime_and_cast(t_mlx *mlx)
 {
 	int		i;
+  int   color;
 
 	i = 0;
 	mlx->rays->ray_angle = mlx->player->rot - (mlx->player->fov / 2);
@@ -173,10 +177,10 @@ void	ft_prime_and_cast(t_mlx *mlx)
 		mlx->rays->ray_angle += (2 * M_PI); 
 	mlx->rays->up = mlx->rays->ray_angle > 0 && mlx->rays->ray_angle > M_PI;
 	mlx->rays->right = mlx->rays->ray_angle < M_PI_2 || mlx->rays->ray_angle > (3 * M_PI_2); // Check more about ||
-	while (i < 1)//mlx->rays->rays_num)
+	while (i < mlx->rays->rays_num)
 	{
-		ft_ray_igniter(mlx);
-		ft_hit_detector(mlx);
+		color = ft_hit_detector(mlx);
+		ft_ray_igniter(mlx, color);
 		mlx->rays->ray_angle += mlx->player->fov / mlx->rays->rays_num;
 		i++;
 	}

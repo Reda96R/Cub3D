@@ -24,7 +24,7 @@
 /*::::Player propreties::::*/
 # define RADIUS 15
 # define SPEED 1.5
-# define ROT_SPEED 2
+# define ROT_SPEED 1
 # define FOV 60
 
 /*::::Rays propreties::::*/

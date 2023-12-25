@@ -48,7 +48,7 @@ void	ft_rays_init(t_rays **rays, t_mlx *mlx);
 
 			/*---ft_starter---*/
 void	ft_prime_and_cast(t_mlx *mlx);
-void	ft_ray_igniter(t_mlx *mlx);
+void	ft_ray_igniter(t_mlx *mlx, int color);
 
 			/*---ft_drawer---*/
 int		update(t_mlx *mlx);

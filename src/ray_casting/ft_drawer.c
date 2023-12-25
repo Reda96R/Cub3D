@@ -52,7 +52,7 @@ void	ft_draw_map(t_mlx *mlx)
 			if (mlx->map[i][j] != '0')
 				ft_draw_square(mlx, x, y, 0xFFFFFF);
 			else
-				ft_draw_square(mlx, x, y, 0x000000);
+				ft_draw_square(mlx, x, y, 0x006000);
 			x += CUB_SIZE + SPACE;
 			j++;
 		}
