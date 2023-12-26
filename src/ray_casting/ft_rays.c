@@ -35,28 +35,28 @@ float	*ft_h_hit_calculator(t_mlx *mlx)
 	float	*ret;
 
 
-  inter_cor[1] = floor (mlx->player->y / CUB_SIZE) * CUB_SIZE;
-  if (!mlx->rays->up && mlx->rays->ray_angle < M_PI) // the problem is here
-    inter_cor[1] += CUB_SIZE;
-  inter_cor[0] = ((inter_cor[1] - mlx->player->y) / tan (mlx->rays->ray_angle)) + mlx->player->x;
-  diff[1] = CUB_SIZE;
-	if (mlx->rays->up)
-		diff[1] *= -1;
-  diff[0] = CUB_SIZE / tan(mlx->rays->ray_angle);
-	if ((!mlx->rays->right && diff[0] > 0) || (mlx->rays->right && diff[0] < 0))
-		diff[0] *= -1;
-
-	// inter_cor[1] = floor (mlx->player->y / CUB_SIZE) * CUB_SIZE;
-	// if (!mlx->rays->up)
-	// 	inter_cor[1] += (CUB_SIZE + SPACE);
-	// inter_cor[0] = (inter_cor[1] - mlx->player->y) / tan(mlx->rays->ray_angle)
-	// 	+ mlx->player->x;
-	// diff[1] = CUB_SIZE + SPACE;
-	// if (mlx->rays->up)
+ //  inter_cor[1] = floor (mlx->player->y / (CUB_SIZE + SPACE)) * (CUB_SIZE + SPACE);
+ //  if (!mlx->rays->up)
+ //    inter_cor[1] += (CUB_SIZE + SPACE);
+ //  inter_cor[0] = ((inter_cor[1] - mlx->player->y) / tan (mlx->rays->ray_angle)) + mlx->player->x;
+ //  diff[1] = CUB_SIZE + SPACE;
+ //  if (mlx->rays->up)
 	// 	diff[1] *= -1;
-	// diff[0] = CUB_SIZE / tan(mlx->rays->ray_angle) + SPACE;
+ //   diff[0] = (CUB_SIZE + SPACE) / tan(mlx->rays->ray_angle);
 	// if ((!mlx->rays->right && diff[0] > 0) || (mlx->rays->right && diff[0] < 0))
 	// 	diff[0] *= -1;
+
+	inter_cor[1] = floor (mlx->player->y / CUB_SIZE) * CUB_SIZE;
+	if (!mlx->rays->up)
+		inter_cor[1] += (CUB_SIZE + SPACE);
+	inter_cor[0] = (inter_cor[1] - mlx->player->y) / tan(mlx->rays->ray_angle)
+		+ mlx->player->x;
+	diff[1] = CUB_SIZE + SPACE;
+	if (mlx->rays->up)
+		diff[1] *= -1;
+	diff[0] = CUB_SIZE / tan(mlx->rays->ray_angle) + SPACE;
+	if ((!mlx->rays->right && diff[0] > 0) || (mlx->rays->right && diff[0] < 0))
+		diff[0] *= -1;
 	ret = malloc(sizeof(float) * 4);
 	ret[0] = inter_cor[0];
 	ret[1] = inter_cor[1];
@@ -116,8 +116,8 @@ float	*ft_vertical_detector(t_mlx *mlx)
 		next_inter_coor[0] += coor_n_diff[2];
 		next_inter_coor[1] += coor_n_diff[3];
 	}
-	// free (coor_n_diff);
-	return (coor_n_diff);
+	free (coor_n_diff);
+	return (hit_coor);
 }
 
 //ft_h_hit_calculator();
@@ -132,8 +132,8 @@ float	*ft_horizontal_detector(t_mlx *mlx)
 	hit_coor = malloc(sizeof(float) * 2);
 	next_inter_coor[0] = coor_n_diff[0];
 	next_inter_coor[1] = coor_n_diff[1];
-	// if (mlx->rays->up)
-	// 	next_inter_coor[1]--;
+	if (mlx->rays->up)
+		next_inter_coor[1] -= (SPACE + 3);
 	while (next_inter_coor[0] >= 0 && next_inter_coor[0] <= mlx->win_x
 		&& next_inter_coor[1] >= 0 && next_inter_coor[1] <= mlx->win_y)
 	{
@@ -146,8 +146,8 @@ float	*ft_horizontal_detector(t_mlx *mlx)
 		next_inter_coor[0] += coor_n_diff[2];
 		next_inter_coor[1] += coor_n_diff[3];
 	}
-	// free (coor_n_diff);
-	return (coor_n_diff);
+	free (coor_n_diff);
+	return (hit_coor);
 }
 
 float	ft_hit_distance(float *coor, t_mlx *mlx)
@@ -166,22 +166,23 @@ int	ft_hit_detector(t_mlx *mlx)
 	float	*h_hit;
   float d_hit[2];
 
-  d_hit[0] = mlx->player->x + cos (mlx->rays->ray_angle) * 100;
-  d_hit[1] = mlx->player->y + sin (mlx->rays->ray_angle) * 100;
+  d_hit[0] = mlx->player->x + cos (mlx->rays->ray_angle) * 500;
+  d_hit[1] = mlx->player->y + sin (mlx->rays->ray_angle) * 500;
   h_hit = ft_horizontal_detector(mlx);
 	// v_hit = ft_vertical_detector(mlx);
 	if (ft_hit_distance(h_hit, mlx) < ft_hit_distance(d_hit, mlx))
 	{
 		mlx->rays->hit_x = h_hit[0];
 		mlx->rays->hit_y = h_hit[1];
-    return (0x008000);
+    return (0x00FF00);
 	}
-	else
+	else if (ft_hit_distance(h_hit, mlx) > ft_hit_distance(d_hit, mlx))
 	{
 		mlx->rays->hit_x = d_hit[0];
 		mlx->rays->hit_y = d_hit[1];
     return (0xFF0000);
 	}
+  return (0);
 }
 
 void	ft_prime_and_cast(t_mlx *mlx)
@@ -191,14 +192,18 @@ void	ft_prime_and_cast(t_mlx *mlx)
 
 	i = 0;
 	mlx->rays->ray_angle = mlx->player->rot - (mlx->player->fov / 2);
-	mlx->rays->ray_angle = fmod(mlx->rays->ray_angle, (2 * M_PI)); // Limiting the angle
-	if (mlx->rays->ray_angle < 0)
-		mlx->rays->ray_angle += (2 * M_PI); 
-	mlx->rays->up = mlx->rays->ray_angle > 0 && mlx->rays->ray_angle > M_PI;
-	mlx->rays->right = mlx->rays->ray_angle < M_PI_2 || mlx->rays->ray_angle > (3 * M_PI_2); // Check more about ||
+	// mlx->rays->ray_angle = fmod(mlx->rays->ray_angle, (2 * M_PI)); // Limiting the angle
+	// if (mlx->rays->ray_angle < 0)
+	// 	mlx->rays->ray_angle += (2 * M_PI); 
+	// mlx->rays->up = mlx->rays->ray_angle > 0 && mlx->rays->ray_angle > M_PI;
+	// mlx->rays->right = mlx->rays->ray_angle < M_PI_2 || mlx->rays->ray_angle > (3 * M_PI_2); // Check more about ||
 	while (i < 500)//mlx->rays->rays_num)
 	{
-    // printf("ray is up--> %d\n", mlx->rays->up);
+	  mlx->rays->ray_angle = fmod(mlx->rays->ray_angle, (2 * M_PI)); // Limiting the angle
+	  if (mlx->rays->ray_angle < 0)
+		  mlx->rays->ray_angle += (2 * M_PI); 
+	  mlx->rays->up = mlx->rays->ray_angle > 0 && mlx->rays->ray_angle > M_PI;
+	  mlx->rays->right = mlx->rays->ray_angle < M_PI_2 || mlx->rays->ray_angle > (3 * M_PI_2); // Check more about ||
 		color = ft_hit_detector(mlx);
 		ft_ray_igniter(mlx, color);
 		mlx->rays->ray_angle += mlx->player->fov / mlx->rays->rays_num;
