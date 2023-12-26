@@ -16,8 +16,11 @@ void	ft_ray_igniter(t_mlx *mlx, int color)
 {
 	float	cord[4];
 
+  (void)color;
+  (void)cord;
 	cord[0] = mlx->player->x;
 	cord[1] = mlx->player->y;
+  // printf("x-->%f\ty-->%f\n", mlx->rays->hit_x, mlx->rays->hit_y);
 	cord[2] = mlx->rays->hit_x;
 	cord[3] = mlx->rays->hit_y;
   // cord[2] = mlx->player->x + cos (mlx->rays->ray_angle) * 500;
@@ -37,16 +40,17 @@ float	*ft_h_hit_calculator(t_mlx *mlx)
 	inter_cor[0] = (inter_cor[1] - mlx->player->y) / tan(mlx->rays->ray_angle)
 		+ mlx->player->x;
 	diff[1] = CUB_SIZE + SPACE;
-	if (mlx->rays->up)
-		diff[1] *= -1;
+	// if (mlx->rays->up)
+	// 	diff[1] *= -1;
 	diff[0] = CUB_SIZE / tan(mlx->rays->ray_angle) + SPACE;
-	if ((!mlx->rays->right && diff[0] > 0) || (mlx->rays->right && diff[0] < 0))
-		diff[0] *= -1;
+	// if ((!mlx->rays->right && diff[0] > 0) || (mlx->rays->right && diff[0] < 0))
+	// 	diff[0] *= -1;
 	ret = malloc(sizeof(float) * 4);
 	ret[0] = inter_cor[0];
 	ret[1] = inter_cor[1];
 	ret[2] = diff[0];
 	ret[3] = diff[1];
+  printf("x--->%f\ty-->%f\n", ret[0], ret[1]);
 	return (ret);
 }
 
@@ -63,7 +67,7 @@ float	*ft_v_hit_calculator(t_mlx *mlx)
 		+ mlx->player->y;
 	diff[0] = CUB_SIZE + SPACE;
 	if (!mlx->rays->right)
-		diff[0] *= -1;
+    diff[0] *= -1;
 	diff[1] = CUB_SIZE * tan(mlx->rays->ray_angle) + SPACE;
 	if ((mlx->rays->up && diff[1] > 0) || (!mlx->rays->up && diff[1] < 0))
 		diff[1] *= -1;
@@ -100,8 +104,8 @@ float	*ft_vertical_detector(t_mlx *mlx)
 		next_inter_coor[0] += coor_n_diff[2];
 		next_inter_coor[1] += coor_n_diff[3];
 	}
-	free (coor_n_diff);
-	return (hit_coor);
+	// free (coor_n_diff);
+	return (coor_n_diff);
 }
 
 //ft_h_hit_calculator();
@@ -116,8 +120,8 @@ float	*ft_horizontal_detector(t_mlx *mlx)
 	hit_coor = malloc(sizeof(float) * 2);
 	next_inter_coor[0] = coor_n_diff[0];
 	next_inter_coor[1] = coor_n_diff[1];
-	if (mlx->rays->up)
-		next_inter_coor[1]--;
+	// if (mlx->rays->up)
+	// 	next_inter_coor[1]--;
 	while (next_inter_coor[0] >= 0 && next_inter_coor[0] <= mlx->win_x
 		&& next_inter_coor[1] >= 0 && next_inter_coor[1] <= mlx->win_y)
 	{
@@ -130,8 +134,8 @@ float	*ft_horizontal_detector(t_mlx *mlx)
 		next_inter_coor[0] += coor_n_diff[2];
 		next_inter_coor[1] += coor_n_diff[3];
 	}
-	free (coor_n_diff);
-	return (hit_coor);
+	// free (coor_n_diff);
+	return (coor_n_diff);
 }
 
 float	ft_hit_distance(float *coor, t_mlx *mlx)
@@ -146,12 +150,15 @@ float	ft_hit_distance(float *coor, t_mlx *mlx)
 //will return the closest (rays(h_x, h_y, h_distance))
 int	ft_hit_detector(t_mlx *mlx)
 {
-	float	*v_hit;
+	// float	*v_hit;
 	float	*h_hit;
+  float d_hit[2];
 
-	h_hit = ft_horizontal_detector(mlx);
-	v_hit = ft_vertical_detector(mlx);
-	if (ft_hit_distance(h_hit, mlx) < ft_hit_distance(v_hit, mlx))
+  d_hit[0] = mlx->player->x + cos (mlx->rays->ray_angle) * 100;
+  d_hit[1] = mlx->player->y + sin (mlx->rays->ray_angle) * 100;
+  h_hit = ft_horizontal_detector(mlx);
+	// v_hit = ft_vertical_detector(mlx);
+	if (ft_hit_distance(h_hit, mlx) < ft_hit_distance(d_hit, mlx))
 	{
 		mlx->rays->hit_x = h_hit[0];
 		mlx->rays->hit_y = h_hit[1];
@@ -159,8 +166,8 @@ int	ft_hit_detector(t_mlx *mlx)
 	}
 	else
 	{
-		mlx->rays->hit_x = v_hit[0];
-		mlx->rays->hit_y = v_hit[1];
+		mlx->rays->hit_x = d_hit[0];
+		mlx->rays->hit_y = d_hit[1];
     return (0xFF0000);
 	}
 }
@@ -177,8 +184,9 @@ void	ft_prime_and_cast(t_mlx *mlx)
 		mlx->rays->ray_angle += (2 * M_PI); 
 	mlx->rays->up = mlx->rays->ray_angle > 0 && mlx->rays->ray_angle > M_PI;
 	mlx->rays->right = mlx->rays->ray_angle < M_PI_2 || mlx->rays->ray_angle > (3 * M_PI_2); // Check more about ||
-	while (i < mlx->rays->rays_num)
+	while (i < 500)//mlx->rays->rays_num)
 	{
+    printf("ray is up--> %d\n", mlx->rays->up);
 		color = ft_hit_detector(mlx);
 		ft_ray_igniter(mlx, color);
 		mlx->rays->ray_angle += mlx->player->fov / mlx->rays->rays_num;
