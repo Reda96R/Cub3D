@@ -74,7 +74,7 @@ void	ft_draw_player(t_mlx *mlx, int x, int y)
 	coordinates[2] = xf;
 	coordinates[3] = yf;
 	ft_draw_line(mlx, coordinates, 0xFFFF00);
-	// ft_draw_circle(mlx, x, y);
+	ft_draw_circle(mlx, x, y);
 }
 
 void	ft_clear_map(t_mlx *mlx)

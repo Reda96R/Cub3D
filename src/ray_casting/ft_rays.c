@@ -44,7 +44,7 @@ void	ft_h_hit_calculator(t_mlx *mlx, t_rays *h)
 	while (h->hit_x >= 0 && h->hit_x <= mlx->win_x
 		&& h->hit_y >= 0 && h->hit_y <= mlx->win_y)
 	{
-		if (ft_wall_detector(h->hit_x, h->hit_y - (mlx->rays->up ? (SPACE + 2) : 0), mlx->map))
+		if (ft_wall_detector(h->hit_x, h->hit_y - (mlx->rays->up ? (SPACE + 3) : 0), mlx->map))
 			break ;
 		h->hit_x += h->diff[0];
 		h->hit_y += h->diff[1];
@@ -88,8 +88,8 @@ int	ft_hit_detector(t_mlx *mlx)
 	h_h[1] = h->hit_y;
 	if (h->colision_distance < ft_hit_distance(d, mlx))
 	{
-		mlx->rays->hit_x = h->hit_x;
-		mlx->rays->hit_y = h->hit_y;
+		mlx->rays->hit_x = h_h[0];
+		mlx->rays->hit_y = h_h[1];
 		return (0x00FF00);
 	}
 	else
@@ -106,7 +106,6 @@ void	ft_prime_and_cast(t_mlx *mlx)
 	int		i;
 	int		color;
 
-	(void)color;
 	i = 0;
 	mlx->rays->ray_angle = mlx->player->rot - (mlx->player->fov / 2);
 	while (i < mlx->rays->rays_num)
