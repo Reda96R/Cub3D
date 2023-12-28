@@ -13,6 +13,8 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
+# include "cub_macros.h"
+
 typedef struct s_player
 {
 	int		m_f;
@@ -41,6 +43,7 @@ typedef struct s_rays
 	float	ray_size;
 	float	hit_x;
 	float	hit_y;
+	float	diff[2];
 	float	colision_distance;
 }	t_rays;	
 

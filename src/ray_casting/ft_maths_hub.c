@@ -24,6 +24,12 @@ int	ft_wall_detector(float x, float y, char map[MAP_Y][MAP_X])
 	return (1);
 }
 
+float	ft_hit_distance(float *coor, t_mlx *mlx)
+{
+	return (sqrt((coor[0] - mlx->player->x) * (coor[0] - mlx->player->x)
+			+ (coor[1] - mlx->player->y) * (coor[1] - mlx->player->y)));
+}
+
 void	ft_turn_calculator(t_mlx *mlx)
 {
 	if (mlx->player->t_l)

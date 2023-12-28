@@ -14,7 +14,7 @@
 # define CUB_MACROS_H
 
 /*::::Cube propreties::::*/
-# define SPACE 1
+# define SPACE 0
 # define CUB_SIZE 100
 
 /*::::Map propreties::::*/
@@ -23,7 +23,7 @@
 
 /*::::Player propreties::::*/
 # define RADIUS 15
-# define SPEED 2.5
+# define SPEED 1.5
 # define ROT_SPEED 1.5
 # define FOV 60
 
