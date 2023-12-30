@@ -12,12 +12,32 @@
 
 #include "../../includes/cub3D.h"
 
+void	ft_scene_cleaner(t_mlx *mlx)
+{
+	int	w;
+	int	h;
+
+	w = 0;
+	h = 0;
+	while (w < mlx->win_x)
+	{
+		h = 0;
+		while (h < mlx->win_y)
+		{
+			ft_put_pixel(mlx, w, h, 0x000000);
+			h++;
+		}
+		w++;
+	}
+}
+
 int	update(t_mlx *mlx)
 {
-	ft_draw_map(mlx);
+	ft_scene_cleaner(mlx);
+	ft_draw_map(mlx);// will be removed in mandatory
 	ft_pos_calculator(mlx);
 	ft_prime_and_cast(mlx);
-	ft_draw_player(mlx, mlx->player->x, mlx->player->y);
+	ft_draw_player(mlx, mlx->player->x, mlx->player->y);// will be removed in mandatory
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img.img, 0, 0);
 	return (0);
 }
@@ -40,7 +60,6 @@ void	ft_draw_map(t_mlx *mlx)
 	int	x;
 	int	y;
 
-	ft_clear_map(mlx);
 	i = 0;
 	y = 0;
 	while (i < MAP_Y)
@@ -50,9 +69,9 @@ void	ft_draw_map(t_mlx *mlx)
 		while (j < MAP_X)
 		{
 			if (mlx->map[i][j] != '0')
-				ft_draw_square(mlx, x, y, 0xFFFFFF);
+				ft_draw_scaled_square(mlx, x, y, 0xFFFFFF);
 			else
-				ft_draw_square(mlx, x, y, 0xFF000000);
+				ft_draw_scaled_square(mlx, x, y, 0xFF000000);
 			x += CUB_SIZE + SPACE;
 			j++;
 		}
@@ -67,14 +86,14 @@ void	ft_draw_player(t_mlx *mlx, int x, int y)
 	float	xf;
 	float	yf;
 
-	xf = x + cos (mlx->player->rot) * mlx->rays->ray_size;
-	yf = y + sin (mlx->player->rot) * mlx->rays->ray_size;
-	coordinates[0] = x;
-	coordinates[1] = y;
-	coordinates[2] = xf;
-	coordinates[3] = yf;
+	xf = x + cos (mlx->player->rot) * 60;
+	yf = y + sin (mlx->player->rot) * 60;
+	coordinates[0] = x * MINIMAP_SCALE;
+	coordinates[1] = y * MINIMAP_SCALE;
+	coordinates[2] = xf * MINIMAP_SCALE;
+	coordinates[3] = yf * MINIMAP_SCALE;
 	ft_draw_line(mlx, coordinates, 0xFFFF00);
-	ft_draw_circle(mlx, x, y);
+	ft_draw_circle(mlx, x * MINIMAP_SCALE, y * MINIMAP_SCALE);
 }
 
 void	ft_clear_map(t_mlx *mlx)
@@ -92,7 +111,7 @@ void	ft_clear_map(t_mlx *mlx)
 		j = 0;
 		while (j < MAP_X)
 		{
-			ft_draw_square(mlx, x, y, 0x000000);
+			ft_draw_scaled_square(mlx, x, y, 0x000000);
 			x += CUB_SIZE;
 			j++;
 		}

@@ -56,7 +56,7 @@ void	ft_player_init(t_player **player, int x, int y)
 	(*player)->x = x;
 	(*player)->y = y;
 	(*player)->fov = FOV * (M_PI / 180);
-	(*player)->r = RADIUS;
+	(*player)->r = RADIUS * MINIMAP_SCALE;
 	(*player)->spd = SPEED;
 	(*player)->walk = 0;
 	(*player)->turn = 0;

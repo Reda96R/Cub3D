@@ -69,11 +69,11 @@ void	ft_pos_calculator(t_mlx *mlx)
 
 	x = mlx->player->x;
 	y = mlx->player->y;
-  if (mlx->player->m_f || mlx->player->m_b || \
+	if (mlx->player->m_f || mlx->player->m_b || \
 		mlx->player->m_l || mlx->player->m_r)
 		ft_move_calculator(mlx);
 	if (mlx->player->t_l || mlx->player->t_r)
-    ft_turn_calculator(mlx);
+		ft_turn_calculator(mlx);
 	if (ft_wall_detector(mlx->player->x, mlx->player->y, mlx->map))
 	{
 		mlx->player->x = x;

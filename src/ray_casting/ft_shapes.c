@@ -61,7 +61,44 @@ void	ft_draw_square(t_mlx *mlx, int x, int y, int color)
 		h = 0;
 		while (h < CUB_SIZE)
 		{
-			ft_put_pixel(mlx, x + w, y + h, color);
+			ft_put_pixel(mlx, (x + w), (y + h), color);
+			h++;
+		}
+		w++;
+	}
+}
+void	ft_draw_rectangle(t_mlx *mlx, float rect_x, float rect_y, float w, float h)
+{
+	int	x;
+	int	y;
+
+	x = rect_x;
+	while (x < rect_x + w)
+	{
+		y = rect_y;
+		while (y < rect_y + h)
+		{
+			ft_put_pixel(mlx, x, y, 0xFFFFFF);
+			y++;
+		}
+		x++;
+	}
+}
+
+void	ft_draw_scaled_square(t_mlx *mlx, int x, int y, int color)
+{
+	int	w;
+	int	h;
+
+	w = 0;
+	h = 0;
+	while (w < CUB_SIZE)
+	{
+		h = 0;
+		while (h < CUB_SIZE)
+		{
+			ft_put_pixel(mlx, (x + w) * MINIMAP_SCALE,
+				(y + h) * MINIMAP_SCALE, color);
 			h++;
 		}
 		w++;
