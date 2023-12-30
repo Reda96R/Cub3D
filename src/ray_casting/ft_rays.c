@@ -78,12 +78,14 @@ void	ft_hit_detector(t_mlx *mlx)
 		mlx->rays->hit_x = h->hit_x;
 		mlx->rays->hit_y = h->hit_y;
 		mlx->rays->colision_distance = h->colision_distance;
+		mlx->rays->s = 'h';
 	}
 	else
 	{
 		mlx->rays->hit_x = v->hit_x;
 		mlx->rays->hit_y = v->hit_y;
 		mlx->rays->colision_distance = v->colision_distance;
+		mlx->rays->s = 'v';
 	}
 	free (h);
 	free (v);
@@ -91,11 +93,13 @@ void	ft_hit_detector(t_mlx *mlx)
 
 void	ft_3d_caster(t_mlx *mlx, int i)
 {
+	float	wall_distance;
 	float	wall_height;
 	float	project;
 
+	wall_distance = mlx->rays->colision_distance * cos (mlx->rays->ray_angle - mlx->player->rot);
 	project = (mlx->win_x / 2) / tan(mlx->player->fov / 2);
-	wall_height = ((CUB_SIZE + SPACE) / mlx->rays->colision_distance) * project;
+	wall_height = ((CUB_SIZE + SPACE) / wall_distance) * project;
 	ft_draw_rectangle(mlx, i, (mlx->win_y / 2) - (wall_height / 2), 1, wall_height);
 }
 

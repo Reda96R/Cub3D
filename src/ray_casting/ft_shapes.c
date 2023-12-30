@@ -78,7 +78,10 @@ void	ft_draw_rectangle(t_mlx *mlx, float rect_x, float rect_y, float w, float h)
 		y = rect_y;
 		while (y < rect_y + h)
 		{
-			ft_put_pixel(mlx, x, y, 0xFFFFFF);
+			if (mlx->rays->s == 'h')
+				ft_put_pixel(mlx, x, y, 0xFFCCCCCC);
+			else
+				ft_put_pixel(mlx, x, y, 0xFFFFFF);
 			y++;
 		}
 		x++;
