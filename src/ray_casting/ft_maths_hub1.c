@@ -12,6 +12,12 @@
 
 #include "../../includes/cub3D.h"
 
+float	ft_hit_distance(float *coor, t_mlx *mlx)
+{
+	return (sqrt((coor[0] - mlx->player->x) * (coor[0] - mlx->player->x)
+			+ (coor[1] - mlx->player->y) * (coor[1] - mlx->player->y)));
+}
+
 void	ft_h_hit_calculator(t_mlx *mlx, t_rays *h)
 {
 	float	y;

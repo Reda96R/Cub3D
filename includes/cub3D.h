@@ -73,10 +73,11 @@ int		ft_key_release(int keycode, t_mlx *mlx);
 void	ft_pos_calculator(t_mlx *mlx);
 void	ft_move_calculator(t_mlx *mlx);
 void	ft_turn_calculator(t_mlx *mlx);
-float	ft_hit_distance(float *coor, t_mlx *mlx);
+int		ft_wall_colision(t_mlx *mlx);
 int		ft_wall_detector(float x, float y, char map[MAP_Y][MAP_X]);
 
 			/*---ft_maths_hub1---*/
+float	ft_hit_distance(float *coor, t_mlx *mlx);
 void	ft_h_hit_calculator(t_mlx *mlx, t_rays *h);
 void	ft_v_hit_calculator(t_mlx *mlx, t_rays *v);
 

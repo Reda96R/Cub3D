@@ -34,9 +34,9 @@ void	ft_scene_cleaner(t_mlx *mlx)
 int	update(t_mlx *mlx)
 {
 	ft_scene_cleaner(mlx);
-	ft_draw_map(mlx);// will be removed in mandatory
 	ft_pos_calculator(mlx);
 	ft_prime_and_cast(mlx);
+	ft_draw_map(mlx);// will be removed in mandatory
 	ft_draw_player(mlx, mlx->player->x, mlx->player->y);// will be removed in mandatory
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img.img, 0, 0);
 	return (0);

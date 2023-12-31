@@ -24,10 +24,29 @@ int	ft_wall_detector(float x, float y, char map[MAP_Y][MAP_X])
 	return (1);
 }
 
-float	ft_hit_distance(float *coor, t_mlx *mlx)
+int	ft_wall_colision(t_mlx *mlx)
 {
-	return (sqrt((coor[0] - mlx->player->x) * (coor[0] - mlx->player->x)
-			+ (coor[1] - mlx->player->y) * (coor[1] - mlx->player->y)));
+	int	i;
+	int	j;
+	int	dx;
+	int	dy;
+
+	i = mlx->player->x - mlx->player->r;
+	while (i <= mlx->player->x + mlx->player->r)
+	{
+		j = mlx->player->y - mlx->player->r;
+		while (j <= mlx->player->y + mlx->player->r)
+		{
+			dx = i - mlx->player->x;
+			dy = j - mlx->player->y;
+			if (dx * dx + dy * dy <= mlx->player->r * mlx->player->r)
+				if (ft_wall_detector(i, j, mlx->map))
+					return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }
 
 void	ft_turn_calculator(t_mlx *mlx)
@@ -74,7 +93,7 @@ void	ft_pos_calculator(t_mlx *mlx)
 		ft_move_calculator(mlx);
 	if (mlx->player->t_l || mlx->player->t_r)
 		ft_turn_calculator(mlx);
-	if (ft_wall_detector(mlx->player->x, mlx->player->y, mlx->map))
+	if (ft_wall_colision(mlx))
 	{
 		mlx->player->x = x;
 		mlx->player->y = y;
