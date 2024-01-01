@@ -59,7 +59,7 @@ void	ft_clear_player(t_mlx *mlx, int x, int y, int size);
 void	ft_draw_player(t_mlx *mlx, int x, int y);
 void	ft_draw_rectangle(t_mlx *mlx, float rect_x, float rect_y, float w, float h);
 
-			/*---ft_keylogger---*/
+			/*---ft_player_movements---*/
 void	ft_move_front(t_mlx *mlx);
 void	ft_move_back(t_mlx *mlx);
 void	ft_move_left(t_mlx *mlx);

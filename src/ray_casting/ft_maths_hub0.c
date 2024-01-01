@@ -59,70 +59,21 @@ void	ft_turn_calculator(t_mlx *mlx)
 
 void	ft_move_calculator(t_mlx *mlx)
 {
-	float	x;
-	float	y;
-
 	if (mlx->player->m_f)
-	{
-		x = mlx->player->x;
-		y = mlx->player->y;
-		mlx->player->x += cos(mlx->player->rot) * mlx->player->spd;
-		if (ft_wall_colision(mlx))
-			mlx->player->x = x;
-		mlx->player->y += sin(mlx->player->rot) * mlx->player->spd;
-		if (ft_wall_colision(mlx))
-			mlx->player->y = y;
-	}
+		ft_move_front(mlx);
 	if (mlx->player->m_b)
-	{
-		x = mlx->player->x;
-		y = mlx->player->y;
-		mlx->player->x -= cos(mlx->player->rot) * mlx->player->spd;
-		if (ft_wall_colision(mlx))
-			mlx->player->x = x;
-		mlx->player->y -= sin(mlx->player->rot) * mlx->player->spd;
-		if (ft_wall_colision(mlx))
-			mlx->player->y = y;
-	}
+		ft_move_back(mlx);
 	if (mlx->player->m_l)
-	{
-		x = mlx->player->x;
-		y = mlx->player->y;
-		mlx->player->x -= cos(mlx->player->rot + M_PI_2) * mlx->player->spd;
-		if (ft_wall_colision(mlx))
-			mlx->player->x = x;
-		mlx->player->y -= sin(mlx->player->rot + M_PI_2) * mlx->player->spd;
-		if (ft_wall_colision(mlx))
-			mlx->player->y = y;
-	}
+		ft_move_left(mlx);
 	if (mlx->player->m_r)
-	{
-		x = mlx->player->x;
-		y = mlx->player->y;
-		mlx->player->x += cos(mlx->player->rot + M_PI_2) * mlx->player->spd;
-		if (ft_wall_colision(mlx))
-			mlx->player->x = x;
-		mlx->player->y += sin(mlx->player->rot + M_PI_2) * mlx->player->spd;
-		if (ft_wall_colision(mlx))
-			mlx->player->y = y;
-	}
+		ft_move_right(mlx);
 }
 
 void	ft_pos_calculator(t_mlx *mlx)
 {
-	// float	x;
-	// float	y;
-	//
-	// x = mlx->player->x;
-	// y = mlx->player->y;
 	if (mlx->player->m_f || mlx->player->m_b || \
 		mlx->player->m_l || mlx->player->m_r)
 		ft_move_calculator(mlx);
 	if (mlx->player->t_l || mlx->player->t_r)
 		ft_turn_calculator(mlx);
-	// if (ft_wall_colision(mlx))
-	// {
-	// 	mlx->player->x = x;
-	// 	mlx->player->y = y;
-	// }
 }
