@@ -67,48 +67,44 @@ void	ft_move_calculator(t_mlx *mlx)
 		x = mlx->player->x;
 		y = mlx->player->y;
 		mlx->player->x += cos(mlx->player->rot) * mlx->player->spd;
+		if (ft_wall_colision(mlx))
+			mlx->player->x = x;
 		mlx->player->y += sin(mlx->player->rot) * mlx->player->spd;
 		if (ft_wall_colision(mlx))
-		{
-			mlx->player->x = x;
 			mlx->player->y = y;
-		}
 	}
 	if (mlx->player->m_b)
 	{
 		x = mlx->player->x;
 		y = mlx->player->y;
 		mlx->player->x -= cos(mlx->player->rot) * mlx->player->spd;
+		if (ft_wall_colision(mlx))
+			mlx->player->x = x;
 		mlx->player->y -= sin(mlx->player->rot) * mlx->player->spd;
 		if (ft_wall_colision(mlx))
-		{
-			mlx->player->x = x;
 			mlx->player->y = y;
-		}
 	}
 	if (mlx->player->m_l)
 	{
 		x = mlx->player->x;
 		y = mlx->player->y;
 		mlx->player->x -= cos(mlx->player->rot + M_PI_2) * mlx->player->spd;
+		if (ft_wall_colision(mlx))
+			mlx->player->x = x;
 		mlx->player->y -= sin(mlx->player->rot + M_PI_2) * mlx->player->spd;
 		if (ft_wall_colision(mlx))
-		{
-			mlx->player->x = x;
 			mlx->player->y = y;
-		}
 	}
 	if (mlx->player->m_r)
 	{
 		x = mlx->player->x;
 		y = mlx->player->y;
 		mlx->player->x += cos(mlx->player->rot + M_PI_2) * mlx->player->spd;
+		if (ft_wall_colision(mlx))
+			mlx->player->x = x;
 		mlx->player->y += sin(mlx->player->rot + M_PI_2) * mlx->player->spd;
 		if (ft_wall_colision(mlx))
-		{
-			mlx->player->x = x;
 			mlx->player->y = y;
-		}
 	}
 }
 

@@ -22,6 +22,13 @@ char	g_test[][9] = {
 {'1', '1', '1', '1', '1', '1', '1', '1', '1'}
 };
 
+char	g_test0[][4] = {
+{'1', '1', '1', '1'},
+{'1', '0', '0', '1'},
+{'1', '1', '1', '1'},
+{'1', '1', '1', '1'},
+};
+
 void	ft_canvas_maker(t_mlx *mlx)
 {
 	memcpy(mlx->map, g_test, sizeof (g_test)); // Will be removed

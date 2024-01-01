@@ -20,12 +20,12 @@
 /*::::Map propreties::::*/
 # define MAP_X 9
 # define MAP_Y 7
-# define MINIMAP_SCALE 0.3
+# define MINIMAP_SCALE 1.0
 
 /*::::Player propreties::::*/
 # define RADIUS 15
-# define SPEED 1.5
-# define ROT_SPEED 1.0
+# define SPEED 4.5
+# define ROT_SPEED 2.0
 # define FOV 60
 
 /*::::Rays propreties::::*/
