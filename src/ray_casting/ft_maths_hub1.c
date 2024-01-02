@@ -61,3 +61,43 @@ void	ft_v_hit_calculator(t_mlx *mlx, t_rays *v)
 		v->hit_y += v->diff[1];
 	}
 }
+
+void	ft_vertical_detector(t_mlx *mlx, t_rays *v)
+{
+	float	diff[2];
+	float	coor[2];
+
+	diff[0] = CUB_SIZE + SPACE;
+	if (!mlx->rays->right)
+		diff[0] *= -1;
+	diff[1] = (CUB_SIZE + SPACE) * tan(mlx->rays->ray_angle);
+	if ((mlx->rays->up && diff[1] > 0) || (!mlx->rays->up && diff[1] < 0))
+		diff[1] *= -1;
+	v->diff[0] = diff[0];
+	v->diff[1] = diff[1];
+	ft_v_hit_calculator(mlx, v);
+	coor[0] = v->hit_x;
+	coor[1] = v->hit_y;
+	v->colision_distance = ft_hit_distance(coor, mlx);
+	v->s = 'v';
+}
+
+void	ft_horizontal_detector(t_mlx *mlx, t_rays *h)
+{
+	float	diff[2];
+	float	coor[2];
+
+	diff[1] = CUB_SIZE + SPACE;
+	if (mlx->rays->up)
+		diff[1] *= -1;
+	diff[0] = (CUB_SIZE + SPACE) / tan(mlx->rays->ray_angle);
+	if ((mlx->rays->right && diff[0] < 0) || (!mlx->rays->right && diff[0] > 0))
+		diff[0] *= -1;
+	h->diff[0] = diff[0];
+	h->diff[1] = diff[1];
+	ft_h_hit_calculator(mlx, h);
+	coor[0] = h->hit_x;
+	coor[1] = h->hit_y;
+	h->colision_distance = ft_hit_distance(coor, mlx);
+	h->s = 'h';
+}

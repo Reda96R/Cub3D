@@ -6,9 +6,10 @@ NAME 		= cub3D
 SRC_DIR		= src/
 OBJ_DIR 	= .obj/
 FSANITIZE 	= # -g -fsanitize=address
-CFLAGS 		= -Wall -Werror -Wextra $(FSANITIZE)
+CFLAGS 		= -Wall -Werror -Wextra $(HEADER) $(FSANITIZE)
 CC 			= cc
 MAIN = main
+HEADER = -I includes
 M_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix src/, $(MAIN))))
 
 #::::::::::::::::MLX:::::::::::::::#

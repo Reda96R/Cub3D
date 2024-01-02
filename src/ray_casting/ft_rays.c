@@ -22,43 +22,12 @@ void	ft_ray_igniter(t_mlx *mlx, int color)
 	cord[3] = mlx->rays->hit_y * MINIMAP_SCALE;
 	ft_draw_line(mlx, cord, color);
 }
-
-void	ft_vertical_detector(t_mlx *mlx, t_rays *v)
+void	ft_hit_assigner(t_rays *ray, t_rays *hit)
 {
-	float	diff[2];
-	float	coor[2];
-
-	diff[0] = CUB_SIZE + SPACE;
-	if (!mlx->rays->right)
-		diff[0] *= -1;
-	diff[1] = (CUB_SIZE + SPACE) * tan(mlx->rays->ray_angle);
-	if ((mlx->rays->up && diff[1] > 0) || (!mlx->rays->up && diff[1] < 0))
-		diff[1] *= -1;
-	v->diff[0] = diff[0];
-	v->diff[1] = diff[1];
-	ft_v_hit_calculator(mlx, v);
-	coor[0] = v->hit_x;
-	coor[1] = v->hit_y;
-	v->colision_distance = ft_hit_distance(coor, mlx);
-}
-
-void	ft_horizontal_detector(t_mlx *mlx, t_rays *h)
-{
-	float	diff[2];
-	float	coor[2];
-
-	diff[1] = CUB_SIZE + SPACE;
-	if (mlx->rays->up)
-		diff[1] *= -1;
-	diff[0] = (CUB_SIZE + SPACE) / tan(mlx->rays->ray_angle);
-	if ((mlx->rays->right && diff[0] < 0) || (!mlx->rays->right && diff[0] > 0))
-		diff[0] *= -1;
-	h->diff[0] = diff[0];
-	h->diff[1] = diff[1];
-	ft_h_hit_calculator(mlx, h);
-	coor[0] = h->hit_x;
-	coor[1] = h->hit_y;
-	h->colision_distance = ft_hit_distance(coor, mlx);
+	ray->s = hit->s;
+	ray->hit_x = hit->hit_x;
+	ray->hit_y = hit->hit_y;
+	ray->colision_distance = hit->colision_distance;
 }
 
 void	ft_hit_detector(t_mlx *mlx)
@@ -74,19 +43,9 @@ void	ft_hit_detector(t_mlx *mlx)
 	ft_horizontal_detector(mlx, h);
 	ft_vertical_detector(mlx, v);
 	if (h->colision_distance < v->colision_distance)
-	{
-		mlx->rays->hit_x = h->hit_x;
-		mlx->rays->hit_y = h->hit_y;
-		mlx->rays->colision_distance = h->colision_distance;
-		mlx->rays->s = 'h';
-	}
+		ft_hit_assigner(mlx->rays, h);
 	else
-	{
-		mlx->rays->hit_x = v->hit_x;
-		mlx->rays->hit_y = v->hit_y;
-		mlx->rays->colision_distance = v->colision_distance;
-		mlx->rays->s = 'v';
-	}
+		ft_hit_assigner(mlx->rays, v);
 	free (h);
 	free (v);
 }
@@ -97,7 +56,8 @@ void	ft_3d_caster(t_mlx *mlx, int i)
 	float	wall_height;
 	float	project;
 
-	wall_distance = mlx->rays->colision_distance * cos (mlx->rays->ray_angle - mlx->player->rot);
+	wall_distance = mlx->rays->colision_distance
+		* cos (mlx->rays->ray_angle - mlx->player->rot);
 	project = (mlx->win_x / 2) / tan(mlx->player->fov / 2);
 	wall_height = ((CUB_SIZE + SPACE) / wall_distance) * project;
 	ft_draw_rectangle(mlx, i, (mlx->win_y / 2) - (wall_height / 2),

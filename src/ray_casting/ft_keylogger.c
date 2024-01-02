@@ -12,6 +12,13 @@
 
 #include "../../includes/cub3D.h"
 
+int	ft_cross(int key, t_mlx *mlx)
+{
+	(void)key;
+	(void)mlx;
+	exit (0);
+}
+
 int	ft_key_press(int keycode, t_mlx *mlx)
 {
 	if (keycode == KEY_W)

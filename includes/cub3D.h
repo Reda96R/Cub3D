@@ -72,6 +72,7 @@ void	ft_draw_square(t_mlx *mlx, int x, int y, int color);
 void	ft_draw_scaled_square(t_mlx *mlx, int x, int y, int color);
 
 			/*---ft_keylogger---*/
+int		ft_cross(int key, t_mlx *mlx);
 int		ft_key_press(int keycode, t_mlx *mlx);
 int		ft_key_release(int keycode, t_mlx *mlx);
 
@@ -86,5 +87,7 @@ int		ft_wall_detector(float x, float y, char map[MAP_Y][MAP_X]);
 float	ft_hit_distance(float *coor, t_mlx *mlx);
 void	ft_h_hit_calculator(t_mlx *mlx, t_rays *h);
 void	ft_v_hit_calculator(t_mlx *mlx, t_rays *v);
+void	ft_vertical_detector(t_mlx *mlx, t_rays *v);
+void	ft_horizontal_detector(t_mlx *mlx, t_rays *h);
 
 #endif
