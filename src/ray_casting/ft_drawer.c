@@ -72,10 +72,10 @@ void	ft_draw_map(t_mlx *mlx)
 				ft_draw_scaled_square(mlx, x, y, 0xFFFFFF);
 			else
 				ft_draw_scaled_square(mlx, x, y, 0xFF000000);
-			x += CUB_SIZE + SPACE;
+			x += mlx->cub_size + SPACE;
 			j++;
 		}
-		y += CUB_SIZE + SPACE;
+		y += mlx->cub_size + SPACE;
 		i++;
 	}
 }
@@ -112,10 +112,10 @@ void	ft_clear_map(t_mlx *mlx)
 		while (j < MAP_X)
 		{
 			ft_draw_scaled_square(mlx, x, y, 0x000000);
-			x += CUB_SIZE;
+			x += mlx->cub_size;
 			j++;
 		}
-		y += CUB_SIZE;
+		y += mlx->cub_size;
 		i++;
 	}
 }

@@ -19,9 +19,10 @@ t_mlx	*ft_data_init(void)
 	mlx = malloc (sizeof (t_mlx));
 	// if (!mlx)
 	// 	ft_janitor();
-	mlx->win_x = (CUB_SIZE + SPACE) * MAP_X;
-	mlx->win_y = (CUB_SIZE + SPACE) * MAP_Y;
-	ft_player_init(&mlx->player, mlx->win_x / 2, mlx->win_y / 2);
+	mlx->win_x = 1337;//(CUB_SIZE + SPACE) * MAP_X;
+	mlx->win_y = 800;//(CUB_SIZE + SPACE) * MAP_Y;
+	mlx->cub_size = mlx->win_y / MAP_Y;
+	ft_player_init(&mlx->player, mlx->win_x / 3, mlx->win_y / 3);
 	ft_rays_init(&mlx->rays, mlx);
 	mlx->mlx_ptr = mlx_init();
 	// if (!mlx->mlx_ptr)

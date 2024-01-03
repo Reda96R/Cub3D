@@ -15,12 +15,12 @@
 
 /*::::Cube propreties::::*/
 # define SPACE 0
-# define CUB_SIZE 100
+// # define CUB_SIZE 100
 
 /*::::Map propreties::::*/
-# define MAP_X 9
-# define MAP_Y 7
-# define MINIMAP_SCALE 1.0
+# define MAP_X 4
+# define MAP_Y 4
+# define MINIMAP_SCALE 0.3
 
 /*::::Player propreties::::*/
 # define RADIUS 15

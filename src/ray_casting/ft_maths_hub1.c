@@ -22,9 +22,9 @@ void	ft_h_hit_calculator(t_mlx *mlx, t_rays *h)
 {
 	float	y;
 
-	h->hit_y = floor (mlx->player->y / (CUB_SIZE + SPACE)) * (CUB_SIZE + SPACE);
+	h->hit_y = floor (mlx->player->y / (mlx->cub_size + SPACE)) * (mlx->cub_size + SPACE);
 	if (!mlx->rays->up)
-		h->hit_y += (CUB_SIZE + SPACE);
+		h->hit_y += (mlx->cub_size + SPACE);
 	h->hit_x = ((h->hit_y - mlx->player->y) / tan(mlx->rays->ray_angle))
 		+ mlx->player->x;
 	while (h->hit_x >= 0 && h->hit_x <= mlx->win_x
@@ -33,7 +33,7 @@ void	ft_h_hit_calculator(t_mlx *mlx, t_rays *h)
 		y = h->hit_y;
 		if (mlx->rays->up)
 			y -= (SPACE + 3);
-		if (ft_wall_detector(h->hit_x, y, mlx->map))
+		if (ft_wall_detector(h->hit_x, y, mlx->map, mlx))
 			break ;
 		h->hit_x += h->diff[0];
 		h->hit_y += h->diff[1];
@@ -44,9 +44,9 @@ void	ft_v_hit_calculator(t_mlx *mlx, t_rays *v)
 {
 	float	x;
 
-	v->hit_x = floor (mlx->player->x / (CUB_SIZE + SPACE)) * (CUB_SIZE + SPACE);
+	v->hit_x = floor (mlx->player->x / (mlx->cub_size + SPACE)) * (mlx->cub_size + SPACE);
 	if (mlx->rays->right)
-		v->hit_x += (CUB_SIZE + SPACE);
+		v->hit_x += (mlx->cub_size + SPACE);
 	v->hit_y = ((v->hit_x - mlx->player->x) * tan(mlx->rays->ray_angle))
 		+ mlx->player->y;
 	while (v->hit_x >= 0 && v->hit_x <= mlx->win_x
@@ -55,7 +55,7 @@ void	ft_v_hit_calculator(t_mlx *mlx, t_rays *v)
 		x = v->hit_x;
 		if (!mlx->rays->right)
 			x -= (SPACE + 3);
-		if (ft_wall_detector(x, v->hit_y, mlx->map))
+		if (ft_wall_detector(x, v->hit_y, mlx->map, mlx))
 			break ;
 		v->hit_x += v->diff[0];
 		v->hit_y += v->diff[1];
@@ -67,10 +67,10 @@ void	ft_vertical_detector(t_mlx *mlx, t_rays *v)
 	float	diff[2];
 	float	coor[2];
 
-	diff[0] = CUB_SIZE + SPACE;
+	diff[0] = mlx->cub_size + SPACE;
 	if (!mlx->rays->right)
 		diff[0] *= -1;
-	diff[1] = (CUB_SIZE + SPACE) * tan(mlx->rays->ray_angle);
+	diff[1] = (mlx->cub_size + SPACE) * tan(mlx->rays->ray_angle);
 	if ((mlx->rays->up && diff[1] > 0) || (!mlx->rays->up && diff[1] < 0))
 		diff[1] *= -1;
 	v->diff[0] = diff[0];
@@ -87,10 +87,10 @@ void	ft_horizontal_detector(t_mlx *mlx, t_rays *h)
 	float	diff[2];
 	float	coor[2];
 
-	diff[1] = CUB_SIZE + SPACE;
+	diff[1] = mlx->cub_size + SPACE;
 	if (mlx->rays->up)
 		diff[1] *= -1;
-	diff[0] = (CUB_SIZE + SPACE) / tan(mlx->rays->ray_angle);
+	diff[0] = (mlx->cub_size + SPACE) / tan(mlx->rays->ray_angle);
 	if ((mlx->rays->right && diff[0] < 0) || (!mlx->rays->right && diff[0] > 0))
 		diff[0] *= -1;
 	h->diff[0] = diff[0];

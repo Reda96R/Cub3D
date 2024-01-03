@@ -59,7 +59,7 @@ void	ft_3d_caster(t_mlx *mlx, int i)
 	wall_distance = mlx->rays->colision_distance
 		* cos (mlx->rays->ray_angle - mlx->player->rot);
 	project = (mlx->win_x / 2) / tan(mlx->player->fov / 2);
-	wall_height = ((CUB_SIZE + SPACE) / wall_distance) * project;
+	wall_height = ((mlx->cub_size + SPACE) / wall_distance) * project;
 	ft_draw_rectangle(mlx, i, (mlx->win_y / 2) - (wall_height / 2),
 		1, wall_height);
 }
@@ -77,7 +77,7 @@ void	ft_prime_and_cast(t_mlx *mlx)
 			mlx->rays->ray_angle += (2 * M_PI);
 		ft_hit_detector(mlx);
 		ft_ray_igniter(mlx, 0x0000070); // color will be removed && will be removed in mandatory
-		// ft_3d_caster(mlx, i);
+		ft_3d_caster(mlx, i);
 		mlx->rays->ray_angle += mlx->player->fov / mlx->rays->rays_num;
 		i++;
 	}

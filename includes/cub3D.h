@@ -28,6 +28,7 @@ typedef struct s_mlx
 {
 	float			win_x;
 	float			win_y;
+	float			cub_size;
 	void			*mlx_ptr;
 	void			*win_ptr;
 	char			map[MAP_Y][MAP_X];
@@ -81,7 +82,7 @@ void	ft_pos_calculator(t_mlx *mlx);
 void	ft_move_calculator(t_mlx *mlx);
 void	ft_turn_calculator(t_mlx *mlx);
 int		ft_wall_colision(t_mlx *mlx);
-int		ft_wall_detector(float x, float y, char map[MAP_Y][MAP_X]);
+int		ft_wall_detector(float x, float y, char map[MAP_Y][MAP_X], t_mlx* mlx);
 
 			/*---ft_maths_hub1---*/
 float	ft_hit_distance(float *coor, t_mlx *mlx);

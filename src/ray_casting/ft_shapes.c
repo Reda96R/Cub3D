@@ -56,10 +56,10 @@ void	ft_draw_square(t_mlx *mlx, int x, int y, int color)
 
 	w = 0;
 	h = 0;
-	while (w < CUB_SIZE)
+	while (w < mlx->cub_size)
 	{
 		h = 0;
-		while (h < CUB_SIZE)
+		while (h < mlx->cub_size)
 		{
 			ft_put_pixel(mlx, (x + w), (y + h), color);
 			h++;
@@ -95,10 +95,10 @@ void	ft_draw_scaled_square(t_mlx *mlx, int x, int y, int color)
 
 	w = 0;
 	h = 0;
-	while (w < CUB_SIZE)
+	while (w < mlx->cub_size)
 	{
 		h = 0;
-		while (h < CUB_SIZE)
+		while (h < mlx->cub_size)
 		{
 			ft_put_pixel(mlx, (x + w) * MINIMAP_SCALE,
 				(y + h) * MINIMAP_SCALE, color);
