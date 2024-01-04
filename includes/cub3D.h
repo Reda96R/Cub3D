@@ -41,7 +41,7 @@ typedef struct s_mlx
 }	t_mlx;
 
 /*::::::::::::::::::::::::::::::::::*/
-void	ft_janitor(int id);
+void	ft_error_buster(int id);
 
 /*::::::::::::::::PRS:::::::::::::::*/
 

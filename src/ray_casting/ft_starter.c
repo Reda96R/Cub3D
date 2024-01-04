@@ -18,19 +18,19 @@ t_mlx	*ft_data_init(void)
 
 	mlx = malloc (sizeof (t_mlx));
 	if (!mlx)
-		ft_janitor(1);
+		ft_error_buster(1);
 	mlx->win_x = 1337;//(CUB_SIZE + SPACE) * MAP_X;
 	mlx->win_y = 800;//(CUB_SIZE + SPACE) * MAP_Y;
-	mlx->cub_size = mlx->win_y / MAP_Y;
+	mlx->cub_size = mlx->win_y / MAP_Y; //64;
 	ft_player_init(&mlx->player, mlx->win_x / 3, mlx->win_y / 3);
 	ft_rays_init(&mlx->rays, mlx);
 	mlx->mlx_ptr = mlx_init();
 	if (!mlx->mlx_ptr)
-		ft_janitor(2);
+		ft_error_buster(2);
 	mlx->win_ptr = \
 			mlx_new_window(mlx->mlx_ptr, mlx->win_x, mlx->win_y, "cub3D");
 	if (!mlx->win_ptr)
-		ft_janitor(2);
+		ft_error_buster(2);
 	mlx->img.img = mlx_new_image(mlx->mlx_ptr, mlx->win_x, mlx->win_y);
 	mlx->img.id = mlx_get_data_addr(mlx->img.img, &mlx->img.bpp, &mlx->img.len, \
 	&mlx->img.endian);
@@ -41,7 +41,7 @@ void	ft_rays_init(t_rays **rays, t_mlx *mlx)
 {
 	*rays = malloc (sizeof (t_rays));
 	if (!rays)
-		ft_janitor(1);
+		ft_error_buster(1);
 	(*rays)->rays_num = mlx->win_x;
 	(*rays)->ray_size = (mlx->player->r * RAY_SIZE);
 	(*rays)->hit_x = 0;
@@ -53,7 +53,7 @@ void	ft_player_init(t_player **player, int x, int y)
 {
 	*player = malloc (sizeof (t_player));
 	if (!player)
-		ft_janitor(1);
+		ft_error_buster(1);
 	(*player)->x = x;
 	(*player)->y = y;
 	(*player)->fov = FOV * (M_PI / 180);

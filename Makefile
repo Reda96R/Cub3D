@@ -10,7 +10,7 @@ FSANITIZE 	= # -g -fsanitize=address
 CFLAGS 		= -Wall -Werror -Wextra $(HEADER) $(FSANITIZE)
 CC 			= cc
 HEADER = -I includes
-MAIN = main
+MAIN = main ft_janitor 
 M_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix src/, $(MAIN))))
 
 #::::::::::::::::MLX:::::::::::::::#
@@ -45,7 +45,7 @@ $(NAME): $(M_OBJS) $(P_OBJS) $(R_OBJS) $(T_OBJS)
 	@echo $(cursive)$(grey)":::Making object files:::"$(reset)
 	@make -s -C lib/
 	@echo $(cursive)$(grey)":::Compiling $(NAME):::"$(reset)
-	@$(CC) $(CFLAGS) $(M_OBJS) $(P_OBJS) $(R_OBJS) $(T_OBJS) $(LIB) $(COMP) -o $(NAME)
+	@$(CC) $(CFLAGS) $(M_OBJS)  $(P_OBJS) $(R_OBJS) $(T_OBJS) $(LIB) $(COMP) -o $(NAME)
 	@echo $(f_green)":::✅ $(NAME) is ready ✅:::"$(reset)
 
 $(OBJ_DIR)%.o: %.c 
