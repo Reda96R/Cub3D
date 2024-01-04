@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_janitor.c                                       :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rerayyad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 09:57:02 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/04 09:57:09 by rerayyad         ###   ########.fr       */
+/*   Created: 2022/10/29 12:48:15 by rerayyad          #+#    #+#             */
+/*   Updated: 2022/11/02 09:59:16 by rerayyad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "libft.h"
 
-void	ft_error_buster(int id)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	if (1)
-		printf("\033[0;31mError: unable to allocate memory\n");
-	printf("\033[0m");
+	size_t	len;
+
+	if (!s1 || !set)
+		return (NULL);
+	while (*s1 && ft_strchr(set, *s1))
+		++s1;
+	len = ft_strlen(s1);
+	while (len && ft_strchr(set, s1[len]))
+		--len;
+	return (ft_substr(s1, 0, (len + 1)));
 }

@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_janitor.c                                       :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rerayyad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 09:57:02 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/04 09:57:09 by rerayyad         ###   ########.fr       */
+/*   Created: 2022/10/29 13:25:28 by rerayyad          #+#    #+#             */
+/*   Updated: 2022/11/02 11:28:34 by rerayyad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "libft.h"
 
-void	ft_error_buster(int id)
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	if (1)
-		printf("\033[0;31mError: unable to allocate memory\n");
-	printf("\033[0m");
+	unsigned int	i;
+
+	if (!s || !f)
+		return ;
+	i = 0;
+	while (s[i])
+	{
+		f(i, s + i);
+		i++;
+	}
 }

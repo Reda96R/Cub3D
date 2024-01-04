@@ -1,20 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_janitor.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rerayyad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 09:57:02 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/04 09:57:09 by rerayyad         ###   ########.fr       */
+/*   Created: 2022/10/29 12:23:10 by rerayyad          #+#    #+#             */
+/*   Updated: 2022/11/09 14:42:46 by rerayyad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "libft.h"
 
-void	ft_error_buster(int id)
+void	*ft_calloc(size_t count, size_t size)
 {
-	if (1)
-		printf("\033[0;31mError: unable to allocate memory\n");
-	printf("\033[0m");
+	char	*str;
+	size_t	i;
+
+	if (count != 0 && size > SIZE_MAX / count)
+		return (NULL);
+	str = (char *)malloc(count * size);
+	i = 0;
+	if (!str)
+		return (NULL);
+	while (i < count * size)
+	{
+		str[i] = 0;
+		i++;
+	}
+	return (str);
 }

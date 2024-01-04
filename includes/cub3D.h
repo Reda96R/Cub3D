@@ -17,12 +17,14 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <math.h>
-# include "../mlx_linux/mlx.h"
+# include "libft.h"
+# include "get_next_line.h"
 # include "structs.h"
 # include "cub_macros.h"
+# include "../mlx_linux/mlx.h"
 // # include <mlx.h>
 
-# include <string.h> // Will be removed
+# include <string.h> // Will be removed with memcpy()
 
 typedef struct s_mlx
 {
@@ -78,11 +80,11 @@ int		ft_key_press(int keycode, t_mlx *mlx);
 int		ft_key_release(int keycode, t_mlx *mlx);
 
 			/*---ft_maths_hub0---*/
+int		ft_wall_colision(t_mlx *mlx);
+int		ft_wall_detector(float x, float y, t_mlx *mlx);
 void	ft_pos_calculator(t_mlx *mlx);
 void	ft_move_calculator(t_mlx *mlx);
 void	ft_turn_calculator(t_mlx *mlx);
-int		ft_wall_colision(t_mlx *mlx);
-int		ft_wall_detector(float x, float y, t_mlx *mlx);
 
 			/*---ft_maths_hub1---*/
 float	ft_hit_distance(float *coor, t_mlx *mlx);

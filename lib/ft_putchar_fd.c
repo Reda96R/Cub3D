@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_janitor.c                                       :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rerayyad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 09:57:02 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/04 09:57:09 by rerayyad         ###   ########.fr       */
+/*   Created: 2022/10/29 13:27:24 by rerayyad          #+#    #+#             */
+/*   Updated: 2022/10/29 13:28:43 by rerayyad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3D.h"
+#include "libft.h"
 
-void	ft_error_buster(int id)
+void	ft_putchar_fd(char c, int fd)
 {
-	if (1)
-		printf("\033[0;31mError: unable to allocate memory\n");
-	printf("\033[0m");
+	write (fd, &c, 1);
 }

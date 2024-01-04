@@ -5,11 +5,12 @@ OS 			= $(shell uname -s)
 NAME 		= cub3D
 SRC_DIR		= src/
 OBJ_DIR 	= .obj/
+LIB			= lib/lib.a
 FSANITIZE 	= # -g -fsanitize=address
 CFLAGS 		= -Wall -Werror -Wextra $(HEADER) $(FSANITIZE)
 CC 			= cc
-MAIN = main
 HEADER = -I includes
+MAIN = main
 M_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix src/, $(MAIN))))
 
 #::::::::::::::::MLX:::::::::::::::#
@@ -29,29 +30,38 @@ P_FILES =
 P_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix src/parsing/, $(P_FILES))))
 
 #::::::::::::::::RAY:::::::::::::::#
-R_FILES = ft_shapes ft_drawer ft_keylogger ft_maths_hub0 ft_maths_hub1 ft_starter ft_rays ft_player_movements
+R_FILES = ft_shapes ft_drawer ft_keylogger ft_maths_hub0 ft_maths_hub1 ft_starter ft_rays \
+		  ft_player_movements
 
 R_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix src/ray_casting/, $(R_FILES))))
 
+#::::::::::::::::TXT:::::::::::::::#
+T_FILES = 
+
+T_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix src/textures/, $(T_FILES))))
+
 #:::::::::::::Compile::::::::::::::#
-$(NAME): $(M_OBJS) $(P_OBJS) $(R_OBJS)
+$(NAME): $(M_OBJS) $(P_OBJS) $(R_OBJS) $(T_OBJS)
 	@echo $(cursive)$(grey)":::Making object files:::"$(reset)
+	@make -s -C lib/
 	@echo $(cursive)$(grey)":::Compiling $(NAME):::"$(reset)
-	@$(CC) $(CFLAGS) $(M_OBJS) $(P_OBJS) $(R_OBJS) $(COMP) -o $(NAME)
+	@$(CC) $(CFLAGS) $(M_OBJS) $(P_OBJS) $(R_OBJS) $(T_OBJS) $(LIB) $(COMP) -o $(NAME)
 	@echo $(f_green)":::✅ $(NAME) is ready ✅:::"$(reset)
 
 $(OBJ_DIR)%.o: %.c 
-	@mkdir -p .obj/src .obj/src/parsing .obj/src/ray_casting
+	@mkdir -p .obj/src .obj/src/parsing .obj/src/ray_casting .obj/src/textures
 	@$(CC) $(CFLAGS) $(COMP_O) -c $< -o $@
 
 clean:
 	@echo $(cursive)$(grey)":::Deleting object files:::"$(reset)
 	@rm -rf $(OBJ_DIR)
+	@make -s clean -C lib/
 	@echo $(red)":::Deleted:::"$(reset)
 
 fclean: clean
 	@echo $(cursive)$(grey)":::Deleting executable:::"$(reset)
 	@rm -rf $(NAME)
+	@make -s fclean -C lib/
 	@echo $(red)":::Deleted:::"$(reset)
 
 re: fclean all

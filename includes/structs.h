@@ -13,6 +13,10 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
+/*::::::::::::::::PRS:::::::::::::::*/
+
+/*::::::::::::::::RAY:::::::::::::::*/
+
 typedef struct s_player
 {
 	int		m_f;
