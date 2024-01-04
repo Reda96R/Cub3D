@@ -37,7 +37,14 @@ void	ft_hit_detector(t_mlx *mlx)
 	t_rays	*v;
 
 	h = malloc(sizeof (t_rays));
+	if (!h)
+		ft_janitor(1);
 	v = malloc(sizeof (t_rays));
+	if (!v)
+	{
+		free (h);
+		ft_janitor(1);
+	}
 	mlx->rays->up = mlx->rays->ray_angle > 0 && mlx->rays->ray_angle > M_PI;
 	mlx->rays->right = mlx->rays->ray_angle <= M_PI_2
 		|| mlx->rays->ray_angle >= (3 * M_PI_2);
