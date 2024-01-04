@@ -12,14 +12,14 @@
 
 #include "../../includes/cub3D.h"
 
-int	ft_wall_detector(float x, float y, char map[MAP_Y][MAP_X], t_mlx *mlx)
+int	ft_wall_detector(float x, float y, t_mlx *mlx)
 {
 	int	map_x;
 	int	map_y;
 
 	map_x = floor(y / mlx->cub_size);
 	map_y = floor(x / mlx->cub_size);
-	if (map[map_x][map_y] == '0')
+	if (mlx->map[map_x][map_y] == '0')
 		return (0);
 	return (1);
 }
@@ -40,7 +40,7 @@ int	ft_wall_colision(t_mlx *mlx)
 			dx = i - mlx->player->x;
 			dy = j - mlx->player->y;
 			if (dx * dx + dy * dy <= mlx->player->r * mlx->player->r)
-				if (ft_wall_detector(i, j, mlx->map, mlx))
+				if (ft_wall_detector(i, j, mlx))
 					return (1);
 			j++;
 		}

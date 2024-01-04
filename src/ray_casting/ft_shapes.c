@@ -67,16 +67,16 @@ void	ft_draw_square(t_mlx *mlx, int x, int y, int color)
 		w++;
 	}
 }
-void	ft_draw_rectangle(t_mlx *mlx, float rect_x, float rect_y, float w, float h)
+void	ft_draw_rectangle(t_mlx *mlx, t_pos *coordinates, float w, float h)
 {
 	int	x;
 	int	y;
 
-	x = rect_x;
-	while (x < rect_x + w)
+	x = coordinates->x;
+	while (x < coordinates->x + w)
 	{
-		y = rect_y;
-		while (y < rect_y + h)
+		y = coordinates->y;
+		while (y < coordinates->y + h)
 		{
 			if (mlx->rays->s == 'h')
 				ft_put_pixel(mlx, x, y, 0xFFCCCCCC);

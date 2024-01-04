@@ -18,8 +18,8 @@
 // # define CUB_SIZE 100
 
 /*::::Map propreties::::*/
-# define MAP_X 4
-# define MAP_Y 4
+# define MAP_X 10
+# define MAP_Y 7
 # define MINIMAP_SCALE 0.3
 
 /*::::Player propreties::::*/

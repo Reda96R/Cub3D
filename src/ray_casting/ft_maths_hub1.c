@@ -22,7 +22,8 @@ void	ft_h_hit_calculator(t_mlx *mlx, t_rays *h)
 {
 	float	y;
 
-	h->hit_y = floor (mlx->player->y / (mlx->cub_size + SPACE)) * (mlx->cub_size + SPACE);
+	h->hit_y = floor (mlx->player->y / (mlx->cub_size + SPACE))
+		* (mlx->cub_size + SPACE);
 	if (!mlx->rays->up)
 		h->hit_y += (mlx->cub_size + SPACE);
 	h->hit_x = ((h->hit_y - mlx->player->y) / tan(mlx->rays->ray_angle))
@@ -33,7 +34,7 @@ void	ft_h_hit_calculator(t_mlx *mlx, t_rays *h)
 		y = h->hit_y;
 		if (mlx->rays->up)
 			y -= (SPACE + 3);
-		if (ft_wall_detector(h->hit_x, y, mlx->map, mlx))
+		if (ft_wall_detector(h->hit_x, y, mlx))
 			break ;
 		h->hit_x += h->diff[0];
 		h->hit_y += h->diff[1];
@@ -44,7 +45,8 @@ void	ft_v_hit_calculator(t_mlx *mlx, t_rays *v)
 {
 	float	x;
 
-	v->hit_x = floor (mlx->player->x / (mlx->cub_size + SPACE)) * (mlx->cub_size + SPACE);
+	v->hit_x = floor (mlx->player->x / (mlx->cub_size + SPACE))
+		* (mlx->cub_size + SPACE);
 	if (mlx->rays->right)
 		v->hit_x += (mlx->cub_size + SPACE);
 	v->hit_y = ((v->hit_x - mlx->player->x) * tan(mlx->rays->ray_angle))
@@ -55,7 +57,7 @@ void	ft_v_hit_calculator(t_mlx *mlx, t_rays *v)
 		x = v->hit_x;
 		if (!mlx->rays->right)
 			x -= (SPACE + 3);
-		if (ft_wall_detector(x, v->hit_y, mlx->map, mlx))
+		if (ft_wall_detector(x, v->hit_y, mlx))
 			break ;
 		v->hit_x += v->diff[0];
 		v->hit_y += v->diff[1];

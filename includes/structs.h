@@ -13,8 +13,6 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-# include "cub_macros.h"
-
 typedef struct s_player
 {
 	int		m_f;
@@ -48,6 +46,12 @@ typedef struct s_rays
 	float	colision_distance;
 }	t_rays;	
 
+typedef struct s_pos
+{
+	float	x;
+	float	y;
+}	t_pos;
+
 typedef struct s_img
 {
 	void	*img;
@@ -56,12 +60,5 @@ typedef struct s_img
 	int		bpp;
 	int		len;
 }	t_img;
-
-typedef struct s_pos
-{
-	float	x;
-	float	y;
-	float	rot;
-}	t_pos;
 
 #endif
