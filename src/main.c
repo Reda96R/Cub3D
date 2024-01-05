@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 15:26:16 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/05 04:02:14 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/05 07:28:31 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	g_test1[][3] = {
 
 void	ft_canvas_maker(t_mlx *mlx)
 {
-	memcpy(mlx->map, g_test, sizeof (g_test)); // Will be removed
+	// memcpy(mlx->map, mlx->map, (mlx->map)); // Will be removed
 	ft_draw_map(mlx);// will be removed in mandatory
 	ft_prime_and_cast(mlx);
 	ft_draw_player(mlx, mlx->player->x, mlx->player->y);// will be removed in mandatory
@@ -52,12 +52,20 @@ void	ft_canvas_maker(t_mlx *mlx)
 
 void	arg_check(int ac, char **av)
 {
+	int i;
+	
+	i = ft_strlen(av[1]) - 3;
 	if (ac != 2)
 	{
 		printf("Error\nWrong number of arguments");
 		exit(1);
 	}
-	if (ft_strlen(av[1]) < 4 || ft_strnstr(av[1], ".cub", ft_strlen(av[1])) == NULL)
+	if(av[1][i] != 'c' || av[1][i + 1] != 'u' || av[1][i + 2] != 'b' || av[1][i + 3] != '\0')
+	{
+		printf("Error\nWrong file format");
+		exit(1);
+	}
+	if (ft_strlen(av[1]) < 4)
 	{
 		printf("Error\nWrong file format");
 		exit(1);

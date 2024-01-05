@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 03:07:22 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/05 04:36:47 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/05 07:16:24 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ void	is_deplecate(t_mlx *mlx)
 	j = 0;
 	while(mlx->full_file[i])
 	{
-		if (!strncmp(mlx->full_file[i], "NO", 2) || !strncmp(mlx->full_file[i], "SO", 2) 
-			|| !strncmp(mlx->full_file[i], "WE", 2) || !strncmp(mlx->full_file[i], "EA", 2) 
-			|| !strncmp(mlx->full_file[i], "C ", 2) || !strncmp(mlx->full_file[i], "F ", 2))
+		if (!ft_strncmp(mlx->full_file[i], "NO", 2) || !ft_strncmp(mlx->full_file[i], "SO", 2)
+			|| !ft_strncmp(mlx->full_file[i], "WE", 2) || !ft_strncmp(mlx->full_file[i], "EA", 2)
+			|| !ft_strncmp(mlx->full_file[i], "C ", 2) || !ft_strncmp(mlx->full_file[i], "F ", 2))
 		{
 			j = i + 1;
 			while(mlx->full_file[j])
 			{
-				if (!strncmp(mlx->full_file[i], mlx->full_file[j], 2))
+				if (!ft_strncmp(mlx->full_file[i], mlx->full_file[j], 2))
 				{
 					printf("Error\nDuplicate texter or color");
 					ft_free(mlx->full_file);
@@ -75,10 +75,10 @@ void	get_file_size(t_mlx *mlx, char *file)
 
 void    get_file(t_mlx *mlx, char *file)
 {
-	int     fd;
-	char    *line;
-	int     i;
-	int     j;
+	int		fd;
+	char	*line;
+	int		i;
+	int		j;
 
 	i = 0;
 	fd = open(file, O_RDONLY);
