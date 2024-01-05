@@ -1,16 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   m_get_next_line.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 07:13:58 by maouzal           #+#    #+#             */
-/*   Updated: 2022/11/19 19:07:20 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/05 04:42:49 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "m_get_next_line.h"
+
+
+int	ft_chr(char *s)
+{
+	int	x;
+
+	x = 0;
+	while (s[x] != '\0')
+	{
+		if (s[x] == '\n')
+			return (0);
+		x++;
+	}
+	return (1);
+}
 
 char	*read_line(int fd, char *str)
 {
@@ -94,7 +109,7 @@ char	*rest_val(char *str)
 	return (rest);
 }
 
-char	*get_next_line(int fd)
+char	*m_get_next_line(int fd)
 {
 	char		*buff;
 	static char	*str;

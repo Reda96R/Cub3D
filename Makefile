@@ -25,7 +25,7 @@ endif
 all: $(NAME)
 
 #::::::::::::::::PRS:::::::::::::::#
-P_FILES = file_check.c texter_check.c colors_check.c map_check.c ft_error.c
+P_FILES = file_check texter_check colors_check map_check ft_error
 
 P_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix src/parsing/, $(P_FILES))))
 

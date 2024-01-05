@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 03:07:22 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/05 03:49:29 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/05 04:36:47 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void    get_file(t_mlx *mlx, char *file)
 		printf("Error\nFile not found");
 		exit(1);
 	}
-	m_get_file_size(mlx, file);
+	get_file_size(mlx, file);
 	line = m_get_next_line(fd);
 	while (line)
 	{
