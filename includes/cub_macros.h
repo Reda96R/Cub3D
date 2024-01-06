@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   cub_macros.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rerayyad <rerayyad@student.42.fr>            +#+  +:+       +#+      */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:54:34 by rerayyad          #+#    #+#             */
 /*   Updated: 2024/01/06 03:09:35 by maouzal          ###   ########.fr       */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_drawer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rerayyad <rerayyad@student.42.fr>            +#+  +:+       +#+      */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:52:45 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/06 02:51:51 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/06 18:44:09 by rerayyad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void	ft_draw_player(t_mlx *mlx, int x, int y)
 	ft_draw_circle(mlx, x * MINIMAP_SCALE, y * MINIMAP_SCALE);
 }
 
+// Will be removed later
 void	ft_clear_map(t_mlx *mlx)
 {
 	int	i;
@@ -120,6 +121,7 @@ void	ft_clear_map(t_mlx *mlx)
 	}
 }
 
+// Will be removed later
 void	ft_clear_player(t_mlx *mlx, int x, int y, int size)
 {
 	int	i;

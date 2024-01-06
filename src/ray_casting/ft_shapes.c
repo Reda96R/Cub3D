@@ -67,6 +67,7 @@ void	ft_draw_square(t_mlx *mlx, int x, int y, int color)
 		w++;
 	}
 }
+
 void	ft_draw_rectangle(t_mlx *mlx, t_pos *coordinates, float w, float h)
 {
 	int	x;

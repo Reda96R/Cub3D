@@ -59,7 +59,8 @@ void	arg_check(int ac, char **av)
 		printf("Error\nWrong number of arguments");
 		exit(1);
 	}
-	if(av[1][i] != 'c' || av[1][i + 1] != 'u' || av[1][i + 2] != 'b' || av[1][i + 3] != '\0')
+	if (av[1][i] != 'c' || av[1][i + 1] != 'u'
+		|| av[1][i + 2] != 'b' || av[1][i + 3] != '\0')
 	{
 		printf("Error\nWrong file format");
 		exit(1);
@@ -108,7 +109,7 @@ int	main(int ac, char **av)
 	copy_map(mlx);
 	ft_free(mlx->map);
 	//ft_free_all(mlx);
-	/// *****************************//
+	// *****************************//
 	ft_canvas_maker(mlx);
 	return (0);
 }
