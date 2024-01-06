@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 16:24:25 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/05 03:42:54 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/06 00:12:55 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	is_palyer_deplicate(t_mlx *mlx)
 	int	k;
 
 	i = 0;
-	j = 0;
 	k = 0;
 	while (mlx->map[i])
 	{
@@ -52,7 +51,12 @@ void	is_palyer_deplicate(t_mlx *mlx)
 		{
 			if (mlx->map[i][j] == 'N' || mlx->map[i][j] == 'S' || mlx->map[i][j] == 'E'
 				|| mlx->map[i][j] == 'W')
+			{
+				mlx->player->x = i;
+				mlx->player->y = j;
+				mlx->map[i][j] = '0';
 				k++;
+			}
 			j++;
 		}
 		i++;

@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:54:28 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/05 06:50:41 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/06 03:30:07 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,18 @@ typedef struct s_mlx
 	/// ********* parsing **********//
 	char			**full_file;
 	char			**map;  //-----> u can use this map <-----//
+	char			**new_map;
+	int				map_height;
+	int				map_width;
 	char            *north_texture;
 	char            *south_texture;
 	char            *west_texture;
 	char            *east_texture;
 	char			*c_color;
 	char			*f_color;
+	unsigned int	c_color_int;
+	unsigned int	f_color_int;
+	
 }	t_mlx;
 
 /*::::::::::::::::::::::::::::::::::*/
@@ -70,6 +76,8 @@ void	check_colors_range(char	*str, t_mlx *mlx);
 void	ft_free_all(t_mlx *mlx);
 void	enitialize(t_mlx *mlx);
 void	is_palyer_deplicate(t_mlx *mlx);
+void    map_height_width(t_mlx *mlx);
+void    copy_map(t_mlx *mlx);
 /*::::::::::::::::RAY:::::::::::::::*/
 
 			/*---ft_starter---*/

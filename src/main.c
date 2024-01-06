@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 15:26:16 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/05 07:28:31 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/06 02:49:03 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,9 @@ void	enitialize(t_mlx *mlx)
 	mlx->f_color = NULL;
 	mlx->map = NULL;
 	mlx->full_file = NULL;
+	mlx->new_map = NULL;
+	mlx->map_height = 0;
+	mlx->map_width = 0;
 }
 
 int main(int ac, char **av)
@@ -102,6 +105,9 @@ int main(int ac, char **av)
 	check_map_format(mlx);
 	cheack_map_borders(mlx);
 	check_map_is_locked(mlx);
+	ft_free(mlx->full_file);
+	copy_map(mlx);
+	ft_free(mlx->map);
 	//ft_free_all(mlx);
 	/// *****************************//
 	ft_canvas_maker(mlx);

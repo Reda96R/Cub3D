@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 03:07:45 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/05 03:42:16 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/06 03:24:53 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	check_colors_format(char	*str, t_mlx *mlx)
 	
 }
 
-void	colors_range(t_mlx *mlx, char *tmp)
+void	colors_range(t_mlx *mlx, char *tmp, int i)
 {
 	int	a;
 	if (ft_strlen(tmp) > 3)
@@ -71,6 +71,12 @@ void	colors_range(t_mlx *mlx, char *tmp)
 	a = ft_atoi(tmp);
 	if (a < 0 || a > 255)
 		ft_Error("Wrong color range", mlx);
+	if (i == 0)
+		mlx->c_color_int += a * 256 * 256;
+	if (i == 1)
+		mlx->c_color_int += a * 256;
+	if (i == 2)
+		mlx->c_color_int += a;
 	free(tmp);
 }
 
@@ -84,17 +90,17 @@ void	check_colors_range(char	*str, t_mlx *mlx)
 	while (str[i] != ',')
 		i++;
 	tmp = ft_substr(str, 0, i);
-	colors_range(mlx ,tmp);
+	colors_range(mlx ,tmp, 0);
 	i++;
 	j = i;
 	while (str[i] != ',')
 		i++;
 	tmp = ft_substr(str, j, i - j);
-	colors_range(mlx, tmp);
+	colors_range(mlx, tmp, 1);
 	i++;
 	j = i;
 	while (str[i] != '\0')
 		i++;
 	tmp = ft_substr(str, j, i - j);
-	colors_range(mlx, tmp);
+	colors_range(mlx, tmp, 2);
 }

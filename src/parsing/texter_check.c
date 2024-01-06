@@ -6,26 +6,28 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 03:08:06 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/05 03:50:21 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/06 03:28:13 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-int    fill_texter(t_mlx *mlx, int i)
+int    fill_texter(t_mlx *mlx, char *str)
 {
-    if(ft_strnstr(mlx->full_file[i], "NO ", 3))
-		mlx->north_texture = ft_substr(mlx->full_file[i], 4, ft_strlen(mlx->full_file[i]) - 4);
-	else if(ft_strnstr(mlx->full_file[i], "SO ", 3))
-		mlx->south_texture = ft_substr(mlx->full_file[i], 4, ft_strlen(mlx->full_file[i]) - 4);
-	else if(ft_strnstr(mlx->full_file[i], "WE ", 3))
-		mlx->west_texture = ft_substr(mlx->full_file[i], 4, ft_strlen(mlx->full_file[i]) - 4);
-	else if(ft_strnstr(mlx->full_file[i], "EA ", 3))
-		mlx->east_texture = ft_substr(mlx->full_file[i], 4, ft_strlen(mlx->full_file[i]) - 4);
-	else if(ft_strnstr(mlx->full_file[i], "C ", 2))
-		mlx->c_color = ft_substr(mlx->full_file[i], 2, ft_strlen(mlx->full_file[i]) - 3);
-	else if(ft_strnstr(mlx->full_file[i], "F ", 2))
-		mlx->f_color = ft_substr(mlx->full_file[i], 2, ft_strlen(mlx->full_file[i]) - 3);
+	while(*str == ' ')
+			str++;
+    if(ft_strnstr(str, "NO ", 3))
+		mlx->north_texture = ft_substr(str, 3, ft_strlen(str) - 4);
+	else if(ft_strnstr(str, "SO ", 3))
+		mlx->south_texture = ft_substr(str, 3, ft_strlen(str) - 4);
+	else if(ft_strnstr(str, "WE ", 3))
+		mlx->west_texture = ft_substr(str, 3, ft_strlen(str) - 4);
+	else if(ft_strnstr(str, "EA ", 3))
+		mlx->east_texture = ft_substr(str, 3, ft_strlen(str) - 4);
+	else if(ft_strnstr(str, "C ", 2))
+		mlx->c_color = ft_substr(str, 2, ft_strlen(str) - 3);
+	else if(ft_strnstr(str, "F ", 2))
+		mlx->f_color = ft_substr(str, 2, ft_strlen(str) - 3);
     else
         return (1);
     return (0);
@@ -35,7 +37,7 @@ void    fill_texter_map(int i, int j,int size , t_mlx *mlx)
 {
     while (mlx->full_file[i])
 	{
-		if(fill_texter(mlx, i) == 1)
+		if(fill_texter(mlx, mlx->full_file[i]) == 1)
 		{
 			if ( mlx->full_file[i][0] != '\0' && mlx->full_file[i][0] != '\n')
 				textres_existence(mlx, "Wrong file format");
@@ -70,6 +72,7 @@ void	get_texters(t_mlx *mlx)
 		printf("Error\nMalloc failed");
 		exit(0);
 	}
+	mlx->map[size] = NULL;
     fill_texter_map(i, j,size , mlx);
 }
 
@@ -105,5 +108,12 @@ void	texters_format(t_mlx *mlx, char *str)
 			exit(1);
 		}
 		i++;
+	}
+	i = ft_strlen(str) - 4;
+	if (str[i] != 'p' || str[i + 1] != 'm' || str[i + 2] != 'x' || str[i + 3] != '\0')
+	{
+		printf("Error\nWrong texter format!! (.xpm)");
+		ft_free(mlx->full_file);
+		exit(1);
 	}
 }

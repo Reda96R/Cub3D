@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:52:45 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/05 06:50:02 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/06 02:51:51 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	ft_draw_map(t_mlx *mlx)
 		j = 0;
 		while (j < MAP_X)
 		{
-			if (mlx->map[i][j] != '0')
+			if (mlx->new_map[i][j] != '0')
 				ft_draw_scaled_square(mlx, x, y, 0xFFFFFF);
 			else
 				ft_draw_scaled_square(mlx, x, y, 0xFF000000);
