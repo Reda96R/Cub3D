@@ -6,7 +6,7 @@ NAME 		= cub3D
 SRC_DIR		= src/
 OBJ_DIR 	= .obj/
 LIB			= lib/lib.a
-FSANITIZE 	= # -g -fsanitize=address
+FSANITIZE 	=  #-g -fsanitize=address
 CFLAGS 		= -Wall -Werror -Wextra $(HEADER) $(FSANITIZE)
 CC 			= cc
 HEADER = -I includes
@@ -25,7 +25,7 @@ endif
 all: $(NAME)
 
 #::::::::::::::::PRS:::::::::::::::#
-P_FILES = 
+P_FILES = file_check texter_check colors_check map_check ft_error m_get_next_line new_map
 
 P_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix src/parsing/, $(P_FILES))))
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_math_hub.c                                      :+:      :+:    :+:   */
+/*   ft_maths_hub0.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rerayyad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:53:03 by rerayyad          #+#    #+#             */
-/*   Updated: 2023/12/21 17:53:04 by rerayyad         ###   ########.fr       */
+/*   Updated: 2024/01/06 03:20:57 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ int	ft_wall_detector(float x, float y, t_mlx *mlx)
 
 	map_x = floor(y / mlx->cub_size);
 	map_y = floor(x / mlx->cub_size);
-	if (mlx->map[map_x][map_y] == '0')
+	if (map_x < 0 || map_y < 0)   /// here you didn't check if map_x or map_y are negative it causes a segfault (heap-buffer-overflow)
+		return (1);
+	if (mlx->new_map[map_x][map_y] == '0')
 		return (0);
 	return (1);
 }

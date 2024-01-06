@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rerayyad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:54:28 by rerayyad          #+#    #+#             */
-/*   Updated: 2023/12/21 17:54:30 by rerayyad         ###   ########.fr       */
+/*   Updated: 2024/01/06 03:30:07 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <math.h>
 # include "libft.h"
 # include "get_next_line.h"
+# include "m_get_next_line.h"
 # include "structs.h"
 # include "cub_macros.h"
 # include "../mlx_linux/mlx.h"
@@ -33,18 +34,50 @@ typedef struct s_mlx
 	float			cub_size;
 	void			*mlx_ptr;
 	void			*win_ptr;
-	char			map[MAP_Y][MAP_X];
+	//char			map[MAP_Y][MAP_X];  //-----> check here  <-----//
 	t_img			img;
 	t_player		*player;
 	t_pos			*pos;
 	t_rays			*rays;
+	/// ********* parsing **********//
+	char			**full_file;
+	char			**map;  //-----> u can use this map <-----//
+	char			**new_map;
+	int				map_height;
+	int				map_width;
+	char            *north_texture;
+	char            *south_texture;
+	char            *west_texture;
+	char            *east_texture;
+	char			*c_color;
+	char			*f_color;
+	unsigned int	c_color_int;
+	unsigned int	f_color_int;
+	
 }	t_mlx;
 
 /*::::::::::::::::::::::::::::::::::*/
 void	ft_error_buster(int id);
 
 /*::::::::::::::::PRS:::::::::::::::*/
-
+int		get_map_size(t_mlx *mlx);
+void	get_file(t_mlx *mlx, char *file);
+void	get_texters(t_mlx *mlx);
+void	is_deplecate(t_mlx *mlx);
+void	ft_free(char **str);
+void	textres_existence(t_mlx *mlx, char *str);
+void	colors_existence(t_mlx *mlx);
+void	ft_Error(char *str, t_mlx *mlx);
+void	check_map_format(t_mlx *mlx);
+void	cheack_map_borders(t_mlx *mlx);
+void	check_map_is_locked(t_mlx *mlx);
+void	check_colors_format(char	*str, t_mlx *mlx);
+void	check_colors_range(char	*str, t_mlx *mlx);
+void	ft_free_all(t_mlx *mlx);
+void	enitialize(t_mlx *mlx);
+void	is_palyer_deplicate(t_mlx *mlx);
+void    map_height_width(t_mlx *mlx);
+void    copy_map(t_mlx *mlx);
 /*::::::::::::::::RAY:::::::::::::::*/
 
 			/*---ft_starter---*/
