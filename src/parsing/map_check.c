@@ -52,8 +52,8 @@ void	is_palyer_deplicate(t_mlx *mlx)
 			if (mlx->map[i][j] == 'N' || mlx->map[i][j] == 'S' || mlx->map[i][j] == 'E'
 				|| mlx->map[i][j] == 'W')
 			{
-				mlx->player->x = i;
-				mlx->player->y = j;
+				mlx->player->x = (i * mlx->cub_size);
+				mlx->player->y = (j * mlx->cub_size);
 				mlx->map[i][j] = '0';
 				k++;
 			}
@@ -131,7 +131,7 @@ void	check_map_is_locked(t_mlx *mlx)
 			if (mlx->map[i][j] == 'N' || mlx->map[i][j] == 'S' || mlx->map[i][j] == 'E'
 				|| mlx->map[i][j] == 'W' || mlx->map[i][j] == '0')
 			{
-				if (mlx->map[i][j + 1] == ' ' || mlx->map[i][j - 1] == ' ' 
+				if (mlx->map[i][j + 1] == ' ' || mlx->map[i][j - 1] == ' '
 					|| mlx->map[i + 1][j] == ' ' || mlx->map[i - 1][j] == ' ')
 					ft_Error("Map is not valid", mlx);
 			}
@@ -140,4 +140,3 @@ void	check_map_is_locked(t_mlx *mlx)
 		i++;
 	}
 }
-

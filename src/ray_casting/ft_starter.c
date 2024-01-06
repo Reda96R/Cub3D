@@ -51,11 +51,13 @@ void	ft_rays_init(t_rays **rays, t_mlx *mlx)
 
 void	ft_player_init(t_player **player, int x, int y)
 {
+	(void) x;
+	(void) y;
 	*player = malloc (sizeof (t_player));
 	if (!player)
 		ft_error_buster(1);
-	(*player)->x = x;
-	(*player)->y = y;
+	// (*player)->x = x;
+	// (*player)->y = y;
 	(*player)->fov = FOV * (M_PI / 180);
 	(*player)->r = RADIUS * MINIMAP_SCALE;
 	(*player)->spd = SPEED;

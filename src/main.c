@@ -49,11 +49,10 @@ void	ft_canvas_maker(t_mlx *mlx)
 	mlx_loop(mlx->mlx_ptr);
 }
 
-
 void	arg_check(int ac, char **av)
 {
-	int i;
-	
+	int	i;
+
 	i = ft_strlen(av[1]) - 3;
 	if (ac != 2)
 	{
@@ -87,9 +86,9 @@ void	enitialize(t_mlx *mlx)
 	mlx->map_width = 0;
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_mlx *mlx;
+	t_mlx	*mlx;
 
 	mlx = ft_data_init();
 	/// ********* parsing **********//
@@ -111,7 +110,5 @@ int main(int ac, char **av)
 	//ft_free_all(mlx);
 	/// *****************************//
 	ft_canvas_maker(mlx);
-	
-	
 	return (0);
 }
