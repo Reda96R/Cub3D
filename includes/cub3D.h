@@ -41,19 +41,18 @@ typedef struct s_mlx
 	t_rays			*rays;
 	/// ********* parsing **********//
 	char			**full_file;
-	char			**map;  //-----> u can use this map <-----//
+	char			**map;
 	char			**new_map;
 	int				map_height;
 	int				map_width;
-	char            *north_texture;
-	char            *south_texture;
-	char            *west_texture;
-	char            *east_texture;
+	char			*north_texture;
+	char			*south_texture;
+	char			*west_texture;
+	char			*east_texture;
 	char			*c_color;
 	char			*f_color;
 	unsigned int	c_color_int;
 	unsigned int	f_color_int;
-	
 }	t_mlx;
 
 /*::::::::::::::::::::::::::::::::::*/
@@ -76,13 +75,13 @@ void	check_colors_range(char	*str, t_mlx *mlx);
 void	ft_free_all(t_mlx *mlx);
 void	enitialize(t_mlx *mlx);
 void	is_palyer_deplicate(t_mlx *mlx);
-void    map_height_width(t_mlx *mlx);
-void    copy_map(t_mlx *mlx);
+void	map_height_width(t_mlx *mlx);
+void	copy_map(t_mlx *mlx);
 /*::::::::::::::::RAY:::::::::::::::*/
 
 			/*---ft_starter---*/
 t_mlx	*ft_data_init(void);
-void	ft_player_init(t_player **player, int x, int y);
+void	ft_player_init(t_player **player);
 void	ft_rays_init(t_rays **rays, t_mlx *mlx);
 
 			/*---ft_starter---*/

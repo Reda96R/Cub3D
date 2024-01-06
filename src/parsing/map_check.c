@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
-
+#include "../../includes/cub3D.h"
 
 int	get_map_size(t_mlx *mlx)
 {
@@ -26,7 +26,7 @@ int	get_map_size(t_mlx *mlx)
 			|| !ft_strncmp(mlx->full_file[i], "WE", 2) || !ft_strncmp(mlx->full_file[i], "EA", 2)
 			|| !ft_strncmp(mlx->full_file[i], "C ", 2) || !ft_strncmp(mlx->full_file[i], "F ", 2)
 			|| (!mlx->full_file[i][0] && size == 0))
-				i++;
+			i++;
 		else
 		{
 			size++;
@@ -34,6 +34,29 @@ int	get_map_size(t_mlx *mlx)
 		}
 	}
 	return (size);
+}
+
+void	ft_player_pos(t_mlx *mlx, int i, int j)
+{
+	mlx->player->y = floor(i * mlx->cub_size)
+		- (mlx->cub_size / 2) - mlx->cub_size;
+	mlx->player->x = floor(j * mlx->cub_size) + (mlx->cub_size / 2);
+	mlx->player->direction = mlx->map[i][j];
+	mlx->map[i][j] = '0';
+	if (mlx->player->direction == 'S' || mlx->player->direction == 'N')
+	{
+		if (mlx->player->direction == 'N')
+			mlx->player->rot = -M_PI_2;
+		else
+			mlx->player->rot = M_PI_2;
+	}
+	else if (mlx->player->direction == 'E' || mlx->player->direction == 'W')
+	{
+		if (mlx->player->direction == 'E')
+			mlx->player->rot = 0;
+		else
+			mlx->player->rot = M_PI;
+	}
 }
 
 void	is_palyer_deplicate(t_mlx *mlx)
@@ -49,12 +72,10 @@ void	is_palyer_deplicate(t_mlx *mlx)
 		j = 0;
 		while (mlx->map[i][j])
 		{
-			if (mlx->map[i][j] == 'N' || mlx->map[i][j] == 'S' || mlx->map[i][j] == 'E'
-				|| mlx->map[i][j] == 'W')
+			if (mlx->map[i][j] == 'N' || mlx->map[i][j] == 'S'
+				|| mlx->map[i][j] == 'E' || mlx->map[i][j] == 'W')
 			{
-				mlx->player->y = floor(i * mlx->cub_size) - (mlx->cub_size / 2) - mlx->cub_size;
-				mlx->player->x = floor(j * mlx->cub_size) + (mlx->cub_size / 2);
-				mlx->map[i][j] = '0';
+				ft_player_pos(mlx, i, j);
 				k++;
 			}
 			j++;

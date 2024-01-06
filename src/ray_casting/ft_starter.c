@@ -22,7 +22,7 @@ t_mlx	*ft_data_init(void)
 	mlx->win_x = 1337;//(CUB_SIZE + SPACE) * MAP_X;
 	mlx->win_y = 800;//(CUB_SIZE + SPACE) * MAP_Y;
 	mlx->cub_size = mlx->win_y / MAP_Y; //64;
-	ft_player_init(&mlx->player, mlx->win_x / 5, mlx->win_y / 2);
+	ft_player_init(&mlx->player);
 	ft_rays_init(&mlx->rays, mlx);
 	mlx->mlx_ptr = mlx_init();
 	if (!mlx->mlx_ptr)
@@ -49,20 +49,15 @@ void	ft_rays_init(t_rays **rays, t_mlx *mlx)
 	(*rays)->colision_distance = 0;
 }
 
-void	ft_player_init(t_player **player, int x, int y)
+void	ft_player_init(t_player **player)
 {
-	(void) x;
-	(void) y;
 	*player = malloc (sizeof (t_player));
 	if (!player)
 		ft_error_buster(1);
-	// (*player)->x = x;
-	// (*player)->y = y;
 	(*player)->fov = FOV * (M_PI / 180);
 	(*player)->r = RADIUS * MINIMAP_SCALE;
 	(*player)->spd = SPEED;
 	(*player)->walk = 0;
 	(*player)->turn = 0;
-	(*player)->rot = -M_PI_2;
 	(*player)->rot_spd = ROT_SPEED * (M_PI / 180);
 }
