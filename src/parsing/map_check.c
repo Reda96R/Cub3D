@@ -52,8 +52,8 @@ void	is_palyer_deplicate(t_mlx *mlx)
 			if (mlx->map[i][j] == 'N' || mlx->map[i][j] == 'S' || mlx->map[i][j] == 'E'
 				|| mlx->map[i][j] == 'W')
 			{
-				mlx->player->x = (i * mlx->cub_size);
-				mlx->player->y = (j * mlx->cub_size);
+				mlx->player->y = floor(i * mlx->cub_size) - (mlx->cub_size / 2) - mlx->cub_size;
+				mlx->player->x = floor(j * mlx->cub_size) + (mlx->cub_size / 2);
 				mlx->map[i][j] = '0';
 				k++;
 			}
