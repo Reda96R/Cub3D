@@ -31,8 +31,8 @@ typedef struct s_mlx
 {
 	float			win_x;
 	float			win_y;
-	float			map_height;
-	float			map_width;
+	int				map_height;
+	int				map_width;
 	float			cub_size;
 	void			*mlx_ptr;
 	void			*win_ptr;
@@ -113,11 +113,12 @@ void	ft_3d_caster(t_mlx *mlx, int i);
 
 			/*---ft_drawer---*/
 int		update(t_mlx *mlx);
+void	ft_scene_cleaner(t_mlx *mlx);
 void	ft_put_pixel(t_mlx *mlx, int x, int y, int color);
-void	ft_clear_map(t_mlx *mlx);
 void	ft_draw_map(t_mlx *mlx);
-void	ft_clear_player(t_mlx *mlx, int x, int y, int size);
 void	ft_draw_player(t_mlx *mlx, int x, int y);
+void	ft_clear_player(t_mlx *mlx, int x, int y, int size);
+void	ft_clear_map(t_mlx *mlx);
 
 			/*---ft_player_movements---*/
 void	ft_move_front(t_mlx *mlx);

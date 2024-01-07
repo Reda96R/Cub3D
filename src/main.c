@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:rerayyad <rerayyad@student.42.fr>            +#+  +:+       +#+       */
+/*   By: rerayyad <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 15:26:16 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/07 16:32:49 by rerayyad         ###   ########.fr       */
+/*   Updated: 2024/01/07 17:06:26 by rerayyad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "../includes/cub3D.h"
 
 char	g_test[][10] = {
@@ -55,21 +54,12 @@ void	arg_check(int ac, char **av)
 
 	i = ft_strlen(av[1]) - 3;
 	if (ac != 2)
-	{
-		printf("Error\nWrong number of arguments");
-		exit(1);
-	}
+		ft_error_buster(3);
 	if (av[1][i] != 'c' || av[1][i + 1] != 'u'
 		|| av[1][i + 2] != 'b' || av[1][i + 3] != '\0')
-	{
-		printf("Error\nWrong file format");
-		exit(1);
-	}
+		ft_error_buster(4);
 	if (ft_strlen(av[1]) < 4)
-	{
-		printf("Error\nWrong file format");
-		exit(1);
-	}
+		ft_error_buster(5);
 }
 
 int	main(int ac, char **av)
