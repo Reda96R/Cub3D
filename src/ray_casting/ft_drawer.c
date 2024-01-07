@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_drawer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rerayyad <rerayyad@student.42.fr>            +#+  +:+       +#+      */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:52:45 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/06 02:51:51 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/06 18:44:09 by rerayyad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
+
+int	update(t_mlx *mlx)
+{
+	ft_scene_cleaner(mlx);
+	ft_pos_calculator(mlx);
+	ft_draw_map(mlx);// will be removed in mandatory
+	ft_prime_and_cast(mlx);
+	ft_draw_player(mlx, mlx->player->x, mlx->player->y);// will be removed in mandatory
+	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img.img, 0, 0);
+	return (0);
+}
 
 void	ft_scene_cleaner(t_mlx *mlx)
 {
@@ -29,17 +40,6 @@ void	ft_scene_cleaner(t_mlx *mlx)
 		}
 		w++;
 	}
-}
-
-int	update(t_mlx *mlx)
-{
-	ft_scene_cleaner(mlx);
-	ft_pos_calculator(mlx);
-	ft_draw_map(mlx);// will be removed in mandatory
-	ft_prime_and_cast(mlx);
-	ft_draw_player(mlx, mlx->player->x, mlx->player->y);// will be removed in mandatory
-	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img.img, 0, 0);
-	return (0);
 }
 
 void	ft_put_pixel(t_mlx *mlx, int x, int y, int color)
@@ -62,11 +62,11 @@ void	ft_draw_map(t_mlx *mlx)
 
 	i = 0;
 	y = 0;
-	while (i < MAP_Y)
+	while (i < mlx->map_height)
 	{
 		x = 0;
 		j = 0;
-		while (j < MAP_X)
+		while (j < mlx->map_width)
 		{
 			if (mlx->new_map[i][j] != '0')
 				ft_draw_scaled_square(mlx, x, y, 0xFFFFFF);
@@ -96,6 +96,7 @@ void	ft_draw_player(t_mlx *mlx, int x, int y)
 	ft_draw_circle(mlx, x * MINIMAP_SCALE, y * MINIMAP_SCALE);
 }
 
+// Will be removed later
 void	ft_clear_map(t_mlx *mlx)
 {
 	int	i;
@@ -105,11 +106,11 @@ void	ft_clear_map(t_mlx *mlx)
 
 	i = 0;
 	y = 0;
-	while (i < MAP_Y)
+	while (i < mlx->map_height)
 	{
 		x = 0;
 		j = 0;
-		while (j < MAP_X)
+		while (j < mlx->map_width)
 		{
 			ft_draw_scaled_square(mlx, x, y, 0x000000);
 			x += mlx->cub_size;
@@ -120,6 +121,7 @@ void	ft_clear_map(t_mlx *mlx)
 	}
 }
 
+// Will be removed later
 void	ft_clear_player(t_mlx *mlx, int x, int y, int size)
 {
 	int	i;

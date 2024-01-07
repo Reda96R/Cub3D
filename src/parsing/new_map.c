@@ -6,50 +6,50 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 22:18:53 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/06 02:27:28 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/07 00:41:07 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-void    map_height_width(t_mlx *mlx)
+int	get_start(t_mlx *mlx, char *line, int type) //1 for texter 2 for color
 {
-	int i;
-	int j;
-	int k;
-	int max_width;
+	int	i;
 
 	i = 0;
-	max_width = 0;
-	mlx->map_height = 0;
-	while (mlx->map[i])
+	if (type == 1)
 	{
-		j = 0;
-		k = 0;
-		if(mlx->map[i][j] != '\0' && mlx->map[i][j] != '\n')
-			mlx->map_height++;
-		while (mlx->map[i][j])
-		{
-			k++;
-			if (k > max_width)
-				max_width = k;
-			j++;
-		}
-		i++;
+		line += 3;
+		while (line[i] && line[i] == ' ')
+			i++;
+		i += 3;
 	}
-	mlx->map_width = max_width;
+	else if (type == 2)
+	{
+		line += 2;
+		while (line[i] && !ft_isdigit(line[i]))
+			i++;
+		i += 2;
+	}
+	if (line[i] == '\0')
+	{
+		if (type == 1)
+			ft_Error("Wrong texture format", mlx);
+		else if (type == 2)
+			ft_Error("Wrong color format", mlx);
+	}
+	return (i);
 }
 
 void	copy_map(t_mlx *mlx)
 {
-	int i;
-	int x;
-	int j;
+	int	i;
+	int	x;
+	int	j;
 
 	i = 0;
 	x = 0;
 	j = 0;
-	map_height_width(mlx);
 	mlx->new_map = malloc(sizeof(char *) * (mlx->map_height + 1));
 	if (!mlx->new_map)
 		ft_Error("Malloc failed", mlx);
@@ -59,7 +59,7 @@ void	copy_map(t_mlx *mlx)
 	while (mlx->map[i])
 	{
 		if (mlx->map[i][0] == '\0' || mlx->map[i][0] == '\n')
-			break;
+			break ;
 		mlx->new_map[x] = malloc(sizeof(char) * (mlx->map_width + 1));
 		if (!mlx->new_map[x])
 			ft_Error("Malloc failed", mlx);

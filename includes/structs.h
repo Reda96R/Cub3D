@@ -25,6 +25,7 @@ typedef struct s_player
 	int		m_l;
 	int		t_r;
 	int		t_l;
+	int		direction;
 	float	fov;
 	float	x;
 	float	y;

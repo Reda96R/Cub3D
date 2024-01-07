@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rerayyad <rerayyad@student.42.fr>            +#+  +:+       +#+	  */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:54:28 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/06 03:30:07 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/07 16:58:40 by rerayyad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,71 +31,94 @@ typedef struct s_mlx
 {
 	float			win_x;
 	float			win_y;
+	int				map_height;
+	int				map_width;
 	float			cub_size;
 	void			*mlx_ptr;
 	void			*win_ptr;
-	//char			map[MAP_Y][MAP_X];  //-----> check here  <-----//
-	t_img			img;
-	t_player		*player;
-	t_pos			*pos;
-	t_rays			*rays;
-	/// ********* parsing **********//
 	char			**full_file;
-	char			**map;  //-----> u can use this map <-----//
+	char			**map;
 	char			**new_map;
-	int				map_height;
-	int				map_width;
-	char            *north_texture;
-	char            *south_texture;
-	char            *west_texture;
-	char            *east_texture;
+	char			*north_texture;
+	char			*south_texture;
+	char			*west_texture;
+	char			*east_texture;
 	char			*c_color;
 	char			*f_color;
 	unsigned int	c_color_int;
 	unsigned int	f_color_int;
-	
+	t_img			img;
+	t_player		*player;
+	t_pos			*pos;
+	t_rays			*rays;
 }	t_mlx;
 
-/*::::::::::::::::::::::::::::::::::*/
+/*::::::::::::ft_janitor::::::::::::*/
+// -------> you can use this function to print errors and exit <-------
 void	ft_error_buster(int id);
 
 /*::::::::::::::::PRS:::::::::::::::*/
-int		get_map_size(t_mlx *mlx);
+			/*---file_check---*/
+void	ft_file_parser(t_mlx *mlx, char *av);
 void	get_file(t_mlx *mlx, char *file);
-void	get_texters(t_mlx *mlx);
+void	get_file_size(t_mlx *mlx, char *file);
 void	is_deplecate(t_mlx *mlx);
-void	ft_free(char **str);
+
+			/*---texter_check---*/
+void	get_texters(t_mlx *mlx);
+void	fill_texter_map(int i, int j, int size, t_mlx *mlx);
 void	textres_existence(t_mlx *mlx, char *str);
-void	colors_existence(t_mlx *mlx);
-void	ft_Error(char *str, t_mlx *mlx);
+
+			/*---map_check0---*/
+void	ft_map_parser(t_mlx *mlx);
+void	map_height_width(t_mlx *mlx);
 void	check_map_format(t_mlx *mlx);
+
+			/*---map_check1---*/
+int		get_map_size(t_mlx *mlx);
+void	is_palyer_deplicate(t_mlx *mlx);
+void	ft_player_pos(t_mlx *mlx, int i, int j);
 void	cheack_map_borders(t_mlx *mlx);
 void	check_map_is_locked(t_mlx *mlx);
+
+			/*---color_check---*/
+void	colors_existence(t_mlx *mlx);
+void	colors_range(t_mlx *mlx, char *tmp, int i);
 void	check_colors_format(char	*str, t_mlx *mlx);
 void	check_colors_range(char	*str, t_mlx *mlx);
+
+			/*---ft_error_check---*/
+void	ft_free(char **str);
 void	ft_free_all(t_mlx *mlx);
-void	enitialize(t_mlx *mlx);
-void	is_palyer_deplicate(t_mlx *mlx);
-void    map_height_width(t_mlx *mlx);
-void    copy_map(t_mlx *mlx);
+void	ft_Error(char *str, t_mlx *mlx);
+
+			/*---new_map---*/
+void	copy_map(t_mlx *mlx);
+int		get_start(t_mlx *mlx, char *line, int type);
+
 /*::::::::::::::::RAY:::::::::::::::*/
 
 			/*---ft_starter---*/
-t_mlx	*ft_data_init(void);
-void	ft_player_init(t_player **player, int x, int y);
+t_mlx	*ft_data_init(char *av[]);
+void	ft_mlx_init(t_mlx **mlx);
+void	ft_player_init(t_player **player);
 void	ft_rays_init(t_rays **rays, t_mlx *mlx);
 
-			/*---ft_starter---*/
+			/*---ft_rays---*/
 void	ft_prime_and_cast(t_mlx *mlx);
+void	ft_hit_detector(t_mlx *mlx);
 void	ft_ray_igniter(t_mlx *mlx, int color);
+void	ft_hit_assigner(t_rays *ray, t_rays *hit);
+void	ft_3d_caster(t_mlx *mlx, int i);
 
 			/*---ft_drawer---*/
 int		update(t_mlx *mlx);
+void	ft_scene_cleaner(t_mlx *mlx);
 void	ft_put_pixel(t_mlx *mlx, int x, int y, int color);
-void	ft_clear_map(t_mlx *mlx);
 void	ft_draw_map(t_mlx *mlx);
-void	ft_clear_player(t_mlx *mlx, int x, int y, int size);
 void	ft_draw_player(t_mlx *mlx, int x, int y);
+void	ft_clear_player(t_mlx *mlx, int x, int y, int size);
+void	ft_clear_map(t_mlx *mlx);
 
 			/*---ft_player_movements---*/
 void	ft_move_front(t_mlx *mlx);

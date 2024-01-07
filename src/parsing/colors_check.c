@@ -12,10 +12,9 @@
 
 #include "../../includes/cub3D.h"
 
-
 void	colors_existence(t_mlx *mlx)
 {
-	if(!mlx->c_color || !mlx->f_color)
+	if (!mlx->c_color || !mlx->f_color)
 	{
 		printf("Error\nMissing color!! ");
 		if (mlx->east_texture)
@@ -57,15 +56,15 @@ void	check_colors_format(char	*str, t_mlx *mlx)
 		}
 		i++;
 	}
-	if(j != 2)
+	if (j != 2)
 		ft_Error("Wrong color format", mlx);
 	check_colors_range(str, mlx);
-	
 }
 
 void	colors_range(t_mlx *mlx, char *tmp, int i)
 {
 	int	a;
+
 	if (ft_strlen(tmp) > 3)
 		ft_Error("Wrong color format", mlx);
 	a = ft_atoi(tmp);
@@ -82,15 +81,15 @@ void	colors_range(t_mlx *mlx, char *tmp, int i)
 
 void	check_colors_range(char	*str, t_mlx *mlx)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	*tmp;
 
 	i = 0;
 	while (str[i] != ',')
 		i++;
 	tmp = ft_substr(str, 0, i);
-	colors_range(mlx ,tmp, 0);
+	colors_range(mlx, tmp, 0);
 	i++;
 	j = i;
 	while (str[i] != ',')

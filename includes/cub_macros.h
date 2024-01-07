@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_macros.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rerayyad <rerayyad@student.42.fr>            +#+  +:+       +#+      */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:54:34 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/06 03:09:35 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/07 16:59:21 by rerayyad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 // # define CUB_SIZE 100
 
 /*::::Map propreties::::*/
-# define MAP_X 10
-# define MAP_Y 7
-# define MINIMAP_SCALE 0.3
+// # define MAP_X 20
+// # define MAP_Y 10
+# define MINIMAP_SCALE 0.2
 
 /*::::Player propreties::::*/
 # define RADIUS 15
