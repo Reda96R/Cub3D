@@ -6,11 +6,40 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 22:18:53 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/06 02:27:28 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/07 00:41:07 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
+
+int	get_start(t_mlx *mlx, char *line, int type)  //1 for texter 2 for color
+{
+	int i;
+
+	i = 0;
+	if (type == 1)
+	{
+		line += 3;
+		while (line[i] && line[i] == ' ')
+			i++;
+		i += 3;
+	}
+	else if (type == 2)
+	{
+		line += 2;
+		while (line[i] && !ft_isdigit(line[i]))
+			i++;
+		i += 2;
+	}
+	if(line[i] == '\0')
+	{
+		if (type == 1)
+			ft_Error("Wrong texture format", mlx);
+		else if (type == 2)
+			ft_Error("Wrong color format", mlx);
+	}
+	return (i);
+}
 
 void    map_height_width(t_mlx *mlx)
 {

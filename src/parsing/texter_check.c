@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 03:08:06 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/06 03:28:13 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/07 07:39:56 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ int    fill_texter(t_mlx *mlx, char *str)
 	while(*str == ' ')
 			str++;
     if(ft_strnstr(str, "NO ", 3))
-		mlx->north_texture = ft_substr(str, 3, ft_strlen(str) - 4);
+		mlx->north_texture = ft_substr(str, get_start(mlx, str, 1), ft_strlen(str) - get_start(mlx, str, 1) - 1);
 	else if(ft_strnstr(str, "SO ", 3))
-		mlx->south_texture = ft_substr(str, 3, ft_strlen(str) - 4);
+		mlx->south_texture = ft_substr(str, get_start(mlx, str, 1), ft_strlen(str) - get_start(mlx, str, 1) - 1);
 	else if(ft_strnstr(str, "WE ", 3))
-		mlx->west_texture = ft_substr(str, 3, ft_strlen(str) - 4);
+		mlx->west_texture = ft_substr(str, get_start(mlx, str, 1), ft_strlen(str) - get_start(mlx, str, 1) - 1);
 	else if(ft_strnstr(str, "EA ", 3))
-		mlx->east_texture = ft_substr(str, 3, ft_strlen(str) - 4);
+		mlx->east_texture = ft_substr(str, get_start(mlx, str, 1), ft_strlen(str) - get_start(mlx, str, 1) - 1);
 	else if(ft_strnstr(str, "C ", 2))
-		mlx->c_color = ft_substr(str, 2, ft_strlen(str) - 3);
+		mlx->c_color = ft_substr(str, get_start(mlx, str, 2), ft_strlen(str) - get_start(mlx, str, 2) - 1);
 	else if(ft_strnstr(str, "F ", 2))
-		mlx->f_color = ft_substr(str, 2, ft_strlen(str) - 3);
+		mlx->f_color = ft_substr(str, get_start(mlx, str, 2), ft_strlen(str) - get_start(mlx, str, 2) - 1);
     else
         return (1);
     return (0);
@@ -89,30 +89,6 @@ void	textres_existence(t_mlx *mlx, char *str)
 			free(mlx->south_texture);
 		if (mlx->north_texture)
 			free(mlx->north_texture);
-		ft_free(mlx->full_file);
-		exit(1);
-	}
-}
-
-void	texters_format(t_mlx *mlx, char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == ' ')
-		{
-			printf("Error\nWrong texter format");
-			ft_free(mlx->full_file);
-			exit(1);
-		}
-		i++;
-	}
-	i = ft_strlen(str) - 4;
-	if (str[i] != 'p' || str[i + 1] != 'm' || str[i + 2] != 'x' || str[i + 3] != '\0')
-	{
-		printf("Error\nWrong texter format!! (.xpm)");
 		ft_free(mlx->full_file);
 		exit(1);
 	}

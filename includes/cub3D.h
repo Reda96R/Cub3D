@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rerayyad <rerayyad@student.42.fr>            +#+  +:+       +#+      */
+/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:54:28 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/06 18:46:59 by rerayyad         ###   ########.fr       */
+/*   Updated: 2024/01/07 07:39:37 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	enitialize(t_mlx *mlx);
 void	is_palyer_deplicate(t_mlx *mlx);
 void	map_height_width(t_mlx *mlx);
 void	copy_map(t_mlx *mlx);
+int		get_start(t_mlx *mlx, char *line, int type);
 /*::::::::::::::::RAY:::::::::::::::*/
 
 			/*---ft_starter---*/

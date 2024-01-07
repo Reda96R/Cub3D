@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 15:26:16 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/06 02:49:03 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/07 07:39:04 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ int	main(int ac, char **av)
 	check_map_is_locked(mlx);
 	ft_free(mlx->full_file);
 	copy_map(mlx);
+	printf("map_height = %d\n", mlx->map_height);  //// ------> will be removed
+	printf("map_width = %d\n", mlx->map_width);    //// ------->will be removed
 	ft_free(mlx->map);
 	//ft_free_all(mlx);
 	// *****************************//
