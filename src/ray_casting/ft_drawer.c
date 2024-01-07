@@ -62,11 +62,11 @@ void	ft_draw_map(t_mlx *mlx)
 
 	i = 0;
 	y = 0;
-	while (i < MAP_Y)
+	while (i < mlx->map_height)
 	{
 		x = 0;
 		j = 0;
-		while (j < MAP_X)
+		while (j < mlx->map_width)
 		{
 			if (mlx->new_map[i][j] != '0')
 				ft_draw_scaled_square(mlx, x, y, 0xFFFFFF);
@@ -106,11 +106,11 @@ void	ft_clear_map(t_mlx *mlx)
 
 	i = 0;
 	y = 0;
-	while (i < MAP_Y)
+	while (i < mlx->map_height)
 	{
 		x = 0;
 		j = 0;
-		while (j < MAP_X)
+		while (j < mlx->map_width)
 		{
 			ft_draw_scaled_square(mlx, x, y, 0x000000);
 			x += mlx->cub_size;

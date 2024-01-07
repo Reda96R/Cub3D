@@ -12,9 +12,9 @@
 
 #include "../../includes/cub3D.h"
 
-int	get_start(t_mlx *mlx, char *line, int type)  //1 for texter 2 for color
+int	get_start(t_mlx *mlx, char *line, int type) //1 for texter 2 for color
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (type == 1)
@@ -31,7 +31,7 @@ int	get_start(t_mlx *mlx, char *line, int type)  //1 for texter 2 for color
 			i++;
 		i += 2;
 	}
-	if(line[i] == '\0')
+	if (line[i] == '\0')
 	{
 		if (type == 1)
 			ft_Error("Wrong texture format", mlx);
@@ -41,44 +41,15 @@ int	get_start(t_mlx *mlx, char *line, int type)  //1 for texter 2 for color
 	return (i);
 }
 
-void    map_height_width(t_mlx *mlx)
-{
-	int i;
-	int j;
-	int k;
-	int max_width;
-
-	i = 0;
-	max_width = 0;
-	mlx->map_height = 0;
-	while (mlx->map[i])
-	{
-		j = 0;
-		k = 0;
-		if(mlx->map[i][j] != '\0' && mlx->map[i][j] != '\n')
-			mlx->map_height++;
-		while (mlx->map[i][j])
-		{
-			k++;
-			if (k > max_width)
-				max_width = k;
-			j++;
-		}
-		i++;
-	}
-	mlx->map_width = max_width;
-}
-
 void	copy_map(t_mlx *mlx)
 {
-	int i;
-	int x;
-	int j;
+	int	i;
+	int	x;
+	int	j;
 
 	i = 0;
 	x = 0;
 	j = 0;
-	map_height_width(mlx);
 	mlx->new_map = malloc(sizeof(char *) * (mlx->map_height + 1));
 	if (!mlx->new_map)
 		ft_Error("Malloc failed", mlx);
@@ -88,7 +59,7 @@ void	copy_map(t_mlx *mlx)
 	while (mlx->map[i])
 	{
 		if (mlx->map[i][0] == '\0' || mlx->map[i][0] == '\n')
-			break;
+			break ;
 		mlx->new_map[x] = malloc(sizeof(char) * (mlx->map_width + 1));
 		if (!mlx->new_map[x])
 			ft_Error("Malloc failed", mlx);
