@@ -87,7 +87,7 @@ void	ft_prime_and_cast(t_mlx *mlx)
 			mlx->rays->ray_angle += (2 * M_PI);
 		ft_hit_detector(mlx);
 		ft_ray_igniter(mlx, 0x0000070); // color will be removed && will be removed in mandatory
-		// ft_3d_caster(mlx, i);
+		ft_3d_caster(mlx, i);
 		mlx->rays->ray_angle += mlx->player->fov / mlx->rays->rays_num;
 		i++;
 	}
