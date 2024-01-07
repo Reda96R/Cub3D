@@ -15,7 +15,7 @@
 void	ft_map_parser(t_mlx *mlx)
 {
 	map_height_width(mlx);
-	mlx->cub_size = mlx->win_y / mlx->map_height; //64;
+	mlx->cub_size = mlx->win_y / mlx->map_height;//fmin(mlx->win_y / mlx->map_height, mlx->win_x / mlx->map_width); //64;
 	check_map_format(mlx);
 	cheack_map_borders(mlx);
 	check_map_is_locked(mlx);
