@@ -18,7 +18,7 @@ float	ft_hit_distance(float *coor, t_mlx *mlx)
 			+ (coor[1] - mlx->player->y) * (coor[1] - mlx->player->y)));
 }
 
-void	ft_h_hit_calculator(t_mlx *mlx, t_rays *h)
+void	ft_h_hit_calculator(t_mlx *mlx, t_rays *h, char *heading)
 {
 	float	y;
 
@@ -37,9 +37,9 @@ void	ft_h_hit_calculator(t_mlx *mlx, t_rays *h)
 		if (ft_wall_detector(h->hit_x, y, mlx))
 		{
 			if (mlx->rays->up)
-				mlx->rays->heading = 'S';
+				*heading = 'S';
 			else
-				mlx->rays->heading = 'N';
+				*heading = 'N';
 			break ;
 		}
 		h->hit_x += h->diff[0];
@@ -47,7 +47,7 @@ void	ft_h_hit_calculator(t_mlx *mlx, t_rays *h)
 	}
 }
 
-void	ft_v_hit_calculator(t_mlx *mlx, t_rays *v)
+void	ft_v_hit_calculator(t_mlx *mlx, t_rays *v, char *heading)
 {
 	float	x;
 
@@ -66,9 +66,9 @@ void	ft_v_hit_calculator(t_mlx *mlx, t_rays *v)
 		if (ft_wall_detector(x, v->hit_y, mlx))
 		{
 			if (mlx->rays->right)
-				mlx->rays->heading = 'W';
+				*heading = 'W';
 			else
-				mlx->rays->heading = 'E';
+				*heading = 'E';
 			break ;
 		}
 		v->hit_x += v->diff[0];
@@ -89,7 +89,7 @@ void	ft_vertical_detector(t_mlx *mlx, t_rays *v)
 		diff[1] *= -1;
 	v->diff[0] = diff[0];
 	v->diff[1] = diff[1];
-	ft_v_hit_calculator(mlx, v);
+	ft_v_hit_calculator(mlx, v, &v->heading);
 	coor[0] = v->hit_x;
 	coor[1] = v->hit_y;
 	v->colision_distance = ft_hit_distance(coor, mlx);
@@ -109,7 +109,7 @@ void	ft_horizontal_detector(t_mlx *mlx, t_rays *h)
 		diff[0] *= -1;
 	h->diff[0] = diff[0];
 	h->diff[1] = diff[1];
-	ft_h_hit_calculator(mlx, h);
+	ft_h_hit_calculator(mlx, h, &h->heading);
 	coor[0] = h->hit_x;
 	coor[1] = h->hit_y;
 	h->colision_distance = ft_hit_distance(coor, mlx);

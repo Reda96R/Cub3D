@@ -79,10 +79,16 @@ void	ft_draw_rectangle(t_mlx *mlx, t_pos *coordinates, float w, float h)
 		y = coordinates->y;
 		while (y < coordinates->y + h)
 		{
-			if (mlx->rays->s == 'h')
-				ft_put_pixel(mlx, x, y, 0xFFCCCCCC);
-			else
+			if (mlx->rays->heading == 'S')
+				ft_put_pixel(mlx, x, y, 0xFF0000);
+			else if (mlx->rays->heading == 'N')
+				ft_put_pixel(mlx, x, y, 0x00FF00);
+			else if (mlx->rays->heading == 'W')
+				ft_put_pixel(mlx, x, y, 0x0000FF);
+			else if (mlx->rays->heading == 'E')
 				ft_put_pixel(mlx, x, y, 0xFFFFFF);
+			else
+				ft_put_pixel(mlx, x, y, 0xFFCCCCCC);
 			y++;
 		}
 		x++;

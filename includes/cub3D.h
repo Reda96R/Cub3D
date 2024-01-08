@@ -147,8 +147,8 @@ void	ft_turn_calculator(t_mlx *mlx);
 
 			/*---ft_maths_hub1---*/
 float	ft_hit_distance(float *coor, t_mlx *mlx);
-void	ft_h_hit_calculator(t_mlx *mlx, t_rays *h);
-void	ft_v_hit_calculator(t_mlx *mlx, t_rays *v);
+void	ft_h_hit_calculator(t_mlx *mlx, t_rays *h, char *heading);
+void	ft_v_hit_calculator(t_mlx *mlx, t_rays *v, char *heading);
 void	ft_vertical_detector(t_mlx *mlx, t_rays *v);
 void	ft_horizontal_detector(t_mlx *mlx, t_rays *h);
 
