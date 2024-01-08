@@ -35,7 +35,13 @@ void	ft_h_hit_calculator(t_mlx *mlx, t_rays *h)
 		if (mlx->rays->up)
 			y -= (SPACE + 3);
 		if (ft_wall_detector(h->hit_x, y, mlx))
+		{
+			if (mlx->rays->up)
+				mlx->rays->heading = 'S';
+			else
+				mlx->rays->heading = 'N';
 			break ;
+		}
 		h->hit_x += h->diff[0];
 		h->hit_y += h->diff[1];
 	}
@@ -58,7 +64,13 @@ void	ft_v_hit_calculator(t_mlx *mlx, t_rays *v)
 		if (!mlx->rays->right)
 			x -= (SPACE + 3);
 		if (ft_wall_detector(x, v->hit_y, mlx))
+		{
+			if (mlx->rays->right)
+				mlx->rays->heading = 'W';
+			else
+				mlx->rays->heading = 'E';
 			break ;
+		}
 		v->hit_x += v->diff[0];
 		v->hit_y += v->diff[1];
 	}

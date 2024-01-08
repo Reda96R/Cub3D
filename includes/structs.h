@@ -41,12 +41,13 @@ typedef struct s_rays
 {
 	int		up;
 	int		right;
+	char	s;
+	char	heading;
 	float	rays_num;
 	float	ray_angle;
 	float	ray_size;
 	float	hit_x;
 	float	hit_y;
-	char	s;
 	float	diff[2];
 	float	colision_distance;
 }	t_rays;	
