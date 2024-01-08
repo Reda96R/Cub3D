@@ -28,6 +28,7 @@ void	ft_hit_assigner(t_rays *ray, t_rays *hit)
 	ray->s = hit->s;
 	ray->hit_x = hit->hit_x;
 	ray->hit_y = hit->hit_y;
+	ray->heading = hit->heading;
 	ray->colision_distance = hit->colision_distance;
 }
 
