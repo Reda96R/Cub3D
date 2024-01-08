@@ -9,7 +9,7 @@
 #    Updated: 2024/01/05 05:42:52 by maouzal          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
+NAME = lib.a
 FILES = ft_isdigit.c ft_isalnum.c ft_atoi.c ft_strrchr.c ft_striteri.c \
 				ft_split.c ft_calloc.c ft_strjoin.c ft_strmapi.c ft_isalpha.c \
 				ft_bzero.c ft_strlcat.c ft_isascii.c ft_isprint.c ft_strlcpy.c \
@@ -26,7 +26,7 @@ all: $(NAME)
 
 %.o: %.c
 	@cc $(CFLAGS) -c $<
-	@$(AR) $(NAME) 
+	@$(AR) $(NAME) $@
 
 $(NAME): $(OBJS)
 

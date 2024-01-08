@@ -68,29 +68,18 @@ void	ft_draw_square(t_mlx *mlx, int x, int y, int color)
 	}
 }
 
-void	ft_draw_rectangle(t_mlx *mlx, t_pos *coordinates, float w, float h)
+void	ft_draw_rectangle(t_mlx *mlx, t_pos *coordinates,
+		t_pos width_n_height, int color)
 {
 	int	x;
 	int	y;
 
 	x = coordinates->x;
-	while (x < coordinates->x + w)
+	while (x < coordinates->x + width_n_height.x)
 	{
 		y = coordinates->y;
-		while (y < coordinates->y + h)
-		{
-			if (mlx->rays->heading == 'S')
-				ft_put_pixel(mlx, x, y, 0xFF0000);
-			else if (mlx->rays->heading == 'N')
-				ft_put_pixel(mlx, x, y, 0x00FF00);
-			else if (mlx->rays->heading == 'W')
-				ft_put_pixel(mlx, x, y, 0x0000FF);
-			else if (mlx->rays->heading == 'E')
-				ft_put_pixel(mlx, x, y, 0xFFFFFF);
-			else
-				ft_put_pixel(mlx, x, y, 0xFFCCCCCC);
-			y++;
-		}
+		while (y < coordinates->y + width_n_height.y)
+			ft_put_pixel(mlx, x, y++, color);
 		x++;
 	}
 }

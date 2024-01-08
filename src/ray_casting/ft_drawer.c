@@ -49,7 +49,7 @@ void	ft_put_pixel(t_mlx *mlx, int x, int y, int color)
 	if (mlx->win_x > x && mlx->win_y > y && x >= 0 && y >= 0)
 	{
 		p = mlx->img.id + (y * mlx->img.len + x * (mlx->img.bpp / 8));
-		*(int *)p = color;
+		*(unsigned int *)p = color;
 	}
 }
 

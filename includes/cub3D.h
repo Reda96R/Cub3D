@@ -119,6 +119,7 @@ void	ft_draw_map(t_mlx *mlx);
 void	ft_draw_player(t_mlx *mlx, int x, int y);
 void	ft_clear_player(t_mlx *mlx, int x, int y, int size);
 void	ft_clear_map(t_mlx *mlx);
+int		ft_put_img(t_mlx *mlx, int x, int y);
 
 			/*---ft_player_movements---*/
 void	ft_move_front(t_mlx *mlx);
@@ -130,7 +131,8 @@ void	ft_move_right(t_mlx *mlx);
 void	ft_draw_line(t_mlx *mlx, float c[4], int color);
 void	ft_draw_circle(t_mlx *mlx, int x, int y);
 void	ft_draw_square(t_mlx *mlx, int x, int y, int color);
-void	ft_draw_rectangle(t_mlx *mlx, t_pos *coordinates, float w, float h);
+void	ft_draw_rectangle(t_mlx *mlx, t_pos *coordinates,
+			t_pos width_n_height, int color);
 void	ft_draw_scaled_square(t_mlx *mlx, int x, int y, int color);
 
 			/*---ft_keylogger---*/

@@ -43,12 +43,12 @@ T_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix src/textures/, $(T_
 #:::::::::::::Compile::::::::::::::#
 $(NAME): $(M_OBJS) $(P_OBJS) $(R_OBJS) $(T_OBJS)
 	@echo $(cursive)$(grey)":::Making object files:::"$(reset)
-	@make -s -C lib/
 	@echo $(cursive)$(grey)":::Compiling $(NAME):::"$(reset)
 	@$(CC) $(CFLAGS) $(M_OBJS)  $(P_OBJS) $(R_OBJS) $(T_OBJS) $(LIB) $(COMP) -o $(NAME)
 	@echo $(f_green)":::✅ $(NAME) is ready ✅:::"$(reset)
 
 $(OBJ_DIR)%.o: %.c 
+	@make -s -C lib/
 	@mkdir -p .obj/src .obj/src/parsing .obj/src/ray_casting .obj/src/textures
 	@$(CC) $(CFLAGS) $(COMP_O) -c $< -o $@
 
