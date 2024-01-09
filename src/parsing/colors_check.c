@@ -93,7 +93,7 @@ void	colors_range(t_mlx *mlx, char *tmp, int i)
 
 	j = 0;
 	k = 0;
-	while(tmp[j])
+	while (tmp[j])
 	{
 		if (tmp[j] != ' ')
 			k++;
@@ -103,9 +103,9 @@ void	colors_range(t_mlx *mlx, char *tmp, int i)
 	str = ft_itoa(a);
 	if (k != ft_strlen(str))
 		ft_Error("Wrong color format", mlx);
-	free(str);
 	if (a < 0 || a > 255)
 		ft_Error("Wrong color range", mlx);
+	free(str);
 	ft_color_assigner(mlx, tmp, a, i);
 	free(tmp);
 }

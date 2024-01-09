@@ -19,7 +19,8 @@ int	ft_wall_detector(float x, float y, t_mlx *mlx)
 
 	map_x = floor(y / mlx->cub_size);
 	map_y = floor(x / mlx->cub_size);
-	if (map_x < 0 || map_y < 0 || map_x >= mlx->map_height || map_y >= mlx->map_width || !mlx->new_map[map_x][map_y] )
+	if (map_x < 0 || map_y < 0 || map_x >= mlx->map_height
+		|| map_y >= mlx->map_width || !mlx->new_map[map_x][map_y])
 		return (1);
 	if (mlx->new_map[map_x][map_y] == '0')
 		return (0);
@@ -35,11 +36,11 @@ int	ft_wall_colision(t_mlx *mlx)
 	int	dx;
 	int	dy;
 
-	i = mlx->player->x - mlx->player->r;
-	while (i <= mlx->player->x + mlx->player->r)
+	i = mlx->player->x - (mlx->player->r * MINIMAP_SCALE);
+	while (i <= mlx->player->x + (mlx->player->r * MINIMAP_SCALE))
 	{
-		j = mlx->player->y - mlx->player->r;
-		while (j <= mlx->player->y + mlx->player->r)
+		j = mlx->player->y - (mlx->player->r * MINIMAP_SCALE);
+		while (j <= mlx->player->y + (mlx->player->r * MINIMAP_SCALE))
 		{
 			dx = i - mlx->player->x;
 			dy = j - mlx->player->y;
