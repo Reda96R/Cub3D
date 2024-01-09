@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_drawer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rerayyad <rerayyad@student.42.fr>            +#+  +:+       +#+      */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:52:45 by rerayyad          #+#    #+#             */
 /*   Updated: 2024/01/09 17:36:58 by maouzal          ###   ########.fr       */
