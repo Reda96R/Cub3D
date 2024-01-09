@@ -6,7 +6,7 @@
 /*   By: rerayyad <rerayyad@student.42.fr>            +#+  +:+       +#+      */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:52:45 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/06 18:44:09 by rerayyad         ###   ########.fr       */
+/*   Updated: 2024/01/09 17:36:58 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,18 +62,18 @@ void	ft_draw_map(t_mlx *mlx)
 
 	i = 0;
 	y = 0;
-	while (i < mlx->map_height)
+	while (mlx->new_map[i] && i < mlx->map_height)
 	{
 		x = 0;
 		j = 0;
-		while (j < mlx->map_width)
+		while (mlx->new_map[i][j] && j < mlx->map_width)
 		{
-			if (mlx->new_map[i][j] != '0' && mlx->new_map[i][j] != 'D')
+			if (mlx->new_map[i][j] == '1')
 				ft_draw_scaled_square(mlx, x, y, 0xFFFFFF);
 			else if (mlx->new_map[i][j] == 'D')
 				ft_draw_scaled_square(mlx, x, y, 0xCCFF00);
-			else 
-				ft_draw_scaled_square(mlx, x, y, 0xFF000000);
+			else
+				ft_draw_scaled_square(mlx, x, y, 0x000000);
 			x += mlx->cub_size + SPACE;
 			j++;
 		}

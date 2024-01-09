@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 03:07:22 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/07 16:34:17 by rerayyad         ###   ########.fr       */
+/*   Updated: 2024/01/08 12:28:14 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,7 @@ void	get_file_size(t_mlx *mlx, char *file)
 	i = 0;
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-	{
-		printf("Error\nFile not found");
-		exit(1);
-	}
+		printf("Error\nFile not found"), exit(1);
 	line = m_get_next_line(fd);
 	while (line)
 	{

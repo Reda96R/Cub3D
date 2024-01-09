@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_rays.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rerayyad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 10:43:20 by rerayyad          #+#    #+#             */
-/*   Updated: 2023/12/22 10:43:22 by rerayyad         ###   ########.fr       */
+/*   Updated: 2024/01/09 19:34:25 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ void	ft_prime_and_cast(t_mlx *mlx)
 		if (mlx->rays->ray_angle < 0)
 			mlx->rays->ray_angle += (2 * M_PI);
 		ft_hit_detector(mlx);
+		//ft_tetxt(mlx->rays)
 		ft_ray_igniter(mlx, 0x0000070); // color will be removed && will be removed in mandatory
 		ft_3d_caster(mlx, i);
 		mlx->rays->ray_angle += mlx->player->fov / mlx->rays->rays_num;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 03:08:13 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/05 03:59:19 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/08 15:38:04 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ void	ft_free_all(t_mlx *mlx)
 		free(mlx->c_color);
 	if (mlx->f_color)
 		free(mlx->f_color);
-	ft_free(mlx->full_file);
-	ft_free(mlx->map);
+	if (mlx->full_file)
+		ft_free(mlx->full_file);
+	if (mlx->map)
+		ft_free(mlx->map);
 }
 
 void	ft_Error(char *str, t_mlx *mlx)

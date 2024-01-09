@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 16:24:25 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/07 16:34:45 by rerayyad         ###   ########.fr       */
+/*   Updated: 2024/01/09 23:16:04 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	is_palyer_deplicate(t_mlx *mlx)
 		i++;
 	}
 	if (k != 1)
-		ft_Error("Wrong player format", mlx);
+		ft_Error("Invalid Player", mlx);
 }
 
 void	cheack_map_borders(t_mlx *mlx)
@@ -113,16 +113,18 @@ void	check_map_is_locked(t_mlx *mlx)
 	int	i;
 	int	j;
 
-	i = 1;
+	i = 1;	
 	while (mlx->map[i] && mlx->map[i + 1])
 	{
 		j = 0;
-		while (mlx->map[i][j] && mlx->map[i + 1][j])
+		while (mlx->map[i][j])
 		{
-			if (mlx->map[i][j] == 'N' || mlx->map[i][j] == 'S' || mlx->map[i][j] == 'E'
-				|| mlx->map[i][j] == 'W' || mlx->map[i][j] == '0')
+			if (mlx->map[i][j] == '0' && i > 0 && j > 0)
 			{
-				if (mlx->map[i][j + 1] == ' ' || mlx->map[i][j - 1] == ' '
+				if(mlx->map[i - 1][0] == '\0' || mlx->map[i + 1][0] == '\0'
+					|| mlx->map[i][j + 1] == '\0' || mlx->map[i][j - 1] == '\0'
+					|| mlx->map[i + 1][j] == '\0' || mlx->map[i - 1][j] == '\0'
+					|| mlx->map[i][j + 1] == ' ' || mlx->map[i][j - 1] == ' '
 					|| mlx->map[i + 1][j] == ' ' || mlx->map[i - 1][j] == ' ')
 					ft_Error("Map is not valid", mlx);
 			}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check0.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rerayyad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 16:34:30 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/07 16:34:37 by rerayyad         ###   ########.fr       */
+/*   Updated: 2024/01/09 21:13:11 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,30 @@ void	check_map_format(t_mlx *mlx)
 	{
 		j = 0;
 		if (!mlx->map[i][j] && mlx->map[i + 1][j] && mlx->map[i + 1][j] != '\n')
-			ft_Error("Map is not valid", mlx);
+		{
+			while(mlx->map[i])
+			{
+				j = 0;
+				while (mlx->map[i][j])
+				{
+					if (mlx->map[i][j] != '1' && mlx->map[i][j] != '0' && mlx->map[i][j] != 'N'
+						&& mlx->map[i][j] != 'S' && mlx->map[i][j] != 'E' && mlx->map[i][j] != 'W')
+						j++;
+					else
+						ft_Error("Map is not valid", mlx);
+				}
+				i++;
+			}
+			if(!mlx->map[i - 1] && !mlx->map[i][j])
+				ft_Error("Map is not valid", mlx);
+			else
+				return ;
+		}
 		while (mlx->map[i][j])
 		{
 			if (mlx->map[i][j] != '1' && mlx->map[i][j] != '0' && mlx->map[i][j] != 'N'
 				&& mlx->map[i][j] != 'S' && mlx->map[i][j] != 'E' && mlx->map[i][j] != 'W'
-				&& mlx->map[i][j] != ' ' && mlx->map[i][j] != 'D')//the check for 'D' will be removed in mandatory
+				&& mlx->map[i][j] != ' ')
 				ft_Error("Map is not valid", mlx);
 			j++;
 		}

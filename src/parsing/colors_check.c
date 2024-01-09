@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 03:07:45 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/06 03:24:53 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/09 17:33:04 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	colors_existence(t_mlx *mlx)
 	}
 }
 
-void	check_colors_format(char	*str, t_mlx *mlx)
+void	check_colors_format(char *str, t_mlx *mlx)
 {
 	int	i;
 	int	j;
@@ -51,7 +51,7 @@ void	check_colors_format(char	*str, t_mlx *mlx)
 		if (str[i] == ',')
 		{
 			j++;
-			if (str[i + 1] == ',' || str[i + 1] == ' ')
+			if (str[i + 1] == ',')
 				ft_Error("Wrong color format", mlx);
 		}
 		i++;
@@ -61,21 +61,52 @@ void	check_colors_format(char	*str, t_mlx *mlx)
 	check_colors_range(str, mlx);
 }
 
+void	ft_color_assigner(t_mlx *mlx, char* str, int a, int i)
+{
+
+	if(ft_strnstr(str, "C ", 2))
+	{
+		if (i == 0)
+			mlx->c_color_int += a * 256 * 256;
+		if (i == 1)
+			mlx->c_color_int += a * 256;
+		if (i == 2)
+			mlx->c_color_int += a;
+	}
+	else if(ft_strnstr(str, "F ", 2))
+	{
+		if (i == 0)
+			mlx->c_color_int += a * 256 * 256;
+		if (i == 1)
+			mlx->c_color_int += a * 256;
+		if (i == 2)
+			mlx->c_color_int += a;
+	}
+}
+
 void	colors_range(t_mlx *mlx, char *tmp, int i)
 {
-	int	a;
+	int		a;
+	size_t	k;
+	int		j;
+	char	*str;
 
-	if (ft_strlen(tmp) > 3)
-		ft_Error("Wrong color format", mlx);
+	j = 0;
+	k = 0;
+	while (tmp[j])
+	{
+		if (tmp[j] != ' ')
+			k++;
+		j++;
+	}
 	a = ft_atoi(tmp);
+	str = ft_itoa(a);
+	if (k != ft_strlen(str))
+		ft_Error("Wrong color format", mlx);
 	if (a < 0 || a > 255)
 		ft_Error("Wrong color range", mlx);
-	if (i == 0)
-		mlx->c_color_int += a * 256 * 256;
-	if (i == 1)
-		mlx->c_color_int += a * 256;
-	if (i == 2)
-		mlx->c_color_int += a;
+	free(str);
+	ft_color_assigner(mlx, tmp, a, i);
 	free(tmp);
 }
 

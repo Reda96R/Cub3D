@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 22:18:53 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/07 00:41:07 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/09 21:20:47 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,12 @@ void	copy_map(t_mlx *mlx)
 		x++;
 	}
 	mlx->new_map[x] = NULL;
+	i = 0;
+	while(mlx->new_map[i])
+	{
+		printf("%s\n", mlx->new_map[i]);
+		i++;
+	}
 }
 
 //-----------> don't  forget the norminette!!!!

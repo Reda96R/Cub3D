@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_shapes.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rerayyad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:53:08 by rerayyad          #+#    #+#             */
-/*   Updated: 2023/12/21 17:53:09 by rerayyad         ###   ########.fr       */
+/*   Updated: 2024/01/08 17:17:25 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,15 @@ void	ft_draw_circle(t_mlx *mlx, int x, int y)
 	int	dx;
 	int	dy;
 
-	i = x - mlx->player->r;
-	while (i <= x + mlx->player->r)
+	i = x - (mlx->player->r * MINIMAP_SCALE);
+	while (i <= x + (mlx->player->r * MINIMAP_SCALE))
 	{
-		j = y - mlx->player->r;
-		while (j <= y + mlx->player->r)
+		j = y - (mlx->player->r * MINIMAP_SCALE);
+		while (j <= y + (mlx->player->r * MINIMAP_SCALE))
 		{
 			dx = i - x;
 			dy = j - y;
-			if (dx * dx + dy * dy <= mlx->player->r * mlx->player->r)
+			if (dx * dx + dy * dy <= (mlx->player->r) * (mlx->player->r))
 				ft_put_pixel(mlx, i, j, 0xFF0000);
 			j++;
 		}

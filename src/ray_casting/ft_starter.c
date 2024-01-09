@@ -78,8 +78,8 @@ void	ft_player_init(t_player **player)
 		ft_error_buster(1);
 	(*player)->fov = FOV * (M_PI / 180);
 	(*player)->r = RADIUS * MINIMAP_SCALE;
-	(*player)->spd = SPEED;
+	(*player)->spd = SPEED * MINIMAP_SCALE;
 	(*player)->walk = 0;
 	(*player)->turn = 0;
-	(*player)->rot_spd = ROT_SPEED * (M_PI / 180);
+	(*player)->rot_spd = (ROT_SPEED * (M_PI / 180)) * MINIMAP_SCALE;
 }
