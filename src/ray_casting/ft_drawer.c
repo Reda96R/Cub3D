@@ -68,9 +68,11 @@ void	ft_draw_map(t_mlx *mlx)
 		j = 0;
 		while (j < mlx->map_width)
 		{
-			if (mlx->new_map[i][j] != '0')
+			if (mlx->new_map[i][j] != '0' && mlx->new_map[i][j] != 'D')
 				ft_draw_scaled_square(mlx, x, y, 0xFFFFFF);
-			else
+			else if (mlx->new_map[i][j] == 'D')
+				ft_draw_scaled_square(mlx, x, y, 0xCCFF00);
+			else 
 				ft_draw_scaled_square(mlx, x, y, 0xFF000000);
 			x += mlx->cub_size + SPACE;
 			j++;

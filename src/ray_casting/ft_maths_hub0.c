@@ -23,6 +23,8 @@ int	ft_wall_detector(float x, float y, t_mlx *mlx)
 		return (1);
 	if (mlx->new_map[map_x][map_y] == '0')
 		return (0);
+	else if (mlx->new_map[map_x][map_y] == 'D')
+		return ('d');
 	return (1);
 }
 
