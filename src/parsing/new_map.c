@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 22:18:53 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/08 12:26:37 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/09 19:25:01 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	copy_map(t_mlx *mlx)
 	{
 		if (mlx->map[i][0] == '\0' || mlx->map[i][0] == '\n')
 			break ;
-		mlx->new_map[x] = malloc(sizeof(char) * (mlx->map_width + 1));
+		mlx->new_map[x] = malloc(sizeof(char) * (mlx->map_width));
 		if (!mlx->new_map[x])
 			ft_Error("Malloc failed", mlx);
 		j = 0;
@@ -71,11 +71,17 @@ void	copy_map(t_mlx *mlx)
 		}
 		while (j < mlx->map_width && j != 0)
 			mlx->new_map[x][j++] = ' ';
-		mlx->new_map[x][j] = '\0';
+		mlx->new_map[x][j - 1] = '\0';
 		i++;
 		x++;
 	}
 	mlx->new_map[x] = NULL;
+	i = 0;
+	while(mlx->new_map[i])
+	{
+		printf("%s\n", mlx->new_map[i]);
+		i++;
+	}
 }
 
 //-----------> don't  forget the norminette!!!!
