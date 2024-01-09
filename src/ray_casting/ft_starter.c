@@ -3,27 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_starter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rerayyad <rerayyad@student.42.fr>            +#+  +:+       +#+      */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:53:15 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/05 07:06:30 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/06 18:46:26 by rerayyad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-t_mlx	*ft_data_init(void)
+t_mlx	*ft_data_init(char *av[])
 {
 	t_mlx	*mlx;
 
-	mlx = malloc (sizeof (t_mlx));
-	if (!mlx)
-		ft_error_buster(1);
-	mlx->win_x = 1337;//(CUB_SIZE + SPACE) * MAP_X;
-	mlx->win_y = 800;//(CUB_SIZE + SPACE) * MAP_Y;
-	mlx->cub_size = mlx->win_y / MAP_Y; //64;
-	ft_player_init(&mlx->player, mlx->win_x / 5, mlx->win_y / 2);
+	ft_mlx_init(&mlx);
+	ft_player_init(&mlx->player);
 	ft_rays_init(&mlx->rays, mlx);
+	ft_file_parser(mlx, av[1]);
+	ft_map_parser(mlx);
 	mlx->mlx_ptr = mlx_init();
 	if (!mlx->mlx_ptr)
 		ft_error_buster(2);
@@ -34,7 +31,32 @@ t_mlx	*ft_data_init(void)
 	mlx->img.img = mlx_new_image(mlx->mlx_ptr, mlx->win_x, mlx->win_y);
 	mlx->img.id = mlx_get_data_addr(mlx->img.img, &mlx->img.bpp, &mlx->img.len, \
 	&mlx->img.endian);
+	// The value of map width is not correct, it always bigger by one, correct it and be aware
+	// of any buffer-overflows that can result from that
+	printf("map_height = %d\n", mlx->map_height);  //// ------> will be removed
+	printf("map_width = %d\n", mlx->map_width);    //// ------->will be removed
+	ft_free(mlx->map);
 	return (mlx);
+}
+
+void	ft_mlx_init(t_mlx **mlx)
+{
+	*mlx = malloc (sizeof (t_mlx));
+	if (!(*mlx))
+		ft_error_buster(1);
+	(*mlx)->win_x = 1337;//(CUB_SIZE + SPACE) * MAP_X;
+	(*mlx)->win_y = 800;//(CUB_SIZE + SPACE) * MAP_Y;
+	(*mlx)->east_texture = NULL;
+	(*mlx)->west_texture = NULL;
+	(*mlx)->south_texture = NULL;
+	(*mlx)->north_texture = NULL;
+	(*mlx)->c_color = NULL;
+	(*mlx)->f_color = NULL;
+	(*mlx)->map = NULL;
+	(*mlx)->full_file = NULL;
+	(*mlx)->new_map = NULL;
+	(*mlx)->map_height = 0;
+	(*mlx)->map_width = 0;
 }
 
 void	ft_rays_init(t_rays **rays, t_mlx *mlx)
@@ -49,18 +71,15 @@ void	ft_rays_init(t_rays **rays, t_mlx *mlx)
 	(*rays)->colision_distance = 0;
 }
 
-void	ft_player_init(t_player **player, int x, int y)
+void	ft_player_init(t_player **player)
 {
 	*player = malloc (sizeof (t_player));
 	if (!player)
 		ft_error_buster(1);
-	(*player)->x = x;
-	(*player)->y = y;
 	(*player)->fov = FOV * (M_PI / 180);
 	(*player)->r = RADIUS * MINIMAP_SCALE;
 	(*player)->spd = SPEED;
 	(*player)->walk = 0;
 	(*player)->turn = 0;
-	(*player)->rot = -M_PI_2;
 	(*player)->rot_spd = ROT_SPEED * (M_PI / 180);
 }

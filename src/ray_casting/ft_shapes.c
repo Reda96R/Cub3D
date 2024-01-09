@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_shapes.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rerayyad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:53:08 by rerayyad          #+#    #+#             */
-/*   Updated: 2023/12/21 17:53:09 by rerayyad         ###   ########.fr       */
+/*   Updated: 2024/01/08 17:17:25 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,23 +67,19 @@ void	ft_draw_square(t_mlx *mlx, int x, int y, int color)
 		w++;
 	}
 }
-void	ft_draw_rectangle(t_mlx *mlx, t_pos *coordinates, float w, float h)
+
+void	ft_draw_rectangle(t_mlx *mlx, t_pos *coordinates,
+		t_pos width_n_height, int color)
 {
 	int	x;
 	int	y;
 
 	x = coordinates->x;
-	while (x < coordinates->x + w)
+	while (x < coordinates->x + width_n_height.x)
 	{
 		y = coordinates->y;
-		while (y < coordinates->y + h)
-		{
-			if (mlx->rays->s == 'h')
-				ft_put_pixel(mlx, x, y, 0xFFCCCCCC);
-			else
-				ft_put_pixel(mlx, x, y, 0xFFFFFF);
-			y++;
-		}
+		while (y < coordinates->y + width_n_height.y)
+			ft_put_pixel(mlx, x, y++, color);
 		x++;
 	}
 }
