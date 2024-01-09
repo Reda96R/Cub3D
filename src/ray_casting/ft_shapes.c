@@ -33,15 +33,15 @@ void	ft_draw_circle(t_mlx *mlx, int x, int y)
 	int	dx;
 	int	dy;
 
-	i = x - mlx->player->r;
-	while (i <= x + mlx->player->r)
+	i = x - (mlx->player->r * MINIMAP_SCALE);
+	while (i <= x + (mlx->player->r * MINIMAP_SCALE))
 	{
-		j = y - mlx->player->r;
-		while (j <= y + mlx->player->r)
+		j = y - (mlx->player->r * MINIMAP_SCALE);
+		while (j <= y + (mlx->player->r * MINIMAP_SCALE))
 		{
 			dx = i - x;
 			dy = j - y;
-			if (dx * dx + dy * dy <= mlx->player->r * mlx->player->r)
+			if (dx * dx + dy * dy <= (mlx->player->r) * (mlx->player->r))
 				ft_put_pixel(mlx, i, j, 0xFF0000);
 			j++;
 		}

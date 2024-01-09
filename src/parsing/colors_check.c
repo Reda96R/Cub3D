@@ -89,6 +89,7 @@ void	colors_range(t_mlx *mlx, char *tmp, int i)
 	int		a;
 	size_t	k;
 	int		j;
+	char	*str;
 
 	j = 0;
 	k = 0;
@@ -99,8 +100,10 @@ void	colors_range(t_mlx *mlx, char *tmp, int i)
 		j++;
 	}
 	a = ft_atoi(tmp);
-	if (k != ft_strlen(ft_itoa(a)))
+	str = ft_itoa(a);
+	if (k != ft_strlen(str))
 		ft_Error("Wrong color format", mlx);
+	free(str);
 	if (a < 0 || a > 255)
 		ft_Error("Wrong color range", mlx);
 	ft_color_assigner(mlx, tmp, a, i);
