@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 03:08:06 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/08 18:23:46 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/09 23:22:05 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	fill_texter_map(int i, int j, int size, t_mlx *mlx)
 		if (fill_texter(mlx, mlx->full_file[i]) == 1)
 		{
 			if (mlx->full_file[i][0] != '\0' && mlx->full_file[i][0] != '\n')
-				textres_existence(mlx, "Wrong file format");
+				textres_existence(mlx, "Missing texter");
 			if (!mlx->full_file[i + 1])
 				mlx->map[j++] = ft_substr(mlx->full_file[i], 0, ft_strlen(mlx->full_file[i]));
 			else

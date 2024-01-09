@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 16:34:30 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/09 19:22:40 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/09 21:13:11 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ void	check_map_format(t_mlx *mlx)
 					if (mlx->map[i][j] != '1' && mlx->map[i][j] != '0' && mlx->map[i][j] != 'N'
 						&& mlx->map[i][j] != 'S' && mlx->map[i][j] != 'E' && mlx->map[i][j] != 'W')
 						j++;
+					else
+						ft_Error("Map is not valid", mlx);
 				}
 				i++;
 			}
