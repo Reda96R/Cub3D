@@ -73,7 +73,7 @@ void	check_map_format(t_mlx *mlx)
 		{
 			if (mlx->map[i][j] != '1' && mlx->map[i][j] != '0' && mlx->map[i][j] != 'N'
 				&& mlx->map[i][j] != 'S' && mlx->map[i][j] != 'E' && mlx->map[i][j] != 'W'
-				&& mlx->map[i][j] != ' ' && mlx->map[i][j] != 'D')
+				&& mlx->map[i][j] != ' ' && mlx->map[i][j] != 'D')//the check for 'D' will be removed in mandatory
 				ft_Error("Map is not valid", mlx);
 			j++;
 		}
