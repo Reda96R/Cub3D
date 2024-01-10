@@ -76,12 +76,6 @@ void	copy_map(t_mlx *mlx)
 		x++;
 	}
 	mlx->new_map[x] = NULL;
-	i = 0;
-	while(mlx->new_map[i])
-	{
-		printf("%s\n", mlx->new_map[i]);
-		i++;
-	}
 }
 
 //-----------> don't  forget the norminette!!!!

@@ -17,7 +17,7 @@ t_mlx	*ft_data_init(char *av[])
 	t_mlx	*mlx;
 
 	ft_mlx_init(&mlx);
-	ft_player_init(&mlx->player);
+	ft_player_init(&mlx->player, mlx);
 	ft_rays_init(&mlx->rays, mlx);
 	ft_file_parser(mlx, av[1]);
 	ft_map_parser(mlx);
@@ -71,13 +71,13 @@ void	ft_rays_init(t_rays **rays, t_mlx *mlx)
 	(*rays)->colision_distance = 0;
 }
 
-void	ft_player_init(t_player **player)
+void	ft_player_init(t_player **player, t_mlx *mlx)
 {
+	(void)mlx;
 	*player = malloc (sizeof (t_player));
 	if (!player)
 		ft_error_buster(1);
 	(*player)->fov = FOV * (M_PI / 180);
-	(*player)->r = RADIUS * MINIMAP_SCALE;
 	(*player)->spd = SPEED * MINIMAP_SCALE;
 	(*player)->walk = 0;
 	(*player)->turn = 0;

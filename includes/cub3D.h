@@ -102,7 +102,7 @@ int		get_start(t_mlx *mlx, char *line, int type);
 			/*---ft_starter---*/
 t_mlx	*ft_data_init(char *av[]);
 void	ft_mlx_init(t_mlx **mlx);
-void	ft_player_init(t_player **player);
+void	ft_player_init(t_player **player, t_mlx *mlx);
 void	ft_rays_init(t_rays **rays, t_mlx *mlx);
 
 			/*---ft_rays---*/
