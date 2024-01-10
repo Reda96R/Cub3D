@@ -107,11 +107,12 @@ void	ft_3d_caster(t_mlx *mlx, int i)
 	wall_distance = mlx->rays->colision_distance
 		* cos (mlx->rays->ray_angle - mlx->player->rot);
 	project = (mlx->win_x / 2) / tan(mlx->player->fov / 2);
-	width_n_height.y = ((mlx->cub_size + SPACE) / wall_distance) * project;
-	width_n_height.x = 1;
+	width_n_height.y = ((mlx->cub_size + SPACE) / wall_distance) * project;//wall height
+	width_n_height.x = 1;//wall width
 	ft_render_skyfloor(mlx, i, width_n_height, 0);
 	coordinates.x = i;
 	coordinates.y = (mlx->win_y / 2) - (width_n_height.y / 2);
+	//ft_txtures(mlx->rays);
 	ft_draw_rectangle(mlx, &coordinates, width_n_height, color);
 	ft_render_skyfloor(mlx, i, width_n_height, 1);
 }
@@ -128,9 +129,8 @@ void	ft_prime_and_cast(t_mlx *mlx)
 		if (mlx->rays->ray_angle < 0)
 			mlx->rays->ray_angle += (2 * M_PI);
 		ft_hit_detector(mlx);
-		//ft_txtures(mlx->rays);
 		ft_ray_igniter(mlx, 0x0000070); // color will be removed && will be removed in mandatory
-		// ft_3d_caster(mlx, i);
+		ft_3d_caster(mlx, i);
 		mlx->rays->ray_angle += mlx->player->fov / mlx->rays->rays_num;
 		i++;
 	}
