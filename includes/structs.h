@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rerayyad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:54:40 by rerayyad          #+#    #+#             */
-/*   Updated: 2023/12/21 17:54:40 by rerayyad         ###   ########.fr       */
+/*   Updated: 2024/01/11 03:49:06 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct s_img
 	int		endian;
 	int		bpp;
 	int		len;
+	int		width;
 }	t_img;
 
 #endif

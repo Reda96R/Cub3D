@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 10:43:20 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/09 19:34:25 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/11 22:44:09 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ void	ft_render_skyfloor(t_mlx *mlx, int i, t_pos width_n_height, int n)
 		color = mlx->f_color_int;
 		mlx->rays->heading = 'F';
 	}
-	ft_draw_rectangle(mlx, &coordinates, width_n_height, color);
 	mlx->rays->heading = c;
+	ft_draw_rectangle(mlx, &coordinates, width_n_height, color, mlx->rays->heading);
 }
 
 void	ft_3d_caster(t_mlx *mlx, int i)
@@ -112,7 +112,7 @@ void	ft_3d_caster(t_mlx *mlx, int i)
 	ft_render_skyfloor(mlx, i, width_n_height, 0);
 	coordinates.x = i;
 	coordinates.y = (mlx->win_y / 2) - (width_n_height.y / 2);
-	ft_draw_rectangle(mlx, &coordinates, width_n_height, color);
+	ft_draw_rectangle(mlx, &coordinates, width_n_height, color, mlx->rays->heading);
 	ft_render_skyfloor(mlx, i, width_n_height, 1);
 }
 
@@ -129,8 +129,10 @@ void	ft_prime_and_cast(t_mlx *mlx)
 			mlx->rays->ray_angle += (2 * M_PI);
 		ft_hit_detector(mlx);
 		//ft_tetxt(mlx->rays)
+
 		ft_ray_igniter(mlx, 0x0000070); // color will be removed && will be removed in mandatory
 		ft_3d_caster(mlx, i);
+		//printf("*************************************\n");
 		mlx->rays->ray_angle += mlx->player->fov / mlx->rays->rays_num;
 		i++;
 	}

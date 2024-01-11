@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:53:08 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/08 17:17:25 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/11 22:52:21 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,19 +69,30 @@ void	ft_draw_square(t_mlx *mlx, int x, int y, int color)
 }
 
 void	ft_draw_rectangle(t_mlx *mlx, t_pos *coordinates,
-		t_pos width_n_height, int color)
+		t_pos width_n_height, int color, char c)
 {
-	int	x;
-	int	y;
+	int	x = 0;
+	int	y = 0;
+	t_pos *pos;
 
+	(void)c;
 	x = coordinates->x;
-	while (x < coordinates->x + width_n_height.x)
+	pos = culcul_coordinate(mlx);
+	color = my_mlx_pixel_get(mlx, pos->x, pos->y);
+	ft_put_pixel(mlx, x, y++, color);
+	while (x < coordinates->x + width_n_height.x )
 	{
 		y = coordinates->y;
 		while (y < coordinates->y + width_n_height.y)
-			ft_put_pixel(mlx, x, y++, color);
+		{
+			y++;
+			//printf("%d\n", color);
+			//ft_put_pixel(mlx, x, y++, color);
+		}
 		x++;
 	}
+	printf("%d\n", color);
+	
 }
 
 void	ft_draw_scaled_square(t_mlx *mlx, int x, int y, int color)

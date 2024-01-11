@@ -53,6 +53,7 @@ typedef struct s_mlx
 	t_rays			*rays;
 }	t_mlx;
 
+
 /*::::::::::::ft_janitor::::::::::::*/
 // -------> you can use this function to print errors and exit <-------
 void	ft_error_buster(int id);
@@ -97,6 +98,14 @@ void	ft_Error(char *str, t_mlx *mlx);
 void	copy_map(t_mlx *mlx);
 int		get_start(t_mlx *mlx, char *line, int type);
 
+
+/*:::::::::::::::::texters:::::::::::::::*/
+			/*---file_to_image---*/
+void			check_image_driction(t_mlx *mlx);
+t_pos			*culcul_coordinate(t_mlx *mlx);
+unsigned int	my_mlx_pixel_get(t_mlx *mlx, int x, int y);
+
+
 /*::::::::::::::::RAY:::::::::::::::*/
 
 			/*---ft_starter---*/
@@ -133,7 +142,7 @@ void	ft_draw_line(t_mlx *mlx, float c[4], int color);
 void	ft_draw_circle(t_mlx *mlx, int x, int y);
 void	ft_draw_square(t_mlx *mlx, int x, int y, int color);
 void	ft_draw_rectangle(t_mlx *mlx, t_pos *coordinates,
-			t_pos width_n_height, int color);
+			t_pos width_n_height, int color, char c);
 void	ft_draw_scaled_square(t_mlx *mlx, int x, int y, int color);
 
 			/*---ft_keylogger---*/
