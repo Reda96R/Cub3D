@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 16:34:30 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/11 22:50:20 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/11 22:56:39 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 void	ft_map_parser(t_mlx *mlx)
 {
 	map_height_width(mlx);
-	mlx->cub_size =  fmin(mlx->win_y / mlx->map_height, mlx->win_x / mlx->map_width);
+	mlx->cub_size = fmin(mlx->win_y / mlx->map_height,
+			mlx->win_x / mlx->map_width);
 	check_map_format(mlx);
 	cheack_map_borders(mlx);
 	check_map_is_locked(mlx);

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_maths_hub0.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rerayyad <rerayyad@student.42.fr>            +#+  +:+       +#+      */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:53:03 by rerayyad          #+#    #+#             */
 /*   Updated: 2024/01/09 23:45:39 by maouzal          ###   ########.fr       */
