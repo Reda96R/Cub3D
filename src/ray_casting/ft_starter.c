@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_starter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rerayyad <rerayyad@student.42.fr>            +#+  +:+       +#+      */
+/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:53:15 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/06 18:46:26 by rerayyad         ###   ########.fr       */
+/*   Updated: 2024/01/12 03:01:42 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	ft_mlx_init(t_mlx **mlx)
 	(*mlx)->new_map = NULL;
 	(*mlx)->map_height = 0;
 	(*mlx)->map_width = 0;
+	(*mlx)->c_color_int = 0;
+	(*mlx)->f_color_int = 0;
 }
 
 void	ft_rays_init(t_rays **rays, t_mlx *mlx)

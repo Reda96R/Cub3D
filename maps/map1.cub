@@ -3,22 +3,18 @@
 
 
 
+   NO textres/image1.xpm
 
 
 
-
-NO textures/test/north.xpm
-
+                       EA textres/image2.xpm
 
 
 
+SO textres/image4.xpm               
 
 
-
-
-SO textures/test/south.xpm
-                        WE textures/test/west.xpm
-        EA textures/test/east.xpm            
+                                              WE textres/image3.xpm          
 
         F 20,           20,             20
 C 200,          200,200

@@ -84,10 +84,10 @@ void	check_map_is_locked(t_mlx *mlx);
 
 			/*---color_check---*/
 void	colors_existence(t_mlx *mlx);
-void	colors_range(t_mlx *mlx, char *tmp, int i);
-void	check_colors_format(char	*str, t_mlx *mlx);
-void	check_colors_range(char	*str, t_mlx *mlx);
-void	ft_color_assigner(t_mlx *mlx, char *tmp, int a, int i);
+void	colors_range(t_mlx *mlx, char *tmp, int i, char c);
+void	check_colors_format(char	*str, t_mlx *mlx, char c);
+void	check_colors_range(char	*str, t_mlx *mlx, char c);
+void	ft_color_assigner(t_mlx *mlx, char c, int a, int i);
 
 			/*---ft_error_check---*/
 void	ft_free(char **str);
@@ -101,8 +101,9 @@ int		get_start(t_mlx *mlx, char *line, int type);
 
 /*:::::::::::::::::texters:::::::::::::::*/
 			/*---file_to_image---*/
+void			*file_to_image(t_mlx *mlx, char *path);
 void			check_image_driction(t_mlx *mlx);
-t_pos			*culcul_coordinate(t_mlx *mlx);
+t_pos			*culcul_coordinate(t_mlx *mlx, t_pos *width_n_height);
 unsigned int	my_mlx_pixel_get(t_mlx *mlx, int x, int y);
 
 

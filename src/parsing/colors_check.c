@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 03:07:45 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/09 17:33:04 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/12 02:41:03 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	colors_existence(t_mlx *mlx)
 	}
 }
 
-void	check_colors_format(char *str, t_mlx *mlx)
+void	check_colors_format(char *str, t_mlx *mlx, char c)
 {
 	int	i;
 	int	j;
@@ -58,13 +58,13 @@ void	check_colors_format(char *str, t_mlx *mlx)
 	}
 	if (j != 2)
 		ft_Error("Wrong color format", mlx);
-	check_colors_range(str, mlx);
+	check_colors_range(str, mlx, c);
 }
 
-void	ft_color_assigner(t_mlx *mlx, char* str, int a, int i)
+void	ft_color_assigner(t_mlx *mlx, char c, int a, int i)
 {
 
-	if(ft_strnstr(str, "C ", 2))
+	if(c == 'c')
 	{
 		if (i == 0)
 			mlx->c_color_int += a * 256 * 256;
@@ -73,18 +73,18 @@ void	ft_color_assigner(t_mlx *mlx, char* str, int a, int i)
 		if (i == 2)
 			mlx->c_color_int += a;
 	}
-	else if(ft_strnstr(str, "F ", 2))
+	else if(c == 'f')
 	{
 		if (i == 0)
-			mlx->c_color_int += a * 256 * 256;
+			mlx->f_color_int += a * 256 * 256;
 		if (i == 1)
-			mlx->c_color_int += a * 256;
+			mlx->f_color_int += a * 256;
 		if (i == 2)
-			mlx->c_color_int += a;
+			mlx->f_color_int += a;
 	}
 }
 
-void	colors_range(t_mlx *mlx, char *tmp, int i)
+void	colors_range(t_mlx *mlx, char *tmp, int i, char c)
 {
 	int		a;
 	size_t	k;
@@ -106,11 +106,11 @@ void	colors_range(t_mlx *mlx, char *tmp, int i)
 	if (a < 0 || a > 255)
 		ft_Error("Wrong color range", mlx);
 	free(str);
-	ft_color_assigner(mlx, tmp, a, i);
+	ft_color_assigner(mlx, c, a, i);
 	free(tmp);
 }
 
-void	check_colors_range(char	*str, t_mlx *mlx)
+void	check_colors_range(char	*str, t_mlx *mlx, char c)
 {
 	int		i;
 	int		j;
@@ -120,17 +120,17 @@ void	check_colors_range(char	*str, t_mlx *mlx)
 	while (str[i] != ',')
 		i++;
 	tmp = ft_substr(str, 0, i);
-	colors_range(mlx, tmp, 0);
+	colors_range(mlx, tmp, 0, c);
 	i++;
 	j = i;
 	while (str[i] != ',')
 		i++;
 	tmp = ft_substr(str, j, i - j);
-	colors_range(mlx, tmp, 1);
+	colors_range(mlx, tmp, 1, c);
 	i++;
 	j = i;
 	while (str[i] != '\0')
 		i++;
 	tmp = ft_substr(str, j, i - j);
-	colors_range(mlx, tmp, 2);
+	colors_range(mlx, tmp, 2, c);
 }

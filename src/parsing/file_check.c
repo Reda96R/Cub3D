@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 03:07:22 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/08 12:28:14 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/12 02:41:36 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	ft_file_parser(t_mlx *mlx, char *av)
 	get_texters(mlx);
 	textres_existence(mlx, "Missing texture");
 	colors_existence(mlx);
-	check_colors_format(mlx->c_color, mlx);
-	check_colors_format(mlx->f_color, mlx);
+	check_colors_format(mlx->c_color, mlx, 'c');
+	check_colors_format(mlx->f_color, mlx, 'f');
 }
 
 void	is_deplecate(t_mlx *mlx)

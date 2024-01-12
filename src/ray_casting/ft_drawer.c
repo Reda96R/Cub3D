@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_drawer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rerayyad <rerayyad@student.42.fr>            +#+  +:+       +#+      */
+/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:52:45 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/09 17:36:58 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/12 04:17:09 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	ft_put_pixel(t_mlx *mlx, int x, int y, int color)
 		p = mlx->img.id + (y * mlx->img.len + x * (mlx->img.bpp / 8));
 		*(unsigned int *)p = color;
 	}
+
 }
 
 void	ft_draw_map(t_mlx *mlx)

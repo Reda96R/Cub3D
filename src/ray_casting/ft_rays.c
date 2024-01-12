@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 10:43:20 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/11 22:44:09 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/12 02:46:37 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,6 @@ void	ft_prime_and_cast(t_mlx *mlx)
 			mlx->rays->ray_angle += (2 * M_PI);
 		ft_hit_detector(mlx);
 		//ft_tetxt(mlx->rays)
-
 		ft_ray_igniter(mlx, 0x0000070); // color will be removed && will be removed in mandatory
 		ft_3d_caster(mlx, i);
 		//printf("*************************************\n");
