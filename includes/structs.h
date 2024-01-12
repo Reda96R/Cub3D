@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:54:40 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/11 03:49:06 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/12 08:35:24 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ typedef struct s_img
 	int		len;
 	int		width;
 }	t_img;
+
 
 #endif

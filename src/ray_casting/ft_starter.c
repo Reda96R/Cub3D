@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:53:15 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/12 03:01:42 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/12 08:59:17 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,15 @@ t_mlx	*ft_data_init(char *av[])
 	mlx->mlx_ptr = mlx_init();
 	if (!mlx->mlx_ptr)
 		ft_error_buster(2);
+	// mlx->mlx_ptr2 = mlx_init();
+	// if (!mlx->mlx_ptr2)
+	// 	ft_error_buster(2);
 	mlx->win_ptr = \
 			mlx_new_window(mlx->mlx_ptr, mlx->win_x, mlx->win_y, "cub3D");
 	if (!mlx->win_ptr)
 		ft_error_buster(2);
 	mlx->img.img = mlx_new_image(mlx->mlx_ptr, mlx->win_x, mlx->win_y);
-	mlx->img.id = mlx_get_data_addr(mlx->img.img, &mlx->img.bpp, &mlx->img.len, \
-	&mlx->img.endian);
+	mlx->img.id = mlx_get_data_addr(mlx->img.img, &mlx->img.bpp, &mlx->img.len, &mlx->img.endian);
 	// The value of map width is not correct, it always bigger by one, correct it and be aware
 	// of any buffer-overflows that can result from that
 	printf("map_height = %d\n", mlx->map_height);  //// ------> will be removed

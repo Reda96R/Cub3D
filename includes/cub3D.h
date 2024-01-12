@@ -35,6 +35,7 @@ typedef struct s_mlx
 	int				map_width;
 	float			cub_size;
 	void			*mlx_ptr;
+	//void			*mlx_ptr2;
 	void			*win_ptr;
 	char			**full_file;
 	char			**map;
@@ -48,6 +49,7 @@ typedef struct s_mlx
 	unsigned int	c_color_int;
 	unsigned int	f_color_int;
 	t_img			img;
+	t_img			img2;
 	t_player		*player;
 	t_pos			*pos;
 	t_rays			*rays;
