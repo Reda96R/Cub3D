@@ -48,13 +48,16 @@ typedef struct s_mlx
 	char			*f_color;
 	unsigned int	c_color_int;
 	unsigned int	f_color_int;
+	t_img			*n_wall;
+	t_img			*s_wall;
+	t_img			*w_wall;
+	t_img			*e_wall;
+	t_img			texture;
 	t_img			img;
-	t_img			img2;
 	t_player		*player;
 	t_pos			*pos;
 	t_rays			*rays;
 }	t_mlx;
-
 
 /*::::::::::::ft_janitor::::::::::::*/
 // -------> you can use this function to print errors and exit <-------
@@ -100,14 +103,14 @@ void	ft_Error(char *str, t_mlx *mlx);
 void	copy_map(t_mlx *mlx);
 int		get_start(t_mlx *mlx, char *line, int type);
 
+/*:::::::::::::::::TXT:::::::::::::::*/
 
-/*:::::::::::::::::texters:::::::::::::::*/
 			/*---file_to_image---*/
-void			*file_to_image(t_mlx *mlx, char *path);
-void			check_image_driction(t_mlx *mlx);
-t_pos			*culcul_coordinate(t_mlx *mlx, t_pos *width_n_height);
-unsigned int	my_mlx_pixel_get(t_mlx *mlx, int x, int y);
-
+void	ft_textures_init(t_mlx *mlx);
+t_img	*file_to_image(t_mlx *mlx, char *path);
+t_img	ft_texture_selector(t_mlx *mlx);
+t_pos	*culcul_coordinate(t_mlx *mlx, t_pos *width_n_height);
+int		my_mlx_pixel_get(t_mlx *mlx, int x, int y);
 
 /*::::::::::::::::RAY:::::::::::::::*/
 
@@ -145,7 +148,9 @@ void	ft_draw_line(t_mlx *mlx, float c[4], int color);
 void	ft_draw_circle(t_mlx *mlx, int x, int y);
 void	ft_draw_square(t_mlx *mlx, int x, int y, int color);
 void	ft_draw_rectangle(t_mlx *mlx, t_pos *coordinates,
-			t_pos width_n_height, int color, char c);
+			t_pos width_n_height, int coloc);
+void	ft_draw_textured_rectangle(t_mlx *mlx, t_pos *coordinates,
+			t_pos width_n_height);
 void	ft_draw_scaled_square(t_mlx *mlx, int x, int y, int color);
 
 			/*---ft_keylogger---*/

@@ -24,9 +24,6 @@ t_mlx	*ft_data_init(char *av[])
 	mlx->mlx_ptr = mlx_init();
 	if (!mlx->mlx_ptr)
 		ft_error_buster(2);
-	// mlx->mlx_ptr2 = mlx_init();
-	// if (!mlx->mlx_ptr2)
-	// 	ft_error_buster(2);
 	mlx->win_ptr = \
 			mlx_new_window(mlx->mlx_ptr, mlx->win_x, mlx->win_y, "cub3D");
 	if (!mlx->win_ptr)
@@ -35,6 +32,7 @@ t_mlx	*ft_data_init(char *av[])
 	mlx->img.id = mlx_get_data_addr(mlx->img.img, &mlx->img.bpp, &mlx->img.len, &mlx->img.endian);
 	// The value of map width is not correct, it always bigger by one, correct it and be aware
 	// of any buffer-overflows that can result from that
+	ft_textures_init(mlx);
 	printf("map_height = %d\n", mlx->map_height);  //// ------> will be removed
 	printf("map_width = %d\n", mlx->map_width);    //// ------->will be removed
 	ft_free(mlx->map);
@@ -86,4 +84,12 @@ void	ft_player_init(t_player **player)
 	(*player)->walk = 0;
 	(*player)->turn = 0;
 	(*player)->rot_spd = (ROT_SPEED * (M_PI / 180)) * MINIMAP_SCALE;
+}
+
+void	ft_textures_init(t_mlx *mlx)
+{
+	mlx->n_wall = file_to_image(mlx, mlx->north_texture);
+	mlx->s_wall = file_to_image(mlx, mlx->south_texture);
+	mlx->w_wall = file_to_image(mlx, mlx->west_texture);
+	mlx->e_wall = file_to_image(mlx, mlx->east_texture);
 }

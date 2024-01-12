@@ -51,7 +51,6 @@ void	ft_put_pixel(t_mlx *mlx, int x, int y, int color)
 		p = mlx->img.id + (y * mlx->img.len + x * (mlx->img.bpp / 8));
 		*(unsigned int *)p = color;
 	}
-
 }
 
 void	ft_draw_map(t_mlx *mlx)

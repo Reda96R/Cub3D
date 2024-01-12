@@ -69,5 +69,4 @@ typedef struct s_img
 	int		width;
 }	t_img;
 
-
 #endif

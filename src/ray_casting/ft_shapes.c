@@ -69,31 +69,49 @@ void	ft_draw_square(t_mlx *mlx, int x, int y, int color)
 }
 
 void	ft_draw_rectangle(t_mlx *mlx, t_pos *coordinates,
-		t_pos width_n_height, int color, char c)
+		t_pos width_n_height, int color)
 {
-	int	x = 0;
-	int	y = 0;
-	//t_pos *pos;
+	int	x;
+	int	y;
 
-	(void)c;
 	x = coordinates->x;
-	//check_image_driction(mlx);
-	file_to_image(mlx, mlx->south_texture);
-	//pos = culcul_coordinate(mlx, &width_n_height);
-	while (x < coordinates->x + width_n_height.x && x < 60)
+	while (x < coordinates->x + width_n_height.x)
 	{
 		y = coordinates->y;
-		while (y < coordinates->y + width_n_height.y && y < 60)
+		while (y < coordinates->y + width_n_height.y)
+			ft_put_pixel(mlx, x, y++, color);
+		x++;
+	}
+}
+
+void	ft_draw_textured_rectangle(t_mlx *mlx, t_pos *coordinates,
+		t_pos width_n_height)
+{
+	int		x;
+	int		y;
+	int		color;
+	t_pos	*pos;
+
+	pos = malloc(sizeof(t_pos));
+	if (!pos)
+		ft_error_buster(1);
+	x = coordinates->x;
+	while (x < coordinates->x + width_n_height.x)
+	{
+		if (mlx->rays->s == 'h')
+			pos->x = fmod((int)mlx->rays->hit_x, width_n_height.y);
+		else
+			pos->x = fmod((int)mlx->rays->hit_y, width_n_height.y);
+		y = coordinates->y;
+		while (y < coordinates->y + width_n_height.y)
 		{
-			//printf("x = %d, y = %d\n", x, y);
-			color = my_mlx_pixel_get(mlx, x, y);
+			//TODO: finding the y coordinate aka pos->y
+			color = my_mlx_pixel_get(mlx, pos->x, pos->y);
 			ft_put_pixel(mlx, x, y++, color);
 		}
-		//printf("i = %d\n", x);
 		x++;
-		//pos->x++;
 	}
-	//printf("----color-->%d\n", color);
+	free (pos);
 }
 
 void	ft_draw_scaled_square(t_mlx *mlx, int x, int y, int color)
