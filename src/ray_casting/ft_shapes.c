@@ -106,6 +106,7 @@ void	ft_draw_textured_rectangle(t_mlx *mlx, t_pos *coordinates,
 		while (y < coordinates->y + width_n_height.y)
 		{
 			//TODO: finding the y coordinate aka pos->y
+			// pos->y = y * (mlx->cub_size / width_n_height.y);
 			color = my_mlx_pixel_get(mlx, pos->x, pos->y);
 			ft_put_pixel(mlx, x, y++, color);
 		}
