@@ -90,6 +90,7 @@ void	ft_draw_textured_rectangle(t_mlx *mlx, t_pos *coordinates,
 	int		x;
 	int		y;
 	int		color;
+	float	scale;
 	t_pos	*pos;
 
 	pos = malloc(sizeof(t_pos));
@@ -120,6 +121,8 @@ void	ft_draw_textured_rectangle(t_mlx *mlx, t_pos *coordinates,
 		while (y < coordinates->y + width_n_height.y)
 		{
 			//TODO: finding the y coordinate aka pos->y
+			scale = y - (mlx->win_y) / 2 + width_n_height.y / 2;
+			pos->y = (scale * mlx->cub_size / width_n_height.y);
 			// pos->y = y * (mlx->cub_size / width_n_height.y);
 			color = my_mlx_pixel_get(mlx, pos->x, pos->y);
 			ft_put_pixel(mlx, x, y++, color);

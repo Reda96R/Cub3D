@@ -95,6 +95,7 @@ void	ft_3d_caster(t_mlx *mlx, int i)
 	t_pos	coordinates;
 	int		color;
 
+	(void)color;
 	color = 0;
 	if (mlx->rays->heading == 'S')
 		color = 0xFF0000;
