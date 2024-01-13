@@ -10,7 +10,7 @@ t_img	*file_to_image(t_mlx *mlx, char *path)
 	texture->img = mlx_xpm_file_to_image(mlx->mlx_ptr, path, &texture->width, &texture->len);
 	if (!texture->img)
 	{
-		printf("-->Error\nTexture not found");
+		printf("Error\nTexture not found");
 		exit(1);
 	}
 	texture->id = mlx_get_data_addr(texture->img, &texture->bpp, &texture->len, &texture->endian);

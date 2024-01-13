@@ -3,8 +3,8 @@ EA textres/image2.xpm
 SO textres/image4.xpm
 WE textres/image3.xpm
 
-C 35,190,73
-F 0,60,122
+F 80,90,3 
+C 0,60,122 
 
 111111111111111
 111111000111111

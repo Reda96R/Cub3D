@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 22:18:53 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/09 21:20:47 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/13 05:25:12 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,34 @@ int	get_start(t_mlx *mlx, char *line, int type) //1 for texter 2 for color
 			ft_Error("Wrong texture format", mlx);
 		else if (type == 2)
 			ft_Error("Wrong color format", mlx);
+	}
+	return (i);
+}
+
+int	get_end(t_mlx *mlx, char *line, int start) 
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	if (!line || !line[start])
+		return (start);
+	while (line[start + i] && line[start + i] != ' ')
+		i++;
+	if (line[start + i] == '\0' || line[start + i] == '\n')
+		return (start + i - 1);
+	else
+	{
+		while (line[start + i] && line[start + i] == ' ')
+		{
+			i++;
+			j++;
+		}
+		if (line[start + i] == '\0' || line[start + i] == '\n')
+			return (start + i - j);
+		else
+			ft_Error("Wrong format", mlx);
 	}
 	return (i);
 }
@@ -75,6 +103,23 @@ void	copy_map(t_mlx *mlx)
 		i++;
 		x++;
 	}
+}
+
+//-----------> don't  forget the norminette!!!!
+
+
+
+/* for debuging purposes 
+
+	printf("-------------------------------------------\n");
+	printf("north_texture: %s\n", mlx->north_texture);
+	printf("south_texture: %s\n", mlx->south_texture);
+	printf("west_texture: %s\n", mlx->west_texture);
+	printf("east_texture: %s\n", mlx->east_texture);
+	printf("-------------------------------------------\n");
+	printf("c_color: %s\n", mlx->c_color);
+	printf("f_color: %s\n", mlx->f_color);
+	printf("-------------------------------------------\n");
 	mlx->new_map[x] = NULL;
 	i = 0;
 	while(mlx->new_map[i])
@@ -82,6 +127,6 @@ void	copy_map(t_mlx *mlx)
 		printf("%s\n", mlx->new_map[i]);
 		i++;
 	}
-}
+	printf("-------------------------------------------\n");
 
-//-----------> don't  forget the norminette!!!!
+*/

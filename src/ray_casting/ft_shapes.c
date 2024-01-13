@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:53:08 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/12 09:24:39 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/13 05:42:16 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,12 +96,26 @@ void	ft_draw_textured_rectangle(t_mlx *mlx, t_pos *coordinates,
 	if (!pos)
 		ft_error_buster(1);
 	x = coordinates->x;
+	//pos = culcul_coordinate(mlx, &width_n_height);
 	while (x < coordinates->x + width_n_height.x)
 	{
 		if (mlx->rays->s == 'h')
+		{
 			pos->x = fmod((int)mlx->rays->hit_x, width_n_height.y);
+			pos->y = fmod((int)mlx->rays->hit_y * (int)mlx->cub_size , width_n_height.x);
+		}
 		else
+		{
 			pos->x = fmod((int)mlx->rays->hit_y, width_n_height.y);
+			pos->y = fmod((int)mlx->rays->hit_x * (int)mlx->cub_size , width_n_height.x);
+		}
+		// printf("hit_y = %f\n", mlx->rays->hit_y);
+		// printf("hit_x = %f\n", mlx->rays->hit_x);
+		// printf("pos->x = %f\n", pos->x);
+		// printf("cube_size = %f\n", mlx->cub_size);
+		// printf("width_n_height.x = %f\n", width_n_height.x);
+		// printf("width_n_height.y = %f\n", width_n_height.y);
+		// printf("---------->pos->y = %f\n", pos->y);
 		y = coordinates->y;
 		while (y < coordinates->y + width_n_height.y)
 		{

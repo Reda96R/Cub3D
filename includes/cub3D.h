@@ -35,7 +35,6 @@ typedef struct s_mlx
 	int				map_width;
 	float			cub_size;
 	void			*mlx_ptr;
-	//void			*mlx_ptr2;
 	void			*win_ptr;
 	char			**full_file;
 	char			**map;
@@ -102,6 +101,7 @@ void	ft_Error(char *str, t_mlx *mlx);
 			/*---new_map---*/
 void	copy_map(t_mlx *mlx);
 int		get_start(t_mlx *mlx, char *line, int type);
+int		get_end(t_mlx *mlx, char *line, int start);
 
 /*:::::::::::::::::TXT:::::::::::::::*/
 
