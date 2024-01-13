@@ -20,7 +20,7 @@
 /*::::Map propreties::::*/
 // # define MAP_X 20
 // # define MAP_Y 10
-# define MINIMAP_SCALE 0.2
+# define MINIMAP_SCALE 0.3
 
 /*::::Player propreties::::*/
 # define RADIUS 15
