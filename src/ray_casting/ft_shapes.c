@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_shapes.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rerayyad <rerayyad@student.42.fr>            +#+  +:+       +#+      */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:53:08 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/13 06:08:34 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/13 21:31:26 by rerayyad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,42 +82,6 @@ void	ft_draw_rectangle(t_mlx *mlx, t_pos *coordinates,
 			ft_put_pixel(mlx, x, y++, color);
 		x++;
 	}
-}
-
-void	ft_draw_textured_wall(t_mlx *mlx, t_pos *coordinates,
-		t_pos width_n_height)
-{
-	int		x;
-	int		y;
-	int		color;
-	float	scale;
-	t_pos	*pos;
-
-	pos = malloc(sizeof(t_pos));
-	if (!pos)
-		ft_error_buster(1);
-	x = coordinates->x;
-	if (mlx->rays->s == 'h')
-		pos->x = ((mlx->rays->hit_x / mlx->cub_size)
-				- (int)(mlx->rays->hit_x / mlx->cub_size)) * mlx->texture.width;
-	else
-		pos->x = ((mlx->rays->hit_y / mlx->cub_size)
-				- (int)(mlx->rays->hit_y / mlx->cub_size)) * mlx->texture.width;
-	scale = (mlx->texture.width / width_n_height.y);
-	pos->y = 0;
-	if (mlx->win_y < width_n_height.y)
-	{
-		coordinates->y = 0;
-		pos->y = ((width_n_height.y - mlx->win_y) / 2) * scale;
-	}
-	y = coordinates->y;
-	while (y < coordinates->y + width_n_height.y && y < mlx->win_y)
-	{
-		pos->y += scale;
-		color = my_mlx_pixel_get(mlx, pos->x, pos->y);
-		ft_put_pixel(mlx, x, y++, color);
-	}
-	free (pos);
 }
 
 void	ft_draw_scaled_square(t_mlx *mlx, int x, int y, int color)

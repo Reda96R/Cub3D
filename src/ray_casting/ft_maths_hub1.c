@@ -18,7 +18,7 @@ float	ft_hit_distance(float *coor, t_mlx *mlx)
 			+ (coor[1] - mlx->player->y) * (coor[1] - mlx->player->y)));
 }
 
-// float	ft_wall_nspection()
+// float	ft_wall_inspection(t_mlx *mlx, t_rays *ray, int n)
 // {
 // }
 

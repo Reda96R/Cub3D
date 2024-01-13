@@ -12,7 +12,7 @@
 
 #include "../../includes/cub3D.h"
 
-t_img	*file_to_image(t_mlx *mlx, char *path)
+t_img	*ft_file_to_image(t_mlx *mlx, char *path)
 {
 	t_img	*texture;
 
@@ -42,15 +42,64 @@ t_img	ft_texture_selector(t_mlx *mlx)
 		return (*mlx->w_wall);
 }
 
-int	my_mlx_pixel_get(t_mlx *mlx, int x, int y)
+void	ft_render_skyfloor(t_mlx *mlx, int i, t_pos width_n_height, int n)
 {
-	char	*dst;
+	t_pos	coordinates;
+	int		color;
+	char	c;
 
-	if (mlx->win_x > x && mlx->win_y > y && x >= 0 && y >= 0)
+	c = mlx->rays->heading;
+	if (!n)
 	{
-		dst = mlx->texture.id
-			+ (y * mlx->texture.len + x * (mlx->texture.bpp / 8));
-		return (*(unsigned int *)dst);
+		coordinates.x = i;
+		coordinates.y = 0;
+		width_n_height.y = (mlx->win_y / 2) - (width_n_height.y / 2);
+		color = mlx->c_color_int;
+		mlx->rays->heading = 'C';
 	}
-	return (0);
+	else
+	{
+		coordinates.x = i;
+		coordinates.y = (mlx->win_y / 2) - (width_n_height.y / 2)
+			+ width_n_height.y;
+		width_n_height.y = (mlx->win_y - (coordinates.y));
+		color = mlx->f_color_int;
+		mlx->rays->heading = 'F';
+	}
+	mlx->rays->heading = c;
+	ft_draw_rectangle(mlx, &coordinates, width_n_height, color);
+}
+
+void	ft_draw_textured_wall(t_mlx *mlx, t_pos *coordinates,
+		t_pos width_n_height)
+{
+	int		x;
+	int		y;
+	float	scale;
+	t_pos	*pos;
+
+	pos = malloc(sizeof(t_pos));
+	if (!pos)
+		ft_error_buster(1);
+	x = coordinates->x;
+	if (mlx->rays->s == 'h')
+		pos->x = ((mlx->rays->hit_x / mlx->cub_size)
+				- (int)(mlx->rays->hit_x / mlx->cub_size)) * mlx->texture.width;
+	else
+		pos->x = ((mlx->rays->hit_y / mlx->cub_size)
+				- (int)(mlx->rays->hit_y / mlx->cub_size)) * mlx->texture.width;
+	scale = (mlx->texture.width / width_n_height.y);
+	pos->y = 0;
+	if (mlx->win_y < width_n_height.y)
+	{
+		coordinates->y = 0;
+		pos->y = ((width_n_height.y - mlx->win_y) / 2) * scale;
+	}
+	y = coordinates->y;
+	while (y < coordinates->y + width_n_height.y && y < mlx->win_y)
+	{
+		pos->y += scale;
+		ft_put_pixel(mlx, x, y++, ft_my_mlx_pixel_get(mlx, pos->x, pos->y));
+	}
+	free (pos);
 }

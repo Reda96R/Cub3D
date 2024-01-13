@@ -84,16 +84,16 @@ void	ft_player_init(t_player **player, t_mlx *mlx)
 
 void	ft_textures_init(t_mlx *mlx)
 {
-	mlx->n_wall = file_to_image(mlx, mlx->north_texture);
+	mlx->n_wall = ft_file_to_image(mlx, mlx->north_texture);
 	if (!mlx->n_wall)
 		ft_error_buster(6);
-	mlx->s_wall = file_to_image(mlx, mlx->south_texture);
+	mlx->s_wall = ft_file_to_image(mlx, mlx->south_texture);
 	if (!mlx->s_wall)
 		ft_error_buster(6);
-	mlx->w_wall = file_to_image(mlx, mlx->west_texture);
+	mlx->w_wall = ft_file_to_image(mlx, mlx->west_texture);
 	if (!mlx->w_wall)
 		ft_error_buster(6);
-	mlx->e_wall = file_to_image(mlx, mlx->east_texture);
+	mlx->e_wall = ft_file_to_image(mlx, mlx->east_texture);
 	if (!mlx->e_wall)
 		ft_error_buster(6);
 }

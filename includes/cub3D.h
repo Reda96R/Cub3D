@@ -106,12 +106,10 @@ int		get_end(t_mlx *mlx, char *line, int start);
 
 /*:::::::::::::::::TXT:::::::::::::::*/
 
-			/*---file_to_image---*/
-void	ft_textures_init(t_mlx *mlx);
-t_img	*file_to_image(t_mlx *mlx, char *path);
+			/*---ft_texture---*/
+t_img	*ft_file_to_image(t_mlx *mlx, char *path);
 t_img	ft_texture_selector(t_mlx *mlx);
-t_pos	*culcul_coordinate(t_mlx *mlx, t_pos *width_n_height);
-int		my_mlx_pixel_get(t_mlx *mlx, int x, int y);
+void	ft_render_skyfloor(t_mlx *mlx, int i, t_pos width_n_height, int n);
 void	ft_draw_textured_wall(t_mlx *mlx, t_pos *coordinates,
 			t_pos width_n_height);
 
@@ -122,6 +120,11 @@ t_mlx	*ft_data_init(char *av[]);
 void	ft_mlx_init(t_mlx **mlx);
 void	ft_player_init(t_player **player, t_mlx *mlx);
 void	ft_rays_init(t_rays **rays, t_mlx *mlx);
+void	ft_textures_init(t_mlx *mlx);
+
+			/*---ft_canvas_control---*/
+void	ft_canvas_maker(t_mlx *mlx);
+int		update(t_mlx *mlx);
 
 			/*---ft_rays---*/
 void	ft_prime_and_cast(t_mlx *mlx);
@@ -131,14 +134,13 @@ void	ft_hit_assigner(t_rays *ray, t_rays *hit);
 void	ft_3d_caster(t_mlx *mlx, int i);
 
 			/*---ft_drawer---*/
-int		update(t_mlx *mlx);
-void	ft_scene_cleaner(t_mlx *mlx);
 void	ft_put_pixel(t_mlx *mlx, int x, int y, int color);
+int		ft_my_mlx_pixel_get(t_mlx *mlx, int x, int y);
+void	ft_scene_cleaner(t_mlx *mlx);
 void	ft_draw_map(t_mlx *mlx);
 void	ft_draw_player(t_mlx *mlx, int x, int y);
 void	ft_clear_player(t_mlx *mlx, int x, int y, int size);
 void	ft_clear_map(t_mlx *mlx);
-int		ft_put_img(t_mlx *mlx, int x, int y);
 
 			/*---ft_player_movements---*/
 void	ft_move_front(t_mlx *mlx);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_rays.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rerayyad <rerayyad@student.42.fr>            +#+  +:+       +#+      */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 10:43:20 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/12 02:46:37 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/13 21:25:17 by rerayyad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,34 +59,6 @@ void	ft_hit_detector(t_mlx *mlx)
 	free (v);
 }
 
-void	ft_render_skyfloor(t_mlx *mlx, int i, t_pos width_n_height, int n)
-{
-	t_pos	coordinates;
-	int		color;
-	char	c;
-
-	c = mlx->rays->heading;
-	if (!n)
-	{
-		coordinates.x = i;
-		coordinates.y = 0;
-		width_n_height.y = (mlx->win_y / 2) - (width_n_height.y / 2);
-		color = mlx->c_color_int;
-		mlx->rays->heading = 'C';
-	}
-	else
-	{
-		coordinates.x = i;
-		coordinates.y = (mlx->win_y / 2) - (width_n_height.y / 2)
-			+ width_n_height.y;
-		width_n_height.y = (mlx->win_y - (coordinates.y));
-		color = mlx->f_color_int;
-		mlx->rays->heading = 'F';
-	}
-	mlx->rays->heading = c;
-	ft_draw_rectangle(mlx, &coordinates, width_n_height, color);
-}
-
 void	ft_3d_caster(t_mlx *mlx, int i)
 {
 	float	wall_distance;
@@ -97,8 +69,8 @@ void	ft_3d_caster(t_mlx *mlx, int i)
 	wall_distance = mlx->rays->colision_distance
 		* cos (mlx->rays->ray_angle - mlx->player->rot);
 	project = (mlx->win_x / 2) / tan(mlx->player->fov / 2);
-	width_n_height.y = ((mlx->cub_size + SPACE) / wall_distance) * project;//wall height
-	width_n_height.x = 1;//wall width
+	width_n_height.y = ((mlx->cub_size + SPACE) / wall_distance) * project;
+	width_n_height.x = 1;
 	ft_render_skyfloor(mlx, i, width_n_height, 0);
 	coordinates.x = i;
 	coordinates.y = (mlx->win_y / 2) - (width_n_height.y / 2);
