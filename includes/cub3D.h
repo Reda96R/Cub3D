@@ -68,6 +68,7 @@ void	ft_file_parser(t_mlx *mlx, char *av);
 void	get_file(t_mlx *mlx, char *file);
 void	get_file_size(t_mlx *mlx, char *file);
 void	is_deplecate(t_mlx *mlx);
+int		skip_vide_line(t_mlx *mlx);
 
 			/*---texter_check---*/
 void	get_texters(t_mlx *mlx);
