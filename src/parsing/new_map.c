@@ -91,9 +91,12 @@ void	copy_map(t_mlx *mlx)
 		if (!mlx->new_map[x])
 			ft_Error("Malloc failed", mlx);
 		j = 0;
-		while (mlx->map[i][j])
+		while (mlx->map[i][j] && mlx->map[i][j] != '\n')
 		{
 			mlx->new_map[x][j] = mlx->map[i][j];
+			if (mlx->new_map[x][j] && (mlx->map[i][j] == 'N' || mlx->map[i][j] == 'S'
+				|| mlx->map[i][j] == 'E' || mlx->map[i][j] == 'W'))
+				ft_player_pos(mlx, x, j);
 			j++;
 		}
 		while (j < mlx->map_width && j != 0)

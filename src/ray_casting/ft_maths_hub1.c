@@ -37,9 +37,9 @@ void	ft_h_hit_calculator(t_mlx *mlx, t_rays *h, char *heading, int *door)
 	{
 		y = h->hit_y;
 		if (mlx->rays->up)
-			y -= (SPACE + 1);
+			y -= (SPACE + 2);
 		else if (!mlx->rays->up)
-			y += (SPACE + 1);
+			y += (SPACE + 2);
 		if (ft_wall_detector(h->hit_x, y, mlx))
 		{
 			if (mlx->rays->up)
@@ -71,9 +71,9 @@ void	ft_v_hit_calculator(t_mlx *mlx, t_rays *v, char *heading, int *door)
 	{
 		x = v->hit_x;
 		if (!mlx->rays->right)
-			x -= (SPACE + 0.05);
+			x -= (SPACE + 2);
 		if (mlx->rays->right)
-			x += (SPACE + 0.05);
+			x += (SPACE + 2);
 		if (ft_wall_detector(x, v->hit_y, mlx))
 		{
 			if (mlx->rays->right)

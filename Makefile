@@ -6,7 +6,7 @@ NAME 		= cub3D
 SRC_DIR		= src/
 OBJ_DIR 	= .obj/
 LIB			= lib/lib.a
-FSANITIZE 	=  #-g -fsanitize=address
+FSANITIZE 	= -g -fsanitize=address
 CFLAGS 		= -Wall -Werror -Wextra $(HEADER) $(FSANITIZE)
 CC 			= cc
 HEADER = -I includes

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_drawer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rerayyad <rerayyad@student.42.fr>            +#+  +:+       +#+      */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:52:45 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/12 04:17:09 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/13 14:54:45 by rerayyad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int	update(t_mlx *mlx)
 {
 	ft_scene_cleaner(mlx);
 	ft_pos_calculator(mlx);
-	ft_draw_map(mlx);// will be removed in mandatory
 	ft_prime_and_cast(mlx);
+	ft_draw_map(mlx);// will be removed in mandatory
 	ft_draw_player(mlx, mlx->player->x, mlx->player->y);// will be removed in mandatory
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img.img, 0, 0);
 	return (0);
@@ -88,9 +88,6 @@ void	ft_draw_player(t_mlx *mlx, int x, int y)
 	float	xf;
 	float	yf;
 
-	mlx->player->r = (mlx->cub_size * MINIMAP_SCALE) / 5;
-	mlx->player->spd = SPEED * (mlx->cub_size / 40);
-	mlx->player->rot_spd = (ROT_SPEED * (M_PI / 180)) * (mlx->cub_size / 40);
 	xf = x + cos (mlx->player->rot) * mlx->cub_size;
 	yf = y + sin (mlx->player->rot) * mlx->cub_size;
 	coordinates[0] = x * MINIMAP_SCALE;

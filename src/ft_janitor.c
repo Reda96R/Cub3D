@@ -33,6 +33,8 @@ void	ft_error_buster(int id)
 		ft_putstr_fd("\033[0;31mError: Wrong file format\n", 2);
 		ft_putstr_fd("\033[0;32m\tUsage: ./cub3D <mapname>.cub\n", 2);
 	}
+	else if (id == 6)
+		ft_putstr_fd("\033[0;31mError: Texture not found\n", 2);
 	printf("\033[0m");
 	exit (1);
 }

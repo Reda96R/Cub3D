@@ -112,6 +112,8 @@ t_img	*file_to_image(t_mlx *mlx, char *path);
 t_img	ft_texture_selector(t_mlx *mlx);
 t_pos	*culcul_coordinate(t_mlx *mlx, t_pos *width_n_height);
 int		my_mlx_pixel_get(t_mlx *mlx, int x, int y);
+void	ft_draw_textured_wall(t_mlx *mlx, t_pos *coordinates,
+			t_pos width_n_height);
 
 /*::::::::::::::::RAY:::::::::::::::*/
 
@@ -148,11 +150,9 @@ void	ft_move_right(t_mlx *mlx);
 void	ft_draw_line(t_mlx *mlx, float c[4], int color);
 void	ft_draw_circle(t_mlx *mlx, int x, int y);
 void	ft_draw_square(t_mlx *mlx, int x, int y, int color);
-void	ft_draw_rectangle(t_mlx *mlx, t_pos *coordinates,
-			t_pos width_n_height, int coloc);
-void	ft_draw_textured_rectangle(t_mlx *mlx, t_pos *coordinates,
-			t_pos width_n_height);
 void	ft_draw_scaled_square(t_mlx *mlx, int x, int y, int color);
+void	ft_draw_rectangle(t_mlx *mlx, t_pos *coordinates,
+			t_pos width_n_height, int color);
 
 			/*---ft_keylogger---*/
 int		ft_cross(int key, t_mlx *mlx);

@@ -84,7 +84,7 @@ void	ft_draw_rectangle(t_mlx *mlx, t_pos *coordinates,
 	}
 }
 
-void	ft_draw_textured_rectangle(t_mlx *mlx, t_pos *coordinates,
+void	ft_draw_textured_wall(t_mlx *mlx, t_pos *coordinates,
 		t_pos width_n_height)
 {
 	int		x;
@@ -97,32 +97,25 @@ void	ft_draw_textured_rectangle(t_mlx *mlx, t_pos *coordinates,
 	if (!pos)
 		ft_error_buster(1);
 	x = coordinates->x;
-	pos = culcul_coordinate(mlx, &width_n_height);
-	while (x < coordinates->x + width_n_height.x)
+	if (mlx->rays->s == 'h')
+		pos->x = ((mlx->rays->hit_x / mlx->cub_size)
+				- (int)(mlx->rays->hit_x / mlx->cub_size)) * mlx->texture.width;
+	else
+		pos->x = ((mlx->rays->hit_y / mlx->cub_size)
+				- (int)(mlx->rays->hit_y / mlx->cub_size)) * mlx->texture.width;
+	scale = (mlx->texture.width / width_n_height.y);
+	pos->y = 0;
+	if (mlx->win_y < width_n_height.y)
 	{
-		if (mlx->rays->s == 'h')
-			pos->x = ((mlx->rays->hit_x / mlx->cub_size) - (int)(mlx->rays->hit_x / mlx->cub_size)) * mlx->cub_size;//text width;
-			// ((x / size) - (int)(x / size)) * width_texter
-		else
-			pos->x = ((mlx->rays->hit_y / mlx->cub_size) - (int)(mlx->rays->hit_y / mlx->cub_size)) * mlx->cub_size;
-			// pos->x = fmod((int)mlx->rays->hit_y, width_n_height.y);
-		scale =  (mlx->cub_size/*txt size*/ / width_n_height.y);
-		pos->y = 0;
-		if (mlx->win_y < width_n_height.y)
-		{
-			coordinates->y = 0;
-			pos->y = ((width_n_height.y - mlx->win_y) / 2) * scale;
-		}
-		y = coordinates->y;
-		while (y < coordinates->y + width_n_height.y && y < mlx->win_y)
-		{
-			//TODO: finding the y coordinate aka pos->y
-			// scale = ( y + coordinates->y) + (width_n_height.y / 2 - (mlx->win_y) / 2);
-			pos->y +=  scale;
-			color = my_mlx_pixel_get(mlx, pos->x, pos->y);
-			ft_put_pixel(mlx, x, y++, color);
-		}
-		x++;
+		coordinates->y = 0;
+		pos->y = ((width_n_height.y - mlx->win_y) / 2) * scale;
+	}
+	y = coordinates->y;
+	while (y < coordinates->y + width_n_height.y && y < mlx->win_y)
+	{
+		pos->y += scale;
+		color = my_mlx_pixel_get(mlx, pos->x, pos->y);
+		ft_put_pixel(mlx, x, y++, color);
 	}
 	free (pos);
 }

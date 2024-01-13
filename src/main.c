@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 15:26:16 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/13 08:23:31 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/13 14:54:06 by rerayyad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,11 @@ char	g_test1[][3] = {
 void	ft_canvas_maker(t_mlx *mlx)
 {
 	// memcpy(mlx->map, mlx->map, (mlx->map)); // Will be removed
-	ft_draw_map(mlx);// will be removed in mandatory
 	ft_prime_and_cast(mlx);
+	ft_draw_map(mlx);// will be removed in mandatory
+	mlx->player->r = (mlx->cub_size * MINIMAP_SCALE) / 5;
+	mlx->player->spd = SPEED * (mlx->cub_size / 40);
+	mlx->player->rot_spd = (ROT_SPEED * (M_PI / 180)) * (mlx->cub_size / 40);
 	ft_draw_player(mlx, mlx->player->x, mlx->player->y);// will be removed in mandatory
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img.img, 0, 0);
 	mlx_do_sync(mlx->mlx_ptr);
