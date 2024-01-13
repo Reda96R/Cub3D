@@ -93,18 +93,7 @@ void	ft_3d_caster(t_mlx *mlx, int i)
 	float	project;
 	t_pos	width_n_height;
 	t_pos	coordinates;
-	int		color;
 
-	(void)color;
-	color = 0;
-	if (mlx->rays->heading == 'S')
-		color = 0xFF0000;
-	else if (mlx->rays->heading == 'N')
-		color = 0x00FF00;
-	else if (mlx->rays->heading == 'W')
-		color = 0x0000FF;
-	else if (mlx->rays->heading == 'E')
-		color = 0xFFFFFF;
 	wall_distance = mlx->rays->colision_distance
 		* cos (mlx->rays->ray_angle - mlx->player->rot);
 	project = (mlx->win_x / 2) / tan(mlx->player->fov / 2);
@@ -114,8 +103,7 @@ void	ft_3d_caster(t_mlx *mlx, int i)
 	coordinates.x = i;
 	coordinates.y = (mlx->win_y / 2) - (width_n_height.y / 2);
 	mlx->texture = ft_texture_selector(mlx);
-	ft_draw_textured_rectangle(mlx, &coordinates, width_n_height);
-
+	ft_draw_textured_wall(mlx, &coordinates, width_n_height);
 	ft_render_skyfloor(mlx, i, width_n_height, 1);
 }
 

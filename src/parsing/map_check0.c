@@ -70,7 +70,7 @@ void	map_height_width(t_mlx *mlx)
 		k = 0;
 		if (mlx->map[i][j] != '\0' && mlx->map[i][j] != '\n')
 			mlx->map_height++;
-		while (mlx->map[i][j])
+		while (mlx->map[i][j] && mlx->map[i][j] != '\n')
 		{
 			k++;
 			if (k > max_width)

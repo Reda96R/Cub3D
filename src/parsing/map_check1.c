@@ -38,10 +38,10 @@ int	get_map_size(t_mlx *mlx)
 void	ft_player_pos(t_mlx *mlx, int i, int j)
 {
 	mlx->player->y = floor(i * mlx->cub_size)
-		- (mlx->cub_size / 2) - mlx->cub_size;
+		- (mlx->cub_size / 2) + mlx->cub_size;
 	mlx->player->x = floor(j * mlx->cub_size) + (mlx->cub_size / 2);
-	mlx->player->direction = mlx->map[i][j];
-	mlx->map[i][j] = '0';
+	mlx->player->direction = mlx->new_map[i][j];
+	mlx->new_map[i][j] = '0';
 	if (mlx->player->direction == 'S' || mlx->player->direction == 'N')
 	{
 		if (mlx->player->direction == 'N')
@@ -73,10 +73,7 @@ void	is_palyer_deplicate(t_mlx *mlx)
 		{
 			if (mlx->map[i][j] == 'N' || mlx->map[i][j] == 'S'
 				|| mlx->map[i][j] == 'E' || mlx->map[i][j] == 'W')
-			{
-				ft_player_pos(mlx, i, j);
 				k++;
-			}
 			j++;
 		}
 		i++;

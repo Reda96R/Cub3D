@@ -6,7 +6,7 @@
 /*   By: rerayyad <rerayyad@student.42.fr>            +#+  +:+       +#+      */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:53:03 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/09 23:45:39 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/13 14:58:25 by rerayyad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,8 @@ int	ft_wall_detector(float x, float y, t_mlx *mlx)
 
 	map_x = floor(y / mlx->cub_size);
 	map_y = floor(x / mlx->cub_size);
-	// here i added the condition to check if the map_x (!mlx->new_map)  is not out of bounds (it was causing a segfault)
-	// you just need to check the minimap ;)
-	if (map_x < 0 || map_y < 0 || map_x >= mlx->map_height || !mlx->new_map[map_x]
+	if (map_x < 0 || map_y < 0
+		|| map_x >= mlx->map_height || !mlx->new_map[map_x]
 		|| map_y >= mlx->map_width || !mlx->new_map[map_x][map_y])
 		return (1);
 	if (mlx->new_map[map_x][map_y] == '0')
@@ -33,20 +32,22 @@ int	ft_wall_detector(float x, float y, t_mlx *mlx)
 
 int	ft_wall_colision(t_mlx *mlx)
 {
-	int	i;
-	int	j;
-	int	dx;
-	int	dy;
+	int		i;
+	int		j;
+	int		dx;
+	int		dy;
+	float	r;
 
-	i = mlx->player->x - (mlx->player->r * MINIMAP_SCALE);
-	while (i <= mlx->player->x + (mlx->player->r * MINIMAP_SCALE))
+	r = mlx->player->r + 5;
+	i = mlx->player->x - (r * MINIMAP_SCALE);
+	while (i <= mlx->player->x + (r * MINIMAP_SCALE))
 	{
-		j = mlx->player->y - (mlx->player->r * MINIMAP_SCALE);
-		while (j <= mlx->player->y + (mlx->player->r * MINIMAP_SCALE))
+		j = mlx->player->y - (r * MINIMAP_SCALE);
+		while (j <= mlx->player->y + (r * MINIMAP_SCALE))
 		{
 			dx = i - mlx->player->x;
 			dy = j - mlx->player->y;
-			if (dx * dx + dy * dy <= mlx->player->r * mlx->player->r)
+			if (dx * dx + dy * dy <= r * r)
 				if (ft_wall_detector(i, j, mlx))
 					return (1);
 			j++;
