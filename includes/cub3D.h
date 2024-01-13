@@ -76,8 +76,6 @@ void	textres_existence(t_mlx *mlx, char *str);
 
 			/*---map_check0---*/
 void	ft_map_parser(t_mlx *mlx);
-int		skip_spaces(char *line);
-int		skip_vide_line(t_mlx *mlx);
 void	map_height_width(t_mlx *mlx);
 void	check_map_format(t_mlx *mlx);
 

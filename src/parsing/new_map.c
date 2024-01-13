@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 22:18:53 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/13 10:06:48 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/13 08:29:26 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	get_end(t_mlx *mlx, char *line, int start)
 	while (line[start + i] && line[start + i] != ' ')
 		i++;
 	if (line[start + i] == '\0' || line[start + i] == '\n')
-		return (i - 1);
+		return (start + i - 1);
 	else
 	{
 		while (line[start + i] && line[start + i] == ' ')
@@ -62,7 +62,7 @@ int	get_end(t_mlx *mlx, char *line, int start)
 			j++;
 		}
 		if (line[start + i] == '\0' || line[start + i] == '\n')
-			return (i - j);
+			return (start + i - j);
 		else
 			ft_Error("Wrong format", mlx);
 	}
@@ -82,7 +82,8 @@ void	copy_map(t_mlx *mlx)
 	if (!mlx->new_map)
 		ft_Error("Malloc failed", mlx);
 	mlx->new_map[mlx->map_height] = NULL;
-	i = skip_vide_line(mlx);
+	while (mlx->map[i] && (mlx->map[i][0] == '\0' || mlx->map[i][0] == '\n'))
+		i++;
 	while (mlx->map[i])
 	{
 		if (mlx->map[i][0] == '\0' || mlx->map[i][0] == '\n')
@@ -106,3 +107,27 @@ void	copy_map(t_mlx *mlx)
 }
 
 //-----------> don't  forget the norminette!!!!
+
+
+
+/* for debuging purposes 
+
+	printf("-------------------------------------------\n");
+	printf("north_texture: %s\n", mlx->north_texture);
+	printf("south_texture: %s\n", mlx->south_texture);
+	printf("west_texture: %s\n", mlx->west_texture);
+	printf("east_texture: %s\n", mlx->east_texture);
+	printf("-------------------------------------------\n");
+	printf("c_color: %s\n", mlx->c_color);
+	printf("f_color: %s\n", mlx->f_color);
+	printf("-------------------------------------------\n");
+	mlx->new_map[x] = NULL;
+	i = 0;
+	while(mlx->new_map[i])
+	{
+		printf("%s\n", mlx->new_map[i]);
+		i++;
+	}
+	printf("-------------------------------------------\n");
+
+*/
