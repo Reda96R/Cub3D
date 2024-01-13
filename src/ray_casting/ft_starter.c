@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:53:15 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/12 08:59:17 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/13 08:43:36 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,23 @@ t_mlx	*ft_data_init(char *av[])
 	ft_rays_init(&mlx->rays, mlx);
 	ft_file_parser(mlx, av[1]);
 	ft_map_parser(mlx);
+	// printf("-------------------------------------------\n");
+	// printf("north_texture: %s\n", mlx->north_texture);
+	// printf("south_texture: %s\n", mlx->south_texture);
+	// printf("west_texture: %s\n", mlx->west_texture);
+	// printf("east_texture: %s\n", mlx->east_texture);
+	// printf("-------------------------------------------\n");
+	// printf("c_color: %s\n", mlx->c_color);
+	// printf("f_color: %s\n", mlx->f_color);
+	// printf("-------------------------------------------\n");
+	// int i = 0;
+	// while(mlx->new_map[i])
+	// {
+	// 	printf("%s\n", mlx->new_map[i]);
+	// 	i++;
+	// }
+	// printf("-------------------------------------------\n");
+	// exit(0);
 	mlx->mlx_ptr = mlx_init();
 	if (!mlx->mlx_ptr)
 		ft_error_buster(2);

@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 22:18:53 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/13 05:25:12 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/13 08:29:26 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	get_start(t_mlx *mlx, char *line, int type) //1 for texter 2 for color
 			i++;
 		i += 2;
 	}
-	if (line[i] == '\0')
+	if (line[i] == '\0' || line[i] == '\n')
 	{
 		if (type == 1)
 			ft_Error("Wrong texture format", mlx);
@@ -103,6 +103,7 @@ void	copy_map(t_mlx *mlx)
 		i++;
 		x++;
 	}
+	mlx->new_map[x] = NULL;
 }
 
 //-----------> don't  forget the norminette!!!!
