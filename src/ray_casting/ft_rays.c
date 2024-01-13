@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 10:43:20 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/09 19:34:25 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/12 02:46:37 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ void	ft_render_skyfloor(t_mlx *mlx, int i, t_pos width_n_height, int n)
 		color = mlx->f_color_int;
 		mlx->rays->heading = 'F';
 	}
-	ft_draw_rectangle(mlx, &coordinates, width_n_height, color);
 	mlx->rays->heading = c;
+	ft_draw_rectangle(mlx, &coordinates, width_n_height, color);
 }
 
 void	ft_3d_caster(t_mlx *mlx, int i)
@@ -95,6 +95,7 @@ void	ft_3d_caster(t_mlx *mlx, int i)
 	t_pos	coordinates;
 	int		color;
 
+	(void)color;
 	color = 0;
 	if (mlx->rays->heading == 'S')
 		color = 0xFF0000;
@@ -112,8 +113,9 @@ void	ft_3d_caster(t_mlx *mlx, int i)
 	ft_render_skyfloor(mlx, i, width_n_height, 0);
 	coordinates.x = i;
 	coordinates.y = (mlx->win_y / 2) - (width_n_height.y / 2);
-	//ft_txtures(mlx->rays);
-	ft_draw_rectangle(mlx, &coordinates, width_n_height, color);
+	mlx->texture = ft_texture_selector(mlx);
+	ft_draw_textured_rectangle(mlx, &coordinates, width_n_height);
+
 	ft_render_skyfloor(mlx, i, width_n_height, 1);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_maths_hub1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rerayyad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 12:04:20 by rerayyad          #+#    #+#             */
-/*   Updated: 2023/12/30 12:04:21 by rerayyad         ###   ########.fr       */
+/*   Updated: 2024/01/11 21:25:13 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	ft_h_hit_calculator(t_mlx *mlx, t_rays *h, char *heading, int *door)
 				*heading = 'N';
 			if (ft_wall_detector(h->hit_x, y, mlx) == 'd')
 				*door = 1;
+			h->s = 'v';
 			break ;
 		}
 		h->hit_x += h->diff[0];
@@ -81,6 +82,7 @@ void	ft_v_hit_calculator(t_mlx *mlx, t_rays *v, char *heading, int *door)
 				*heading = 'E';
 			if (ft_wall_detector(x, v->hit_y, mlx) == 'd')
 				*door = 1;
+			v->s = 'v';
 			break ;
 		}
 		v->hit_x += v->diff[0];

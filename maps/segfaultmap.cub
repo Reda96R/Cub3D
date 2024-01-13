@@ -1,7 +1,7 @@
-NO textures/simonkraft/wet_sponge.xpm
-SO textures/simonkraft/wet_sponge.xpm
-WE textures/simonkraft/wet_sponge.xpm
-EA textures/simonkraft/wet_sponge.xpm
+NO textres/image1.xpm
+EA textres/image2.xpm
+SO textres/image4.xpm
+WE textres/image3.xpm
 
 F 164,169,20
 C 153,204,255

@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 16:34:30 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/09 21:13:11 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/13 09:54:32 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,36 @@ void	ft_map_parser(t_mlx *mlx)
 	copy_map(mlx);
 }
 
+int	skip_spaces(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] && line[i] == ' ')
+		i++;
+	return (i);
+}
+
+int	skip_vide_line(t_mlx *mlx)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while(mlx->map[i])
+	{
+		j = 0;
+		while (mlx->map[i] && !mlx->map[i][j])
+			i++;
+		if (mlx->map[i][j] && mlx->map[i][j] == ' ')
+			j = skip_spaces(mlx->map[i]);
+		if (mlx->map[i][j] != '\0' && mlx->map[i][j] != '\n' && mlx->map[i][j] != ' ')
+			break;
+		i++;
+	}
+	return (i);
+}
+
 void	map_height_width(t_mlx *mlx)
 {
 	int	i;
@@ -31,7 +61,7 @@ void	map_height_width(t_mlx *mlx)
 	int	k;
 	int	max_width;
 
-	i = 0;
+	i = skip_vide_line(mlx);
 	max_width = 0;
 	mlx->map_height = 0;
 	while (mlx->map[i])
@@ -58,10 +88,8 @@ void	check_map_format(t_mlx *mlx)
 	int	j;
 
 	i = 0;
-	j = 0;
 	is_palyer_deplicate(mlx);
-	while (mlx->map[i] && !mlx->map[i][j])
-		i++;
+	i = skip_vide_line(mlx);
 	if (!mlx->map[i])
 		ft_Error("Map is not valid", mlx);
 	while (mlx->map[i] && mlx->map[i + 1])
@@ -78,7 +106,10 @@ void	check_map_format(t_mlx *mlx)
 						&& mlx->map[i][j] != 'S' && mlx->map[i][j] != 'E' && mlx->map[i][j] != 'W')
 						j++;
 					else
+					{
+						printf("mlx->map[i][j] = %c\n", mlx->map[i][j]);
 						ft_Error("Map is not valid", mlx);
+					}
 				}
 				i++;
 			}

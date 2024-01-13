@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 22:18:53 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/09 21:20:47 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/13 10:06:48 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,40 @@ int	get_start(t_mlx *mlx, char *line, int type) //1 for texter 2 for color
 			i++;
 		i += 2;
 	}
-	if (line[i] == '\0')
+	if (line[i] == '\0' || line[i] == '\n')
 	{
 		if (type == 1)
 			ft_Error("Wrong texture format", mlx);
 		else if (type == 2)
 			ft_Error("Wrong color format", mlx);
+	}
+	return (i);
+}
+
+int	get_end(t_mlx *mlx, char *line, int start) 
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	if (!line || !line[start])
+		return (start);
+	while (line[start + i] && line[start + i] != ' ')
+		i++;
+	if (line[start + i] == '\0' || line[start + i] == '\n')
+		return (i - 1);
+	else
+	{
+		while (line[start + i] && line[start + i] == ' ')
+		{
+			i++;
+			j++;
+		}
+		if (line[start + i] == '\0' || line[start + i] == '\n')
+			return (i - j);
+		else
+			ft_Error("Wrong format", mlx);
 	}
 	return (i);
 }
@@ -54,8 +82,7 @@ void	copy_map(t_mlx *mlx)
 	if (!mlx->new_map)
 		ft_Error("Malloc failed", mlx);
 	mlx->new_map[mlx->map_height] = NULL;
-	while (mlx->map[i] && (mlx->map[i][0] == '\0' || mlx->map[i][0] == '\n'))
-		i++;
+	i = skip_vide_line(mlx);
 	while (mlx->map[i])
 	{
 		if (mlx->map[i][0] == '\0' || mlx->map[i][0] == '\n')

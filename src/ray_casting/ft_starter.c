@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_starter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rerayyad <rerayyad@student.42.fr>            +#+  +:+       +#+      */
+/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:53:15 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/06 18:46:26 by rerayyad         ###   ########.fr       */
+/*   Updated: 2024/01/13 08:43:36 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,23 @@ t_mlx	*ft_data_init(char *av[])
 	ft_rays_init(&mlx->rays, mlx);
 	ft_file_parser(mlx, av[1]);
 	ft_map_parser(mlx);
+	// printf("-------------------------------------------\n");
+	// printf("north_texture: %s\n", mlx->north_texture);
+	// printf("south_texture: %s\n", mlx->south_texture);
+	// printf("west_texture: %s\n", mlx->west_texture);
+	// printf("east_texture: %s\n", mlx->east_texture);
+	// printf("-------------------------------------------\n");
+	// printf("c_color: %s\n", mlx->c_color);
+	// printf("f_color: %s\n", mlx->f_color);
+	// printf("-------------------------------------------\n");
+	// int i = 0;
+	// while(mlx->new_map[i])
+	// {
+	// 	printf("%s\n", mlx->new_map[i]);
+	// 	i++;
+	// }
+	// printf("-------------------------------------------\n");
+	// exit(0);
 	mlx->mlx_ptr = mlx_init();
 	if (!mlx->mlx_ptr)
 		ft_error_buster(2);
@@ -29,10 +46,10 @@ t_mlx	*ft_data_init(char *av[])
 	if (!mlx->win_ptr)
 		ft_error_buster(2);
 	mlx->img.img = mlx_new_image(mlx->mlx_ptr, mlx->win_x, mlx->win_y);
-	mlx->img.id = mlx_get_data_addr(mlx->img.img, &mlx->img.bpp, &mlx->img.len, \
-	&mlx->img.endian);
+	mlx->img.id = mlx_get_data_addr(mlx->img.img, &mlx->img.bpp, &mlx->img.len, &mlx->img.endian);
 	// The value of map width is not correct, it always bigger by one, correct it and be aware
 	// of any buffer-overflows that can result from that
+	ft_textures_init(mlx);
 	printf("map_height = %d\n", mlx->map_height);  //// ------> will be removed
 	printf("map_width = %d\n", mlx->map_width);    //// ------->will be removed
 	ft_free(mlx->map);
@@ -57,6 +74,8 @@ void	ft_mlx_init(t_mlx **mlx)
 	(*mlx)->new_map = NULL;
 	(*mlx)->map_height = 0;
 	(*mlx)->map_width = 0;
+	(*mlx)->c_color_int = 0;
+	(*mlx)->f_color_int = 0;
 }
 
 void	ft_rays_init(t_rays **rays, t_mlx *mlx)
@@ -82,4 +101,12 @@ void	ft_player_init(t_player **player, t_mlx *mlx)
 	(*player)->walk = 0;
 	(*player)->turn = 0;
 	(*player)->rot_spd = (ROT_SPEED * (M_PI / 180)) * MINIMAP_SCALE;
+}
+
+void	ft_textures_init(t_mlx *mlx)
+{
+	mlx->n_wall = file_to_image(mlx, mlx->north_texture);
+	mlx->s_wall = file_to_image(mlx, mlx->south_texture);
+	mlx->w_wall = file_to_image(mlx, mlx->west_texture);
+	mlx->e_wall = file_to_image(mlx, mlx->east_texture);
 }

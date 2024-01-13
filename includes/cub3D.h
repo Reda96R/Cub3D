@@ -47,6 +47,11 @@ typedef struct s_mlx
 	char			*f_color;
 	unsigned int	c_color_int;
 	unsigned int	f_color_int;
+	t_img			*n_wall;
+	t_img			*s_wall;
+	t_img			*w_wall;
+	t_img			*e_wall;
+	t_img			texture;
 	t_img			img;
 	t_player		*player;
 	t_pos			*pos;
@@ -63,6 +68,7 @@ void	ft_file_parser(t_mlx *mlx, char *av);
 void	get_file(t_mlx *mlx, char *file);
 void	get_file_size(t_mlx *mlx, char *file);
 void	is_deplecate(t_mlx *mlx);
+int		skip_vide_line(t_mlx *mlx);
 
 			/*---texter_check---*/
 void	get_texters(t_mlx *mlx);
@@ -83,10 +89,10 @@ void	check_map_is_locked(t_mlx *mlx);
 
 			/*---color_check---*/
 void	colors_existence(t_mlx *mlx);
-void	colors_range(t_mlx *mlx, char *tmp, int i);
-void	check_colors_format(char	*str, t_mlx *mlx);
-void	check_colors_range(char	*str, t_mlx *mlx);
-void	ft_color_assigner(t_mlx *mlx, char *tmp, int a, int i);
+void	colors_range(t_mlx *mlx, char *tmp, int i, char c);
+void	check_colors_format(char	*str, t_mlx *mlx, char c);
+void	check_colors_range(char	*str, t_mlx *mlx, char c);
+void	ft_color_assigner(t_mlx *mlx, char c, int a, int i);
 
 			/*---ft_error_check---*/
 void	ft_free(char **str);
@@ -96,6 +102,16 @@ void	ft_Error(char *str, t_mlx *mlx);
 			/*---new_map---*/
 void	copy_map(t_mlx *mlx);
 int		get_start(t_mlx *mlx, char *line, int type);
+int		get_end(t_mlx *mlx, char *line, int start);
+
+/*:::::::::::::::::TXT:::::::::::::::*/
+
+			/*---file_to_image---*/
+void	ft_textures_init(t_mlx *mlx);
+t_img	*file_to_image(t_mlx *mlx, char *path);
+t_img	ft_texture_selector(t_mlx *mlx);
+t_pos	*culcul_coordinate(t_mlx *mlx, t_pos *width_n_height);
+int		my_mlx_pixel_get(t_mlx *mlx, int x, int y);
 
 /*::::::::::::::::RAY:::::::::::::::*/
 
@@ -133,7 +149,9 @@ void	ft_draw_line(t_mlx *mlx, float c[4], int color);
 void	ft_draw_circle(t_mlx *mlx, int x, int y);
 void	ft_draw_square(t_mlx *mlx, int x, int y, int color);
 void	ft_draw_rectangle(t_mlx *mlx, t_pos *coordinates,
-			t_pos width_n_height, int color);
+			t_pos width_n_height, int coloc);
+void	ft_draw_textured_rectangle(t_mlx *mlx, t_pos *coordinates,
+			t_pos width_n_height);
 void	ft_draw_scaled_square(t_mlx *mlx, int x, int y, int color);
 
 			/*---ft_keylogger---*/
