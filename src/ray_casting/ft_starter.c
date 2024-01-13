@@ -21,37 +21,16 @@ t_mlx	*ft_data_init(char *av[])
 	ft_rays_init(&mlx->rays, mlx);
 	ft_file_parser(mlx, av[1]);
 	ft_map_parser(mlx);
-	// printf("-------------------------------------------\n");
-	// printf("north_texture: %s\n", mlx->north_texture);
-	// printf("south_texture: %s\n", mlx->south_texture);
-	// printf("west_texture: %s\n", mlx->west_texture);
-	// printf("east_texture: %s\n", mlx->east_texture);
-	// printf("-------------------------------------------\n");
-	// printf("c_color: %s\n", mlx->c_color);
-	// printf("f_color: %s\n", mlx->f_color);
-	// printf("-------------------------------------------\n");
-	// int i = 0;
-	// while(mlx->new_map[i])
-	// {
-	// 	printf("%s\n", mlx->new_map[i]);
-	// 	i++;
-	// }
-	// printf("-------------------------------------------\n");
-	// exit(0);
 	mlx->mlx_ptr = mlx_init();
 	if (!mlx->mlx_ptr)
 		ft_error_buster(2);
+	ft_textures_init(mlx);
 	mlx->win_ptr = \
 			mlx_new_window(mlx->mlx_ptr, mlx->win_x, mlx->win_y, "cub3D");
 	if (!mlx->win_ptr)
 		ft_error_buster(2);
 	mlx->img.img = mlx_new_image(mlx->mlx_ptr, mlx->win_x, mlx->win_y);
 	mlx->img.id = mlx_get_data_addr(mlx->img.img, &mlx->img.bpp, &mlx->img.len, &mlx->img.endian);
-	// The value of map width is not correct, it always bigger by one, correct it and be aware
-	// of any buffer-overflows that can result from that
-	ft_textures_init(mlx);
-	printf("map_height = %d\n", mlx->map_height);  //// ------> will be removed
-	printf("map_width = %d\n", mlx->map_width);    //// ------->will be removed
 	ft_free(mlx->map);
 	return (mlx);
 }
@@ -106,7 +85,15 @@ void	ft_player_init(t_player **player, t_mlx *mlx)
 void	ft_textures_init(t_mlx *mlx)
 {
 	mlx->n_wall = file_to_image(mlx, mlx->north_texture);
+	if (!mlx->n_wall)
+		ft_error_buster(6);
 	mlx->s_wall = file_to_image(mlx, mlx->south_texture);
+	if (!mlx->s_wall)
+		ft_error_buster(6);
 	mlx->w_wall = file_to_image(mlx, mlx->west_texture);
+	if (!mlx->w_wall)
+		ft_error_buster(6);
 	mlx->e_wall = file_to_image(mlx, mlx->east_texture);
+	if (!mlx->e_wall)
+		ft_error_buster(6);
 }
