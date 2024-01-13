@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:53:08 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/13 06:08:34 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/13 10:08:40 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	ft_draw_textured_rectangle(t_mlx *mlx, t_pos *coordinates,
 	if (!pos)
 		ft_error_buster(1);
 	x = coordinates->x;
-	pos = culcul_coordinate(mlx, &width_n_height);
+	//pos = culcul_coordinate(mlx, &width_n_height);
 	while (x < coordinates->x + width_n_height.x)
 	{
 		if (mlx->rays->s == 'h')
