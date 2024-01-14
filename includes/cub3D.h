@@ -64,6 +64,10 @@ void	ft_free_all(t_mlx *mlx);
 
 /*::::::::::::::::PRS:::::::::::::::*/
 
+			/*---ft_error---*/
+int		skip_spaces(char *line);
+int		skip_vide_line(t_mlx *mlx);
+
 			/*---file_check---*/
 void	ft_file_parser(t_mlx *mlx, char *av);
 void	get_file(t_mlx *mlx, char *file);
@@ -75,7 +79,6 @@ int		skip_vide_line(t_mlx *mlx);
 			/*---texter_check---*/
 void	get_texters(t_mlx *mlx);
 void	fill_texter_map(int i, int j, int size, t_mlx *mlx);
-void	textres_existence(t_mlx *mlx, char *str);
 
 			/*---map_check0---*/
 void	ft_map_parser(t_mlx *mlx);

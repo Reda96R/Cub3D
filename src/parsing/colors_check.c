@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rerayyad <rerayyad@student.42.fr>            +#+  +:+       +#+      */
+/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 03:07:45 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/14 10:26:38 by rerayyad         ###   ########.fr       */
+/*   Updated: 2024/01/14 20:17:45 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ void	colors_range(t_mlx *mlx, char *tmp, int i, char c)
 
 	j = 0;
 	k = 0;
+	while (tmp[j] == '0' || tmp[j] == ' ')
+		j++;
 	while (tmp[j])
 	{
 		if (tmp[j] != ' ')
@@ -84,7 +86,7 @@ void	colors_range(t_mlx *mlx, char *tmp, int i, char c)
 	}
 	a = ft_atoi(tmp);
 	str = ft_itoa(a);
-	if (k != ft_strlen(str))
+	if (k != ft_strlen(str) && a != 0)
 		ft_error_buster(8, mlx);
 	if (a < 0 || a > 255)
 		ft_error_buster(9, mlx);

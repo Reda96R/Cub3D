@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 09:57:02 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/14 17:32:52 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/14 18:39:45 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,12 @@ void	ft_error_buster(int id, t_mlx *mlx)
 		ft_putstr_fd("\033[0;31mError: Wrong file format\n", 2);
 		ft_putstr_fd("\033[0;32m\tUsage: ./cub3D <mapname>.cub\n", 2);
 	}
+
 	else
 		ft_error_buster2(id);
 	printf("\033[0m");
-	if (mlx)
-		ft_free_all(mlx);
+		//ft_free_all(mlx);
+	(void)mlx;
 	exit (1);
 }
 
