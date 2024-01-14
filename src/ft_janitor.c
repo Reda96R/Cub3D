@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_janitor.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rerayyad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 09:57:02 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/04 09:57:09 by rerayyad         ###   ########.fr       */
+/*   Updated: 2024/01/14 17:32:52 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,7 @@ void	ft_error_buster(int id, t_mlx *mlx)
 		ft_putstr_fd("\033[0;31mError: Wrong number of arguments\n", 2);
 		ft_putstr_fd("\033[0;32m\tUsage: ./cub3D <mapname>.cub\n", 2);
 	}
-	else if (id == 4)
-	{
-		ft_putstr_fd("\033[0;31mError: Wrong file format\n", 2);
-		ft_putstr_fd("\033[0;32m\tUsage: ./cub3D <mapname>.cub\n", 2);
-	}
-	else if (id == 5)//this error msg is duplicated
+	else if (id == 4 || id == 5)
 	{
 		ft_putstr_fd("\033[0;31mError: Wrong file format\n", 2);
 		ft_putstr_fd("\033[0;32m\tUsage: ./cub3D <mapname>.cub\n", 2);
@@ -96,4 +91,6 @@ void	ft_error_buster2(int id)
 		ft_putstr_fd("\033[0;31mError: Invalid file\n", 2);
 	else if (id == 14)
 		ft_putstr_fd("\033[0;31mError: Texture or color duplicate found\n", 2);
+	else if (id == 15)
+		ft_putstr_fd("\033[0;31mError: Wrong format\n", 2);
 }

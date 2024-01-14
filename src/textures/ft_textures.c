@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_to_image.c                                    :+:      :+:    :+:   */
+/*   ft_textures.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rerayyad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 14:38:19 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/13 14:38:25 by rerayyad         ###   ########.fr       */
+/*   Updated: 2024/01/14 17:28:53 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,7 @@ void	ft_draw_textured_wall(t_mlx *mlx, t_pos *coordinates,
 	if (!pos)
 		ft_error_buster(1, mlx);
 	x = coordinates->x;
-	if (mlx->rays->s == 'h')
-		pos->x = ((mlx->rays->hit_x / mlx->cub_size)
-				- (int)(mlx->rays->hit_x / mlx->cub_size)) * mlx->texture.width;
-	else
-		pos->x = ((mlx->rays->hit_y / mlx->cub_size)
-				- (int)(mlx->rays->hit_y / mlx->cub_size)) * mlx->texture.width;
+	pos_x_init(mlx, pos);
 	scale = (mlx->texture.width / width_n_height.y);
 	pos->y = 0;
 	if (mlx->win_y < width_n_height.y)
@@ -102,4 +97,14 @@ void	ft_draw_textured_wall(t_mlx *mlx, t_pos *coordinates,
 		ft_put_pixel(mlx, x, y++, ft_my_mlx_pixel_get(mlx, pos->x, pos->y));
 	}
 	free (pos);
+}
+
+void	pos_x_init(t_mlx *mlx, t_pos *pos)
+{
+	if (mlx->rays->s == 'h')
+		pos->x = ((mlx->rays->hit_x / mlx->cub_size)
+				- (int)(mlx->rays->hit_x / mlx->cub_size)) * mlx->texture.width;
+	else
+		pos->x = ((mlx->rays->hit_y / mlx->cub_size)
+				- (int)(mlx->rays->hit_y / mlx->cub_size)) * mlx->texture.width;
 }

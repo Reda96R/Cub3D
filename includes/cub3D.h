@@ -67,6 +67,7 @@ void	ft_free_all(t_mlx *mlx);
 			/*---file_check---*/
 void	ft_file_parser(t_mlx *mlx, char *av);
 void	get_file(t_mlx *mlx, char *file);
+void	fill_file(t_mlx *mlx, char *line, int fd);
 void	get_file_size(t_mlx *mlx, char *file);
 void	is_deplecate(t_mlx *mlx);
 int		skip_vide_line(t_mlx *mlx);
@@ -79,6 +80,7 @@ void	textres_existence(t_mlx *mlx, char *str);
 			/*---map_check0---*/
 void	ft_map_parser(t_mlx *mlx);
 void	map_height_width(t_mlx *mlx);
+int		new_line_check(t_mlx *mlx, int i, int j);
 void	check_map_format(t_mlx *mlx);
 
 			/*---map_check1---*/
@@ -97,6 +99,7 @@ void	ft_color_assigner(t_mlx *mlx, char c, int a, int i);
 
 			/*---new_map---*/
 void	copy_map(t_mlx *mlx);
+void	copy_to_new_map(t_mlx *mlx, int i, int x, int j);
 int		get_start(t_mlx *mlx, char *line, int type);
 int		get_end(t_mlx *mlx, char *line, int start);
 
@@ -108,7 +111,7 @@ t_img	ft_texture_selector(t_mlx *mlx);
 void	ft_render_skyfloor(t_mlx *mlx, int i, t_pos width_n_height, int n);
 void	ft_draw_textured_wall(t_mlx *mlx, t_pos *coordinates,
 			t_pos width_n_height);
-
+void	pos_x_init(t_mlx *mlx, t_pos *pos);
 /*::::::::::::::::RAY:::::::::::::::*/
 
 			/*---ft_starter---*/

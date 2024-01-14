@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   new_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rerayyad <rerayyad@student.42.fr>            +#+  +:+       +#+      */
+/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 22:18:53 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/14 10:41:54 by rerayyad         ###   ########.fr       */
+/*   Updated: 2024/01/14 17:22:29 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,7 @@ int	get_end(t_mlx *mlx, char *line, int start)
 		if (line[start + i] == '\0' || line[start + i] == '\n')
 			return (i - j);
 		else
-			ft_error_buster(15, mlx);//15 doesn't exist
-			//ft_Error("Wrong format", mlx);//this should be replaced
+			ft_error_buster(15, mlx);
 	}
 	return (i);
 }
@@ -84,6 +83,11 @@ void	copy_map(t_mlx *mlx)
 		ft_error_buster(1, mlx);
 	mlx->new_map[mlx->map_height] = NULL;
 	i = skip_vide_line(mlx);
+	copy_to_new_map(mlx, i, x, j);
+}
+
+void	copy_to_new_map(t_mlx *mlx, int i, int x, int j)
+{
 	while (mlx->map[i])
 	{
 		if (mlx->map[i][0] == '\0' || mlx->map[i][0] == '\n')
@@ -95,7 +99,8 @@ void	copy_map(t_mlx *mlx)
 		while (mlx->map[i][j] && mlx->map[i][j] != '\n')
 		{
 			mlx->new_map[x][j] = mlx->map[i][j];
-			if (mlx->new_map[x][j] && (mlx->map[i][j] == 'N' || mlx->map[i][j] == 'S'
+			if (mlx->new_map[x][j] && (mlx->map[i][j] == 'N'
+				|| mlx->map[i][j] == 'S'
 				|| mlx->map[i][j] == 'E' || mlx->map[i][j] == 'W'))
 				ft_player_pos(mlx, x, j);
 			j++;

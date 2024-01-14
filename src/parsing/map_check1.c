@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rerayyad <rerayyad@student.42.fr>            +#+  +:+       +#+      */
+/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 16:24:25 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/14 10:39:27 by rerayyad         ###   ########.fr       */
+/*   Updated: 2024/01/14 17:09:43 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,12 @@ int	get_map_size(t_mlx *mlx)
 	size = 0;
 	while (mlx->full_file[i])
 	{
-		if(!ft_strncmp(mlx->full_file[i], "NO", 2) || !ft_strncmp(mlx->full_file[i], "SO", 2) 
-			|| !ft_strncmp(mlx->full_file[i], "WE", 2) || !ft_strncmp(mlx->full_file[i], "EA", 2)
-			|| !ft_strncmp(mlx->full_file[i], "C ", 2) || !ft_strncmp(mlx->full_file[i], "F ", 2)
+		if (!ft_strncmp(mlx->full_file[i], "NO", 2)
+			|| !ft_strncmp(mlx->full_file[i], "SO", 2)
+			|| !ft_strncmp(mlx->full_file[i], "WE", 2)
+			|| !ft_strncmp(mlx->full_file[i], "EA", 2)
+			|| !ft_strncmp(mlx->full_file[i], "C ", 2)
+			|| !ft_strncmp(mlx->full_file[i], "F ", 2)
 			|| (!mlx->full_file[i][0] && size == 0))
 			i++;
 		else
@@ -96,7 +99,8 @@ void	cheack_map_borders(t_mlx *mlx)
 		{
 			if (i == 0 || j == 0 || !mlx->map[i + 1] || !mlx->map[i][j + 1])
 			{
-				if (mlx->map[i][j] != '1' && mlx->map[i][j] != ' ' && mlx->map[i][j] != '\n')
+				if (mlx->map[i][j] != '1' && mlx->map[i][j] != ' '
+					&& mlx->map[i][j] != '\n')
 					ft_error_buster(10, mlx);
 			}
 			j++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_check.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rerayyad <rerayyad@student.42.fr>            +#+  +:+       +#+      */
+/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 03:07:22 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/14 10:58:37 by rerayyad         ###   ########.fr       */
+/*   Updated: 2024/01/14 17:14:53 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,12 @@ void	is_deplecate(t_mlx *mlx)
 	j = 0;
 	while (mlx->full_file[i])
 	{
-		if (!ft_strncmp(mlx->full_file[i], "NO", 2) || !ft_strncmp(mlx->full_file[i], "SO", 2)
-			|| !ft_strncmp(mlx->full_file[i], "WE", 2) || !ft_strncmp(mlx->full_file[i], "EA", 2)
-			|| !ft_strncmp(mlx->full_file[i], "C ", 2) || !ft_strncmp(mlx->full_file[i], "F ", 2))
+		if (!ft_strncmp(mlx->full_file[i], "NO", 2)
+			|| !ft_strncmp(mlx->full_file[i], "SO", 2)
+			|| !ft_strncmp(mlx->full_file[i], "WE", 2)
+			|| !ft_strncmp(mlx->full_file[i], "EA", 2)
+			|| !ft_strncmp(mlx->full_file[i], "C ", 2)
+			|| !ft_strncmp(mlx->full_file[i], "F ", 2))
 		{
 			j = i + 1;
 			while (mlx->full_file[j])
@@ -79,15 +82,23 @@ void	get_file(t_mlx *mlx, char *file)
 {
 	int		fd;
 	char	*line;
-	int		i;
-	int		j;
 
-	i = 0;
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		ft_error_buster(13, mlx);
 	get_file_size(mlx, file);
 	line = m_get_next_line(fd);
+	fill_file(mlx, line, fd);
+	close(fd);
+}
+
+void	fill_file(t_mlx *mlx, char *line, int fd)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
 	while (line)
 	{
 		mlx->full_file[i] = malloc(sizeof(char) * (ft_strlen(line) + 1));
@@ -104,5 +115,4 @@ void	get_file(t_mlx *mlx, char *file)
 		line = m_get_next_line(fd);
 		i++;
 	}
-	close(fd);
 }
