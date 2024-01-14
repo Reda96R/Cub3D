@@ -3,24 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_maths_hub1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rerayyad <rerayyad@student.42.fr>            +#+  +:+       +#+      */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 12:04:20 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/11 21:25:13 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/14 11:25:58 by rerayyad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-float	ft_hit_distance(float *coor, t_mlx *mlx)
+int	ft_wall_inspection(t_mlx *mlx, t_rays *ray, float *coord, int n)
 {
-	return (sqrt((coor[0] - mlx->player->x) * (coor[0] - mlx->player->x)
-			+ (coor[1] - mlx->player->y) * (coor[1] - mlx->player->y)));
+	if (n)
+	{
+		*coord = ray->hit_y;
+		if (mlx->rays->up)
+			*coord -= (SPACE + 2);
+		else if (!mlx->rays->up)
+			*coord += (SPACE + 2);
+		if (ft_wall_detector(ray->hit_x, *coord, mlx))
+			return (1);
+	}
+	else
+	{
+		*coord = ray->hit_x;
+		if (!mlx->rays->right)
+			*coord -= (SPACE + 2);
+		else if (mlx->rays->right)
+			*coord += (SPACE + 2);
+		if (ft_wall_detector(*coord, ray->hit_y, mlx))
+			return (1);
+	}
+	return (0);
 }
-
-// float	ft_wall_inspection(t_mlx *mlx, t_rays *ray, int n)
-// {
-// }
 
 void	ft_h_hit_calculator(t_mlx *mlx, t_rays *h, char *heading, int *door)
 {
@@ -35,12 +50,7 @@ void	ft_h_hit_calculator(t_mlx *mlx, t_rays *h, char *heading, int *door)
 	while (h->hit_x >= 0 && h->hit_x <= mlx->win_x
 		&& h->hit_y >= 0 && h->hit_y <= mlx->win_y)
 	{
-		y = h->hit_y;
-		if (mlx->rays->up)
-			y -= (SPACE + 2);
-		else if (!mlx->rays->up)
-			y += (SPACE + 2);
-		if (ft_wall_detector(h->hit_x, y, mlx))
+		if (ft_wall_inspection(mlx, h, &y, 1))
 		{
 			if (mlx->rays->up)
 				*heading = 'S';
@@ -69,12 +79,7 @@ void	ft_v_hit_calculator(t_mlx *mlx, t_rays *v, char *heading, int *door)
 	while (v->hit_x >= 0 && v->hit_x <= mlx->win_x
 		&& v->hit_y >= 0 && v->hit_y <= mlx->win_y)
 	{
-		x = v->hit_x;
-		if (!mlx->rays->right)
-			x -= (SPACE + 2);
-		if (mlx->rays->right)
-			x += (SPACE + 2);
-		if (ft_wall_detector(x, v->hit_y, mlx))
+		if (ft_wall_inspection(mlx, v, &x, 0))
 		{
 			if (mlx->rays->right)
 				*heading = 'W';

@@ -18,15 +18,15 @@ t_img	*ft_file_to_image(t_mlx *mlx, char *path)
 
 	texture = malloc (sizeof (t_img));
 	if (!texture)
-		ft_error_buster(1);
+		ft_error_buster(1, mlx);
 	texture->img = mlx_xpm_file_to_image(mlx->mlx_ptr, path,
 			&texture->width, &texture->len);
 	if (!texture->img)
-		ft_error_buster(6);
+		ft_error_buster(6, mlx);
 	texture->id = mlx_get_data_addr(texture->img, &texture->bpp,
 			&texture->len, &texture->endian);
 	if (!texture->id)
-		ft_error_buster(6);
+		ft_error_buster(6, mlx);
 	return (texture);
 }
 
@@ -80,7 +80,7 @@ void	ft_draw_textured_wall(t_mlx *mlx, t_pos *coordinates,
 
 	pos = malloc(sizeof(t_pos));
 	if (!pos)
-		ft_error_buster(1);
+		ft_error_buster(1, mlx);
 	x = coordinates->x;
 	if (mlx->rays->s == 'h')
 		pos->x = ((mlx->rays->hit_x / mlx->cub_size)

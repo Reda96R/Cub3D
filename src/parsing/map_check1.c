@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rerayyad <rerayyad@student.42.fr>            +#+  +:+       +#+      */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 16:24:25 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/13 08:52:26 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/14 10:39:27 by rerayyad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	is_palyer_deplicate(t_mlx *mlx)
 		i++;
 	}
 	if (k != 1)
-		ft_Error("Invalid Player", mlx);
+		ft_error_buster(11, mlx);
 }
 
 void	cheack_map_borders(t_mlx *mlx)
@@ -97,7 +97,7 @@ void	cheack_map_borders(t_mlx *mlx)
 			if (i == 0 || j == 0 || !mlx->map[i + 1] || !mlx->map[i][j + 1])
 			{
 				if (mlx->map[i][j] != '1' && mlx->map[i][j] != ' ' && mlx->map[i][j] != '\n')
-					ft_Error("Map is not valid", mlx);
+					ft_error_buster(10, mlx);
 			}
 			j++;
 		}
@@ -110,7 +110,7 @@ void	check_map_is_locked(t_mlx *mlx)
 	int	i;
 	int	j;
 
-	i = 1;	
+	i = 1;
 	while (mlx->map[i] && mlx->map[i + 1])
 	{
 		j = 0;
@@ -118,12 +118,12 @@ void	check_map_is_locked(t_mlx *mlx)
 		{
 			if (mlx->map[i][j] == '0' && i > 0 && j > 0)
 			{
-				if(mlx->map[i - 1][0] == '\0' || mlx->map[i + 1][0] == '\0'
+				if (mlx->map[i - 1][0] == '\0' || mlx->map[i + 1][0] == '\0'
 					|| mlx->map[i][j + 1] == '\0' || mlx->map[i][j - 1] == '\0'
 					|| mlx->map[i + 1][j] == '\0' || mlx->map[i - 1][j] == '\0'
 					|| mlx->map[i][j + 1] == ' ' || mlx->map[i][j - 1] == ' '
 					|| mlx->map[i + 1][j] == ' ' || mlx->map[i - 1][j] == ' ')
-					ft_Error("Map is not valid", mlx);
+					ft_error_buster(10, mlx);
 			}
 			j++;
 		}

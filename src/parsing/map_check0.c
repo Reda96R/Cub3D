@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check0.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rerayyad <rerayyad@student.42.fr>            +#+  +:+       +#+      */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 16:34:30 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/13 09:54:32 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/14 10:36:18 by rerayyad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,16 @@ int	skip_vide_line(t_mlx *mlx)
 	int	j;
 
 	i = 0;
-	while(mlx->map[i])
+	while (mlx->map[i])
 	{
 		j = 0;
 		while (mlx->map[i] && !mlx->map[i][j])
 			i++;
 		if (mlx->map[i][j] && mlx->map[i][j] == ' ')
 			j = skip_spaces(mlx->map[i]);
-		if (mlx->map[i][j] != '\0' && mlx->map[i][j] != '\n' && mlx->map[i][j] != ' ')
-			break;
+		if (mlx->map[i][j] != '\0' && mlx->map[i][j] != '\n'
+			&& mlx->map[i][j] != ' ')
+			break ;
 		i++;
 	}
 	return (i);
@@ -91,13 +92,13 @@ void	check_map_format(t_mlx *mlx)
 	is_palyer_deplicate(mlx);
 	i = skip_vide_line(mlx);
 	if (!mlx->map[i])
-		ft_Error("Map is not valid", mlx);
+		ft_error_buster(10, mlx);
 	while (mlx->map[i] && mlx->map[i + 1])
 	{
 		j = 0;
 		if (!mlx->map[i][j] && mlx->map[i + 1][j] && mlx->map[i + 1][j] != '\n')
 		{
-			while(mlx->map[i])
+			while (mlx->map[i])
 			{
 				j = 0;
 				while (mlx->map[i][j])
@@ -106,15 +107,12 @@ void	check_map_format(t_mlx *mlx)
 						&& mlx->map[i][j] != 'S' && mlx->map[i][j] != 'E' && mlx->map[i][j] != 'W')
 						j++;
 					else
-					{
-						printf("mlx->map[i][j] = %c\n", mlx->map[i][j]);
-						ft_Error("Map is not valid", mlx);
-					}
+						ft_error_buster(10, mlx);
 				}
 				i++;
 			}
-			if(!mlx->map[i - 1] && !mlx->map[i][j])
-				ft_Error("Map is not valid", mlx);
+			if (!mlx->map[i - 1] && !mlx->map[i][j])
+				ft_error_buster(10, mlx);
 			else
 				return ;
 		}
@@ -123,7 +121,7 @@ void	check_map_format(t_mlx *mlx)
 			if (mlx->map[i][j] != '1' && mlx->map[i][j] != '0' && mlx->map[i][j] != 'N'
 				&& mlx->map[i][j] != 'S' && mlx->map[i][j] != 'E' && mlx->map[i][j] != 'W'
 				&& mlx->map[i][j] != ' ')
-				ft_Error("Map is not valid", mlx);
+				ft_error_buster(10, mlx);
 			j++;
 		}
 		i++;

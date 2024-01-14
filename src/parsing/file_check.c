@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_check.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rerayyad <rerayyad@student.42.fr>            +#+  +:+       +#+      */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 03:07:22 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/13 05:23:25 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/14 10:58:37 by rerayyad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ void	ft_file_parser(t_mlx *mlx, char *av)
 	get_file(mlx, av);
 	is_deplecate(mlx);
 	get_texters(mlx);
-	textres_existence(mlx, "Missing texture");
+	if (!mlx->east_texture || !mlx->west_texture
+		|| !mlx->south_texture || !mlx->north_texture)
+		ft_error_buster(6, mlx);
 	colors_existence(mlx);
 	check_colors_format(mlx->c_color, mlx, 'c');
 	check_colors_format(mlx->f_color, mlx, 'f');
@@ -40,11 +42,7 @@ void	is_deplecate(t_mlx *mlx)
 			while (mlx->full_file[j])
 			{
 				if (!ft_strncmp(mlx->full_file[i], mlx->full_file[j], 2))
-				{
-					printf("Error\nDuplicate texter or color");
-					ft_free(mlx->full_file);
-					exit(1);
-				}
+					ft_error_buster(14, mlx);
 				j++;
 			}
 		}
@@ -61,7 +59,7 @@ void	get_file_size(t_mlx *mlx, char *file)
 	i = 0;
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		printf("Error\nFile not found"), exit(1);
+		ft_error_buster(13, mlx);
 	line = m_get_next_line(fd);
 	while (line)
 	{
@@ -72,10 +70,7 @@ void	get_file_size(t_mlx *mlx, char *file)
 	free(line);
 	close(fd);
 	if (i == 0)
-	{
-		printf("Error\nEmpty file");
-		exit(1);
-	}
+		ft_error_buster(13, mlx);
 	mlx->full_file = malloc(sizeof(char *) * (i + 1));
 	mlx->full_file[i] = NULL;
 }
@@ -90,17 +85,14 @@ void	get_file(t_mlx *mlx, char *file)
 	i = 0;
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-	{
-		printf("Error\nFile not found");
-		exit(1);
-	}
+		ft_error_buster(13, mlx);
 	get_file_size(mlx, file);
 	line = m_get_next_line(fd);
 	while (line)
 	{
 		mlx->full_file[i] = malloc(sizeof(char) * (ft_strlen(line) + 1));
 		if (!mlx->full_file[i])
-			ft_error_buster(1);
+			ft_error_buster(1, mlx);
 		j = 0;
 		while (line[j])
 		{

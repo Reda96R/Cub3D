@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texter_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rerayyad <rerayyad@student.42.fr>            +#+  +:+       +#+      */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 03:08:06 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/13 10:05:47 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/14 10:52:49 by rerayyad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ void	fill_texter_map(int i, int j, int size, t_mlx *mlx)
 		if (fill_texter(mlx, mlx->full_file[i]) == 1)
 		{
 			if (mlx->full_file[i][0] != '\0' && mlx->full_file[i][0] != '\n')
-				textres_existence(mlx, "Missing texter");
+				if (!mlx->east_texture || !mlx->west_texture
+					|| !mlx->south_texture || !mlx->north_texture)
+					ft_error_buster(6, mlx);
 			if (!mlx->full_file[i + 1])
 				mlx->map[j++] = ft_substr(mlx->full_file[i], 0, ft_strlen(mlx->full_file[i]));
 			else
@@ -62,35 +64,10 @@ void	get_texters(t_mlx *mlx)
 	j = 0;
 	size = get_map_size(mlx);
 	if (size <= 2)
-	{
-		printf("Error\nEmpty map");
-		exit(1);
-	}
+		ft_error_buster(10, mlx);
 	mlx->map = ft_calloc(sizeof(char *), (size + 1));
 	if (!mlx->map)
-	{
-		printf("Error\nMalloc failed");
-		exit(0);
-	}
+		ft_error_buster(1, mlx);
 	mlx->map[size] = NULL;
 	fill_texter_map(i, j, size, mlx);
-}
-
-void	textres_existence(t_mlx *mlx, char *str)
-{
-	if (!mlx->east_texture || !mlx->west_texture
-		|| !mlx->south_texture || !mlx->north_texture)
-	{
-		printf("Error\n%s", str);
-		if (mlx->east_texture)
-			free(mlx->east_texture);
-		if (mlx->west_texture)
-			free(mlx->west_texture);
-		if (mlx->south_texture)
-			free(mlx->south_texture);
-		if (mlx->north_texture)
-			free(mlx->north_texture);
-		ft_free(mlx->full_file);
-		exit(1);
-	}
 }

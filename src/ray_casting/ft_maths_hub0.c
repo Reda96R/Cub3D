@@ -12,6 +12,12 @@
 
 #include "../../includes/cub3D.h"
 
+float	ft_hit_distance(float *coor, t_mlx *mlx)
+{
+	return (sqrt((coor[0] - mlx->player->x) * (coor[0] - mlx->player->x)
+			+ (coor[1] - mlx->player->y) * (coor[1] - mlx->player->y)));
+}
+
 int	ft_wall_detector(float x, float y, t_mlx *mlx)
 {
 	int	map_x;
@@ -75,13 +81,4 @@ void	ft_move_calculator(t_mlx *mlx)
 		ft_move_left(mlx);
 	if (mlx->player->m_r)
 		ft_move_right(mlx);
-}
-
-void	ft_pos_calculator(t_mlx *mlx)
-{
-	if (mlx->player->m_f || mlx->player->m_b || \
-		mlx->player->m_l || mlx->player->m_r)
-		ft_move_calculator(mlx);
-	if (mlx->player->t_l || mlx->player->t_r)
-		ft_turn_calculator(mlx);
 }

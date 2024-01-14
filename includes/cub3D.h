@@ -25,14 +25,12 @@
 # include "../mlx_linux/mlx.h"
 // # include <mlx.h>
 
-# include <string.h> // Will be removed with memcpy()
-
 typedef struct s_mlx
 {
-	float			win_x;
-	float			win_y;
 	int				map_height;
 	int				map_width;
+	float			win_x;
+	float			win_y;
 	float			cub_size;
 	void			*mlx_ptr;
 	void			*win_ptr;
@@ -54,15 +52,18 @@ typedef struct s_mlx
 	t_img			texture;
 	t_img			img;
 	t_player		*player;
-	t_pos			*pos;
 	t_rays			*rays;
+	t_pos			*pos;
 }	t_mlx;
 
 /*::::::::::::ft_janitor::::::::::::*/
-// -------> you can use this function to print errors and exit <-------
-void	ft_error_buster(int id);
+void	ft_error_buster(int id, t_mlx *mlx);
+void	ft_error_buster2(int id);
+void	ft_free(char **str);
+void	ft_free_all(t_mlx *mlx);
 
 /*::::::::::::::::PRS:::::::::::::::*/
+
 			/*---file_check---*/
 void	ft_file_parser(t_mlx *mlx, char *av);
 void	get_file(t_mlx *mlx, char *file);
@@ -94,11 +95,6 @@ void	check_colors_format(char	*str, t_mlx *mlx, char c);
 void	check_colors_range(char	*str, t_mlx *mlx, char c);
 void	ft_color_assigner(t_mlx *mlx, char c, int a, int i);
 
-			/*---ft_error_check---*/
-void	ft_free(char **str);
-void	ft_free_all(t_mlx *mlx);
-void	ft_Error(char *str, t_mlx *mlx);
-
 			/*---new_map---*/
 void	copy_map(t_mlx *mlx);
 int		get_start(t_mlx *mlx, char *line, int type);
@@ -124,7 +120,7 @@ void	ft_textures_init(t_mlx *mlx);
 
 			/*---ft_canvas_control---*/
 void	ft_canvas_maker(t_mlx *mlx);
-int		update(t_mlx *mlx);
+int		ft_update(t_mlx *mlx);
 
 			/*---ft_rays---*/
 void	ft_prime_and_cast(t_mlx *mlx);
@@ -143,6 +139,7 @@ void	ft_clear_player(t_mlx *mlx, int x, int y, int size);
 void	ft_clear_map(t_mlx *mlx);
 
 			/*---ft_player_movements---*/
+void	ft_pos_calculator(t_mlx *mlx);
 void	ft_move_front(t_mlx *mlx);
 void	ft_move_back(t_mlx *mlx);
 void	ft_move_left(t_mlx *mlx);
@@ -156,23 +153,23 @@ void	ft_draw_scaled_square(t_mlx *mlx, int x, int y, int color);
 void	ft_draw_rectangle(t_mlx *mlx, t_pos *coordinates,
 			t_pos width_n_height, int color);
 
-			/*---ft_keylogger---*/
-int		ft_cross(int key, t_mlx *mlx);
-int		ft_key_press(int keycode, t_mlx *mlx);
-int		ft_key_release(int keycode, t_mlx *mlx);
-
 			/*---ft_maths_hub0---*/
+float	ft_hit_distance(float *coor, t_mlx *mlx);
 int		ft_wall_colision(t_mlx *mlx);
 int		ft_wall_detector(float x, float y, t_mlx *mlx);
-void	ft_pos_calculator(t_mlx *mlx);
 void	ft_move_calculator(t_mlx *mlx);
 void	ft_turn_calculator(t_mlx *mlx);
 
 			/*---ft_maths_hub1---*/
-float	ft_hit_distance(float *coor, t_mlx *mlx);
+int		ft_wall_inspection(t_mlx *mlx, t_rays *ray, float *coord, int n);
 void	ft_h_hit_calculator(t_mlx *mlx, t_rays *h, char *heading, int *door);
 void	ft_v_hit_calculator(t_mlx *mlx, t_rays *v, char *heading, int *door);
 void	ft_vertical_detector(t_mlx *mlx, t_rays *v);
 void	ft_horizontal_detector(t_mlx *mlx, t_rays *h);
+
+			/*---ft_keylogger---*/
+int		ft_cross(int key, t_mlx *mlx);
+int		ft_key_press(int keycode, t_mlx *mlx);
+int		ft_key_release(int keycode, t_mlx *mlx);
 
 #endif
