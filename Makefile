@@ -2,16 +2,22 @@
 OS 			= $(shell uname -s)
 
 #:::::::::::::::VARS:::::::::::::::#
-NAME 		= cub3D
 SRC_DIR		= src/
 OBJ_DIR 	= .obj/
 LIB			= lib/lib.a
 FSANITIZE 	= #-g -fsanitize=address
 CFLAGS 		= -Wall -Werror -Wextra $(HEADER) $(FSANITIZE)
 CC 			= cc
-HEADER = -I includes
 MAIN = main ft_janitor 
-M_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix src/, $(MAIN))))
+
+#:::::::::::::::MANDATORY:::::::::::::::#
+NAME 		= cub3D
+HEADER = -I mandatory/includes
+M_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix mandatory/src/, $(MAIN))))
+
+#:::::::::::::::BONUS:::::::::::::::#
+BONUS 		= cub3D_bonus
+HEADER = -I bonus/includes
 
 #::::::::::::::::MLX:::::::::::::::#
 ifeq ($(OS), Darwin)
@@ -24,34 +30,54 @@ endif
 
 all: $(NAME)
 
+bonus: $(BONUS)
+
 #::::::::::::::::PRS:::::::::::::::#
 P_FILES = file_check texter_check colors_check map_check0 map_check1 ft_error m_get_next_line new_map
-
-P_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix src/parsing/, $(P_FILES))))
+			#---mandatory---#
+P_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix mandatory/src/parsing/, $(P_FILES))))
+			#---bonus---#
+P_OBJS_B = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix bonus/src/parsing/, $(P_FILES))))
 
 #::::::::::::::::RAY:::::::::::::::#
 R_FILES = ft_shapes ft_drawer ft_keylogger ft_maths_hub0 ft_maths_hub1 ft_starter ft_rays \
 		  ft_player_movements ft_canvas_control
 
-R_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix src/ray_casting/, $(R_FILES))))
+			#---mandatory---#
+R_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix mandatory/src/ray_casting/, $(R_FILES))))
+			#---bonus---#
+R_OBJS_B = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix bonus/src/ray_casting/, $(R_FILES))))
 
 #::::::::::::::::TXT:::::::::::::::#
 T_FILES = ft_textures
 
-T_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix src/textures/, $(T_FILES))))
+			#---mandatory---#
+T_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix mandatory/src/textures/, $(T_FILES))))
+			#---bonus---#
+T_OBJS_B = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix bonus/src/textures/, $(T_FILES))))
 
 #:::::::::::::Compile::::::::::::::#
+			#---mandatory---#
 $(NAME): $(M_OBJS) $(P_OBJS) $(R_OBJS) $(T_OBJS)
 	@echo $(cursive)$(grey)":::Making object files:::"$(reset)
 	@echo $(cursive)$(grey)":::Compiling $(NAME):::"$(reset)
 	@$(CC) $(CFLAGS) $(M_OBJS)  $(P_OBJS) $(R_OBJS) $(T_OBJS) $(LIB) $(COMP) -o $(NAME)
 	@echo $(f_green)":::✅ $(NAME) is ready ✅:::"$(reset)
 
+			@#---bonus---#
+$(BONUS): $(M_OBJS) $(P_OBJS_B) $(R_OBJS_B) $(T_OBJS_B)
+	@echo $(cursive)$(grey)":::Making object files:::"$(reset)
+	@echo $(cursive)$(grey)":::Compiling $(BONUS):::"$(reset)
+	@$(CC) $(CFLAGS) $(M_OBJS) $(P_OBJS_B) $(R_OBJS_B) $(T_OBJS_B) $(LIB) $(COMP) -o $(BONUS)
+	@echo $(f_green)":::✅ $(BONUS) is ready ✅:::"$(reset)
+
 $(OBJ_DIR)%.o: %.c 
 	@make -s -C lib/
-	@mkdir -p .obj/src .obj/src/parsing .obj/src/ray_casting .obj/src/textures
+	@mkdir -p .obj/mandatory/src .obj/mandatory/src/parsing .obj/mandatory/src/ray_casting .obj/mandatory/src/textures
+	@mkdir -p .obj/bonus/src .obj/bonus/src/parsing .obj/bonus/src/ray_casting .obj/bonus/src/textures
 	@$(CC) $(CFLAGS) $(COMP_O) -c $< -o $@
 
+#:::::::::::::Clean::::::::::::::#
 clean:
 	@echo $(cursive)$(grey)":::Deleting object files:::"$(reset)
 	@rm -rf $(OBJ_DIR)
@@ -61,6 +87,7 @@ clean:
 fclean: clean
 	@echo $(cursive)$(grey)":::Deleting executable:::"$(reset)
 	@rm -rf $(NAME)
+	@rm -rf $(BONUS)
 	@make -s fclean -C lib/
 	@echo $(red)":::Deleted:::"$(reset)
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_rays.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rerayyad <rerayyad@student.42.fr>            +#+  +:+       +#+      */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 10:43:20 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/15 16:12:27 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/13 21:25:17 by rerayyad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ void	ft_3d_caster(t_mlx *mlx, int i)
 	coordinates.x = i;
 	coordinates.y = (mlx->win_y / 2) - (width_n_height.y / 2);
 	mlx->texture = ft_texture_selector(mlx);
-	//img_animations(mlx); // test
 	ft_draw_textured_wall(mlx, &coordinates, width_n_height);
 	ft_render_skyfloor(mlx, i, width_n_height, 1);
 }
@@ -92,7 +91,7 @@ void	ft_prime_and_cast(t_mlx *mlx)
 		if (mlx->rays->ray_angle < 0)
 			mlx->rays->ray_angle += (2 * M_PI);
 		ft_hit_detector(mlx);
-		ft_ray_igniter(mlx, 0x0000070); // color will be removed && will be removed in mandatory
+		ft_ray_igniter(mlx, 0x0000070);
 		ft_3d_caster(mlx, i);
 		mlx->rays->ray_angle += mlx->player->fov / mlx->rays->rays_num;
 		i++;

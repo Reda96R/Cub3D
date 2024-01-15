@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 09:57:02 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/15 18:28:49 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/14 18:39:45 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,5 @@ void	ft_error_buster2(int id)
 	else if (id == 14)
 		ft_putstr_fd("\033[0;31mError: Texture or color duplicate found\n", 2);
 	else if (id == 15)
-		ft_putstr_fd("\033[0;31mError: Invalid Texture format\n", 2);
+		ft_putstr_fd("\033[0;31mError: Wrong format\n", 2);
 }
