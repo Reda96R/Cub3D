@@ -6,13 +6,12 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 07:13:58 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/05 05:45:50 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/14 17:10:34 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/m_get_next_line.h"
-# include "../includes/libft.h"
-
+#include "../includes/m_get_next_line.h"
+#include "../includes/libft.h"
 
 int	ft_chr(char *s)
 {

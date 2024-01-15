@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 16:34:30 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/13 09:54:32 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/14 17:13:54 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,36 +22,6 @@ void	ft_map_parser(t_mlx *mlx)
 	check_map_is_locked(mlx);
 	ft_free(mlx->full_file);
 	copy_map(mlx);
-}
-
-int	skip_spaces(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i] && line[i] == ' ')
-		i++;
-	return (i);
-}
-
-int	skip_vide_line(t_mlx *mlx)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while(mlx->map[i])
-	{
-		j = 0;
-		while (mlx->map[i] && !mlx->map[i][j])
-			i++;
-		if (mlx->map[i][j] && mlx->map[i][j] == ' ')
-			j = skip_spaces(mlx->map[i]);
-		if (mlx->map[i][j] != '\0' && mlx->map[i][j] != '\n' && mlx->map[i][j] != ' ')
-			break;
-		i++;
-	}
-	return (i);
 }
 
 void	map_height_width(t_mlx *mlx)
@@ -91,41 +61,49 @@ void	check_map_format(t_mlx *mlx)
 	is_palyer_deplicate(mlx);
 	i = skip_vide_line(mlx);
 	if (!mlx->map[i])
-		ft_Error("Map is not valid", mlx);
+		ft_error_buster(10, mlx);
 	while (mlx->map[i] && mlx->map[i + 1])
 	{
 		j = 0;
-		if (!mlx->map[i][j] && mlx->map[i + 1][j] && mlx->map[i + 1][j] != '\n')
-		{
-			while(mlx->map[i])
-			{
-				j = 0;
-				while (mlx->map[i][j])
-				{
-					if (mlx->map[i][j] != '1' && mlx->map[i][j] != '0' && mlx->map[i][j] != 'N'
-						&& mlx->map[i][j] != 'S' && mlx->map[i][j] != 'E' && mlx->map[i][j] != 'W')
-						j++;
-					else
-					{
-						printf("mlx->map[i][j] = %c\n", mlx->map[i][j]);
-						ft_Error("Map is not valid", mlx);
-					}
-				}
-				i++;
-			}
-			if(!mlx->map[i - 1] && !mlx->map[i][j])
-				ft_Error("Map is not valid", mlx);
-			else
-				return ;
-		}
+		if (new_line_check(mlx, i, j) != 0)
+			return ;
 		while (mlx->map[i][j])
 		{
-			if (mlx->map[i][j] != '1' && mlx->map[i][j] != '0' && mlx->map[i][j] != 'N'
-				&& mlx->map[i][j] != 'S' && mlx->map[i][j] != 'E' && mlx->map[i][j] != 'W'
+			if (mlx->map[i][j] != '1' && mlx->map[i][j] != '0'
+				&& mlx->map[i][j] != 'N'
+				&& mlx->map[i][j] != 'S' && mlx->map[i][j] != 'E'
+				&& mlx->map[i][j] != 'W'
 				&& mlx->map[i][j] != ' ')
-				ft_Error("Map is not valid", mlx);
+				ft_error_buster(10, mlx);
 			j++;
 		}
 		i++;
 	}
+}
+
+int	new_line_check(t_mlx *mlx, int i, int j)
+{
+	if (!mlx->map[i][j] && mlx->map[i + 1][j] && mlx->map[i + 1][j] != '\n')
+	{
+		while (mlx->map[i])
+		{
+			j = 0;
+			while (mlx->map[i][j])
+			{
+				if (mlx->map[i][j] != '1' && mlx->map[i][j] != '0'
+					&& mlx->map[i][j] != 'N'
+					&& mlx->map[i][j] != 'S' && mlx->map[i][j] != 'E'
+					&& mlx->map[i][j] != 'W')
+					j++;
+				else
+					ft_error_buster(10, mlx);
+			}
+			i++;
+		}
+		if (!mlx->map[i - 1] && !mlx->map[i][j])
+			ft_error_buster(10, mlx);
+		else
+			return (1);
+	}
+	return (0);
 }

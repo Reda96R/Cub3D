@@ -6,7 +6,7 @@ NAME 		= cub3D
 SRC_DIR		= src/
 OBJ_DIR 	= .obj/
 LIB			= lib/lib.a
-FSANITIZE 	= -g -fsanitize=address
+FSANITIZE 	= #-g -fsanitize=address
 CFLAGS 		= -Wall -Werror -Wextra $(HEADER) $(FSANITIZE)
 CC 			= cc
 HEADER = -I includes
@@ -31,12 +31,12 @@ P_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix src/parsing/, $(P_F
 
 #::::::::::::::::RAY:::::::::::::::#
 R_FILES = ft_shapes ft_drawer ft_keylogger ft_maths_hub0 ft_maths_hub1 ft_starter ft_rays \
-		  ft_player_movements
+		  ft_player_movements ft_canvas_control
 
 R_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix src/ray_casting/, $(R_FILES))))
 
 #::::::::::::::::TXT:::::::::::::::#
-T_FILES = file_to_image
+T_FILES = ft_textures
 
 T_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix src/textures/, $(T_FILES))))
 

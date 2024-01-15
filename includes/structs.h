@@ -6,16 +6,12 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:54:40 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/12 08:35:24 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/15 13:34:30 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
-
-/*::::::::::::::::PRS:::::::::::::::*/
-
-/*::::::::::::::::RAY:::::::::::::::*/
 
 typedef struct s_player
 {
@@ -63,6 +59,7 @@ typedef struct s_img
 {
 	void	*img;
 	char	*id;
+	char	*path;
 	int		endian;
 	int		bpp;
 	int		len;

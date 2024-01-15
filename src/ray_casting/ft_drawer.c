@@ -3,23 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_drawer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rerayyad <rerayyad@student.42.fr>            +#+  +:+       +#+      */
+/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:52:45 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/13 14:54:45 by rerayyad         ###   ########.fr       */
+/*   Updated: 2024/01/15 16:14:28 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-int	update(t_mlx *mlx)
+void	ft_put_pixel(t_mlx *mlx, int x, int y, int color)
 {
-	ft_scene_cleaner(mlx);
-	ft_pos_calculator(mlx);
-	ft_prime_and_cast(mlx);
-	ft_draw_map(mlx);// will be removed in mandatory
-	ft_draw_player(mlx, mlx->player->x, mlx->player->y);// will be removed in mandatory
-	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img.img, 0, 0);
+	char	*p;
+
+	if (mlx->win_x > x && mlx->win_y > y && x >= 0 && y >= 0)
+	{
+		p = mlx->img.id + (y * mlx->img.len + x * (mlx->img.bpp / 8));
+		*(unsigned int *)p = color;
+	}
+}
+
+int	ft_my_mlx_pixel_get(t_mlx *mlx, int x, int y)
+{
+	char	*dst;
+
+	if (mlx->win_x > x && mlx->win_y > y && x >= 0 && y >= 0)
+	{
+		dst = mlx->texture.id
+			+ (y * mlx->texture.len + x * (mlx->texture.bpp / 8));
+		return (*(unsigned int *)dst);
+	}
 	return (0);
 }
 
@@ -39,17 +52,6 @@ void	ft_scene_cleaner(t_mlx *mlx)
 			h++;
 		}
 		w++;
-	}
-}
-
-void	ft_put_pixel(t_mlx *mlx, int x, int y, int color)
-{
-	char	*p;
-
-	if (mlx->win_x > x && mlx->win_y > y && x >= 0 && y >= 0)
-	{
-		p = mlx->img.id + (y * mlx->img.len + x * (mlx->img.bpp / 8));
-		*(unsigned int *)p = color;
 	}
 }
 
