@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 03:08:06 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/14 17:19:43 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/15 18:09:29 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	fill_texter(t_mlx *mlx, char *str)
 		ft_strlen(str) - get_start(mlx, str, 2) - 1);
 	else
 		return (1);
+	if (mlx->flag == 1)
+		check_map_order(mlx);
 	return (0);
 }
 
@@ -53,8 +55,11 @@ void	fill_texter_map(int i, int j, int size, t_mlx *mlx)
 				mlx->map[j++] = ft_substr(mlx->full_file[i], 0, \
 				ft_strlen(mlx->full_file[i]));
 			else
+			{
 				mlx->map[j++] = ft_substr(mlx->full_file[i], 0, \
 				ft_strlen(mlx->full_file[i]) - 1);
+				mlx->flag = 1;
+			}
 		}
 		i++;
 	}
@@ -78,4 +83,25 @@ void	get_texters(t_mlx *mlx)
 		ft_error_buster(1, mlx);
 	mlx->map[size] = NULL;
 	fill_texter_map(i, j, size, mlx);
+}
+
+void	check_map_order(t_mlx *mlx)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	if (!mlx->map)
+		return ;
+	while(mlx->map[i])
+	{
+		j = 0;
+		while (mlx->map[i][j])
+		{
+			if (mlx->map[i][j] != '\n' && mlx->map[i][j] != '\0' && mlx->map[i][j] != ' ')
+				ft_error_buster(10, mlx);
+			j++;
+		}
+		i++;
+	}
 }

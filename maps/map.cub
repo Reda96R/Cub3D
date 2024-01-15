@@ -4,8 +4,8 @@ SO textres/image4.xpm
 WE textres/image3.xpm
 
 
-F 1,100,20
-C 15,200,200
+F 50,50,50
+C 100,20,20         
 
 11111
 10S01

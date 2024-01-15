@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_rays.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rerayyad <rerayyad@student.42.fr>            +#+  +:+       +#+      */
+/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 10:43:20 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/13 21:25:17 by rerayyad         ###   ########.fr       */
+/*   Updated: 2024/01/15 16:12:27 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	ft_3d_caster(t_mlx *mlx, int i)
 	coordinates.x = i;
 	coordinates.y = (mlx->win_y / 2) - (width_n_height.y / 2);
 	mlx->texture = ft_texture_selector(mlx);
+	//img_animations(mlx); // test
 	ft_draw_textured_wall(mlx, &coordinates, width_n_height);
 	ft_render_skyfloor(mlx, i, width_n_height, 1);
 }

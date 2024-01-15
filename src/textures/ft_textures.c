@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 14:38:19 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/14 17:28:53 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/15 16:16:20 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,10 @@ void	ft_draw_textured_wall(t_mlx *mlx, t_pos *coordinates,
 	int		y;
 	float	scale;
 	t_pos	*pos;
+	int		i;
+	//int 	j;
 
+	i = 0;
 	pos = malloc(sizeof(t_pos));
 	if (!pos)
 		ft_error_buster(1, mlx);
@@ -91,20 +94,59 @@ void	ft_draw_textured_wall(t_mlx *mlx, t_pos *coordinates,
 		pos->y = ((width_n_height.y - mlx->win_y) / 2) * scale;
 	}
 	y = coordinates->y;
-	while (y < coordinates->y + width_n_height.y && y < mlx->win_y)
-	{
-		pos->y += scale;
-		ft_put_pixel(mlx, x, y++, ft_my_mlx_pixel_get(mlx, pos->x, pos->y));
-	}
+	//j = pos->y;
+	//while (mlx->animation[i].img && i < 3)
+	//{
+		//pos->y = j;
+		while (y < coordinates->y + width_n_height.y && y < mlx->win_y)
+		{
+			pos->y += scale;
+			ft_put_pixel(mlx, x, y++, ft_my_mlx_pixel_get(mlx, pos->x, pos->y));
+		}
+	//	i++;
+	//}
 	free (pos);
 }
 
 void	pos_x_init(t_mlx *mlx, t_pos *pos)
 {
-	if (mlx->rays->s == 'h')
-		pos->x = ((mlx->rays->hit_x / mlx->cub_size)
-				- (int)(mlx->rays->hit_x / mlx->cub_size)) * mlx->texture.width;
-	else
-		pos->x = ((mlx->rays->hit_y / mlx->cub_size)
-				- (int)(mlx->rays->hit_y / mlx->cub_size)) * mlx->texture.width;
+	int i;
+
+	i = 0;
+//	while(mlx->animation[i].img && i < 3)
+	//{
+		if (mlx->rays->s == 'h')
+			pos->x = ((mlx->rays->hit_x / mlx->cub_size)
+					- (int)(mlx->rays->hit_x / mlx->cub_size)) * mlx->texture.width;
+		else
+			pos->x = ((mlx->rays->hit_y / mlx->cub_size)
+					- (int)(mlx->rays->hit_y / mlx->cub_size)) * mlx->texture.width;
+		i++;
+	//}
 }
+
+void	path_assigner(t_mlx *mlx) // will be deleted in mandatory part
+{
+	mlx->animation[0].path = "textres/HLFIRA_1-_64_.xpm";
+	mlx->animation[1].path = "textres/HLFIRA_2-_64_.xpm";
+	mlx->animation[2].path = "textres/HLFIRB_1-_64_.xpm";
+}
+
+void	img_animations(t_mlx *mlx) // will be deleted in mandatory part
+{
+	int i;
+	
+	i = 0;
+	path_assigner(mlx);
+	while (i < 3)
+	{
+		mlx->animation[i].img = mlx_xpm_file_to_image(mlx->mlx_ptr, mlx->animation[i].path, &mlx->animation[i].width, &mlx->animation[i].len);
+		if (!mlx->animation[i].img)
+			ft_error_buster(6, mlx);
+		mlx->animation[i].id = mlx_get_data_addr(mlx->animation[i].img, &mlx->animation[i].bpp, &mlx->animation[i].len, &mlx->animation[i].endian);
+		if (!mlx->animation[i].id)
+			ft_error_buster(6, mlx);
+		i++;
+	}
+}
+

@@ -36,6 +36,7 @@ typedef struct s_mlx
 	void			*win_ptr;
 	char			**full_file;
 	char			**map;
+	int				flag;
 	char			**new_map;
 	char			*north_texture;
 	char			*south_texture;
@@ -50,10 +51,11 @@ typedef struct s_mlx
 	t_img			*w_wall;
 	t_img			*e_wall;
 	t_img			texture;
+	t_img			animation[3];
 	t_img			img;
 	t_player		*player;
 	t_rays			*rays;
-	t_pos			*pos;
+	t_pos			pos;
 }	t_mlx;
 
 /*::::::::::::ft_janitor::::::::::::*/
@@ -78,6 +80,7 @@ int		skip_vide_line(t_mlx *mlx);
 
 			/*---texter_check---*/
 void	get_texters(t_mlx *mlx);
+void	check_map_order(t_mlx *mlx);
 void	fill_texter_map(int i, int j, int size, t_mlx *mlx);
 
 			/*---map_check0---*/
@@ -115,6 +118,9 @@ void	ft_render_skyfloor(t_mlx *mlx, int i, t_pos width_n_height, int n);
 void	ft_draw_textured_wall(t_mlx *mlx, t_pos *coordinates,
 			t_pos width_n_height);
 void	pos_x_init(t_mlx *mlx, t_pos *pos);
+void	img_animations(t_mlx *mlx); // test animation
+void	path_assigner(t_mlx *mlx);
+
 /*::::::::::::::::RAY:::::::::::::::*/
 
 			/*---ft_starter---*/
