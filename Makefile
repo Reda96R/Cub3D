@@ -8,16 +8,18 @@ LIB			= lib/lib.a
 FSANITIZE 	= #-g -fsanitize=address
 CFLAGS 		= -Wall -Werror -Wextra $(HEADER) $(FSANITIZE)
 CC 			= cc
-MAIN = main ft_janitor 
 
 #:::::::::::::::MANDATORY:::::::::::::::#
 NAME 		= cub3D
 HEADER = -I mandatory/includes
+MAIN = main ft_janitor 
 M_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix mandatory/src/, $(MAIN))))
 
 #:::::::::::::::BONUS:::::::::::::::#
 BONUS 		= cub3D_bonus
 HEADER = -I bonus/includes
+MAIN_B = main ft_janitor 
+M_OBJS_B = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix mandatory/src/, $(MAIN_B))))
 
 #::::::::::::::::MLX:::::::::::::::#
 ifeq ($(OS), Darwin)
@@ -65,7 +67,7 @@ $(NAME): $(M_OBJS) $(P_OBJS) $(R_OBJS) $(T_OBJS)
 	@echo $(f_green)":::✅ $(NAME) is ready ✅:::"$(reset)
 
 			@#---bonus---#
-$(BONUS): $(M_OBJS) $(P_OBJS_B) $(R_OBJS_B) $(T_OBJS_B)
+$(BONUS): $(M_OBJS_B) $(P_OBJS_B) $(R_OBJS_B) $(T_OBJS_B)
 	@echo $(cursive)$(grey)":::Making object files:::"$(reset)
 	@echo $(cursive)$(grey)":::Compiling $(BONUS):::"$(reset)
 	@$(CC) $(CFLAGS) $(M_OBJS) $(P_OBJS_B) $(R_OBJS_B) $(T_OBJS_B) $(LIB) $(COMP) -o $(BONUS)
