@@ -100,7 +100,7 @@ void	cheack_map_borders(t_mlx *mlx)
 			if (i == 0 || j == 0 || !mlx->map[i + 1] || !mlx->map[i][j + 1])
 			{
 				if (mlx->map[i][j] != '1' && mlx->map[i][j] != ' '
-					&& mlx->map[i][j] != '\n')
+					&& mlx->map[i][j] != '\n')//add the ability for the borders to be A
 					ft_error_buster(10, mlx);
 			}
 			j++;

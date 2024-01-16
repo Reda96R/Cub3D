@@ -32,7 +32,9 @@ t_img	*ft_file_to_image(t_mlx *mlx, char *path)
 
 t_img	ft_animated_select(t_mlx *mlx)
 {
-
+	if (mlx->animation % (4 * ANIMATION) == 0)
+		mlx->animation = 0;
+	return (*mlx->a_wall[mlx->animation++ / ANIMATION]);
 }
 
 t_img	ft_texture_selector(t_mlx *mlx)
@@ -105,15 +107,6 @@ void	ft_draw_textured_wall(t_mlx *mlx, t_pos *coordinates,
 	}
 	free (pos);
 }
-
-// void	ft_draw_animated_textured_wall(t_mlx *mlx, t_pos *coordinates,
-// 		t_pos width_n_height)
-// {
-// 	int		x;
-// 	int		y;
-// 	float	scale;
-// 	t_pos	*pos[4];
-// }
 
 void	pos_x_init(t_mlx *mlx, t_pos *pos)
 {

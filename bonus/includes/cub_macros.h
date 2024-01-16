@@ -15,6 +15,7 @@
 
 /*::::Cube propreties::::*/
 # define SPACE 0
+# define ANIMATION 10000
 // # define CUB_SIZE 100
 
 /*::::Map propreties::::*/

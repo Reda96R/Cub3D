@@ -29,6 +29,7 @@ typedef struct s_mlx
 {
 	int				map_height;
 	int				map_width;
+	int				animation;
 	float			win_x;
 	float			win_y;
 	float			cub_size;

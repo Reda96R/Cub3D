@@ -75,16 +75,8 @@ void	ft_3d_caster(t_mlx *mlx, int i)
 	ft_render_skyfloor(mlx, i, width_n_height, 0);
 	coordinates.x = i;
 	coordinates.y = (mlx->win_y / 2) - (width_n_height.y / 2);
-	if (mlx->rays->type != 'A')
-	{
-		mlx->texture = ft_texture_selector(mlx);
-		ft_draw_textured_wall(mlx, &coordinates, width_n_height);
-	}
-	else
-	{
-		mlx->texture = ft_texture_selector(mlx);
-		ft_draw_textured_wall(mlx, &coordinates, width_n_height);
-	}
+	mlx->texture = ft_texture_selector(mlx);
+	ft_draw_textured_wall(mlx, &coordinates, width_n_height);
 	ft_render_skyfloor(mlx, i, width_n_height, 1);
 }
 

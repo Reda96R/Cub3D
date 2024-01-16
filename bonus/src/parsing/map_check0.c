@@ -72,8 +72,8 @@ void	check_map_format(t_mlx *mlx)
 			if (mlx->map[i][j] != '1' && mlx->map[i][j] != '0'
 				&& mlx->map[i][j] != 'N'
 				&& mlx->map[i][j] != 'S' && mlx->map[i][j] != 'E'
-				&& mlx->map[i][j] != 'W'
-				&& mlx->map[i][j] != ' ')
+				&& mlx->map[i][j] != 'W' && mlx->map[i][j] != ' '
+				&& mlx->map[i][j] != 'A')
 				ft_error_buster(10, mlx);
 			j++;
 		}
@@ -93,7 +93,7 @@ int	new_line_check(t_mlx *mlx, int i, int j)
 				if (mlx->map[i][j] != '1' && mlx->map[i][j] != '0'
 					&& mlx->map[i][j] != 'N'
 					&& mlx->map[i][j] != 'S' && mlx->map[i][j] != 'E'
-					&& mlx->map[i][j] != 'W')
+					&& mlx->map[i][j] != 'W' && mlx->map[i][j] != 'A')
 					j++;
 				else
 					ft_error_buster(10, mlx);
