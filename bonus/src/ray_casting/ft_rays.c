@@ -26,6 +26,7 @@ void	ft_ray_igniter(t_mlx *mlx, int color)
 void	ft_hit_assigner(t_rays *ray, t_rays *hit)
 {
 	ray->s = hit->s;
+	ray->type = hit->type;
 	ray->hit_x = hit->hit_x;
 	ray->hit_y = hit->hit_y;
 	ray->heading = hit->heading;
@@ -74,8 +75,16 @@ void	ft_3d_caster(t_mlx *mlx, int i)
 	ft_render_skyfloor(mlx, i, width_n_height, 0);
 	coordinates.x = i;
 	coordinates.y = (mlx->win_y / 2) - (width_n_height.y / 2);
-	mlx->texture = ft_texture_selector(mlx);
-	ft_draw_textured_wall(mlx, &coordinates, width_n_height);
+	if (mlx->rays->type != 'A')
+	{
+		mlx->texture = ft_texture_selector(mlx);
+		ft_draw_textured_wall(mlx, &coordinates, width_n_height);
+	}
+	else
+	{
+		mlx->texture = ft_texture_selector(mlx);
+		ft_draw_textured_wall(mlx, &coordinates, width_n_height);
+	}
 	ft_render_skyfloor(mlx, i, width_n_height, 1);
 }
 

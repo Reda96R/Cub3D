@@ -41,6 +41,7 @@ typedef struct s_mlx
 	char			*south_texture;
 	char			*west_texture;
 	char			*east_texture;
+	char			**animated_texture;
 	char			*c_color;
 	char			*f_color;
 	unsigned int	c_color_int;
@@ -49,6 +50,8 @@ typedef struct s_mlx
 	t_img			*s_wall;
 	t_img			*w_wall;
 	t_img			*e_wall;
+	t_img			*door;
+	t_img			*a_wall[4];
 	t_img			texture;
 	t_img			img;
 	t_player		*player;

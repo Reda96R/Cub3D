@@ -84,6 +84,8 @@ void	ft_player_init(t_player **player, t_mlx *mlx)
 
 void	ft_textures_init(t_mlx *mlx)
 {
+	int	i;
+
 	mlx->n_wall = ft_file_to_image(mlx, mlx->north_texture);
 	if (!mlx->n_wall)
 		ft_error_buster(6, mlx);
@@ -96,4 +98,11 @@ void	ft_textures_init(t_mlx *mlx)
 	mlx->e_wall = ft_file_to_image(mlx, mlx->east_texture);
 	if (!mlx->e_wall)
 		ft_error_buster(6, mlx);
+	i = 0;
+	while (i < 4)
+	{
+		mlx->a_wall[i] = ft_file_to_image(mlx, mlx->animated_texture[i]);
+		if (!mlx->a_wall[i++])
+			ft_error_buster(int id, t_mlx *mlx)
+	}
 }

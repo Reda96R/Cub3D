@@ -38,7 +38,7 @@ typedef struct s_rays
 	int		up;
 	int		right;
 	char	s;
-	int		door;
+	int		type;
 	char	heading;
 	float	rays_num;
 	float	ray_angle;

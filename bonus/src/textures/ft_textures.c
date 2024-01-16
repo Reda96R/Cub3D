@@ -30,8 +30,15 @@ t_img	*ft_file_to_image(t_mlx *mlx, char *path)
 	return (texture);
 }
 
+t_img	ft_animated_select(t_mlx *mlx)
+{
+
+}
+
 t_img	ft_texture_selector(t_mlx *mlx)
 {
+	if (mlx->rays->type == 'A')
+		return (ft_animated_select(mlx));
 	if (mlx->rays->heading == 'N')
 		return (*mlx->n_wall);
 	else if (mlx->rays->heading == 'S')
@@ -98,6 +105,15 @@ void	ft_draw_textured_wall(t_mlx *mlx, t_pos *coordinates,
 	}
 	free (pos);
 }
+
+// void	ft_draw_animated_textured_wall(t_mlx *mlx, t_pos *coordinates,
+// 		t_pos width_n_height)
+// {
+// 	int		x;
+// 	int		y;
+// 	float	scale;
+// 	t_pos	*pos[4];
+// }
 
 void	pos_x_init(t_mlx *mlx, t_pos *pos)
 {
