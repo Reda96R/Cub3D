@@ -19,7 +19,7 @@ FILES = ft_isdigit.c ft_isalnum.c ft_atoi.c ft_strrchr.c ft_striteri.c \
 				ft_substr.c ft_tolower.c ft_toupper.c ft_strtrim.c ft_isxdigit.c\
 				get_next_line.c 
 OBJS = $(FILES:.c=.o)
-CFLAGS = -Wall -Wextra -Werror -I ../mandatory/includes/
+CFLAGS = -Wall -Wextra -Werror -I ../includes/
 AR = ar rc
 
 all: $(NAME)
