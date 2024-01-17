@@ -25,20 +25,28 @@ void	ft_ray_igniter(t_mlx *mlx, int color)
 
 void	ft_change_door_state(t_mlx *mlx, int *d, int x, int y)
 {
+	int	p_x;
+	int	p_y;
+
 	if (mlx->rays->colision_distance < 100)
 	{
-		*d = 1;
 		x = floor(mlx->rays->hit_y / mlx->cub_size);
 		y = floor(mlx->rays->hit_x / mlx->cub_size);
-		if (mlx->new_map[x][y] == 'H')
+		p_y = floor(mlx->player->x / mlx->cub_size);
+		p_x = floor(mlx->player->y / mlx->cub_size);
+		if (p_x != x || p_y != y)
 		{
-			mlx->player->space = 0;
-			mlx->new_map[x][y] = 'O';
-		}
-		else if (mlx->new_map[x][y] == 'O')
-		{
-			mlx->player->space = 0;
-			mlx->new_map[x][y] = 'H';
+			*d = 1;
+			if (mlx->new_map[x][y] == 'H')
+			{
+				mlx->player->space = 0;
+				mlx->new_map[x][y] = 'O';
+			}
+			else if (mlx->new_map[x][y] == 'O')
+			{
+				mlx->player->space = 0;
+				mlx->new_map[x][y] = 'H';
+			}
 		}
 	}
 }
