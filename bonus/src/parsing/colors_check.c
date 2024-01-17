@@ -6,12 +6,32 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 03:07:45 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/17 21:31:23 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/17 22:20:43 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
+void	check_color_arg(char *tmp, t_mlx *mlx)
+{
+	int	i;
+	int	flag;
+	
+	i = 0;
+	flag = 0;
+	while (tmp[i])
+	{
+		if (tmp[i] == ' ')
+		{
+			flag = 1;
+			while (tmp[i] == ' ')
+				i++;
+			if (flag == 1 && tmp[i] != '\0' && tmp[i] != ',')
+				ft_error_buster(8, mlx);
+		}
+		i++;
+	}
+}
 
 void	check_colors_format(char *str, t_mlx *mlx, char c)
 {
