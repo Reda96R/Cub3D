@@ -30,6 +30,7 @@ typedef struct s_mlx
 	int				map_height;
 	int				map_width;
 	int				animation;
+	int				d_animation;
 	float			win_x;
 	float			win_y;
 	float			cub_size;
@@ -43,6 +44,7 @@ typedef struct s_mlx
 	char			*west_texture;
 	char			*east_texture;
 	char			**animated_texture;
+	char			**door;
 	char			*c_color;
 	char			*f_color;
 	unsigned int	c_color_int;
@@ -51,13 +53,14 @@ typedef struct s_mlx
 	t_img			*s_wall;
 	t_img			*w_wall;
 	t_img			*e_wall;
-	t_img			*door;
+	t_img			*d_wall[4];
 	t_img			*a_wall[4];
 	t_img			texture;
 	t_img			img;
 	t_player		*player;
 	t_rays			*rays;
 	t_pos			*pos;
+	t_pos			*point;
 }	t_mlx;
 
 /*::::::::::::ft_janitor::::::::::::*/

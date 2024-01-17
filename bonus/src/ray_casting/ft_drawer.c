@@ -70,9 +70,9 @@ void	ft_draw_map(t_mlx *mlx)
 		j = 0;
 		while (mlx->new_map[i][j] && j < mlx->map_width)
 		{
-			if (mlx->new_map[i][j] == '1')
+			if (mlx->new_map[i][j] == '1' || mlx->new_map[i][j] == 'A')
 				ft_draw_scaled_square(mlx, x, y, 0xFFFFFF);
-			else if (mlx->new_map[i][j] == 'D')
+			else if (mlx->new_map[i][j] == 'H')
 				ft_draw_scaled_square(mlx, x, y, 0xCCFF00);
 			else
 				ft_draw_scaled_square(mlx, x, y, 0x000000);

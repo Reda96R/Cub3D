@@ -21,6 +21,7 @@ typedef struct s_player
 	int		m_l;
 	int		t_r;
 	int		t_l;
+	int		space;
 	int		direction;
 	float	fov;
 	float	x;
@@ -37,8 +38,9 @@ typedef struct s_rays
 {
 	int		up;
 	int		right;
-	char	s;
 	int		type;
+	int		door_state;
+	char	s;
 	char	heading;
 	float	rays_num;
 	float	ray_angle;

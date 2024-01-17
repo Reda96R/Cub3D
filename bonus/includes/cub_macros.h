@@ -15,7 +15,7 @@
 
 /*::::Cube propreties::::*/
 # define SPACE 0
-# define ANIMATION 10000
+# define ANIMATION 15000
 // # define CUB_SIZE 100
 
 /*::::Map propreties::::*/
@@ -40,5 +40,6 @@
 # define KEY_D 100   // D key
 # define KEY_L_A 65361 // Left arrow key
 # define KEY_R_A 65363 // Right arrow key
+# define KEY_SPACE 32  // Space key
 
 #endif 

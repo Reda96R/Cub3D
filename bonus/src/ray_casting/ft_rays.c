@@ -23,6 +23,33 @@ void	ft_ray_igniter(t_mlx *mlx, int color)
 	ft_draw_line(mlx, cord, color);
 }
 
+void	ft_change_door_state(t_mlx *mlx)
+{
+	int	map_x;
+	int	map_y;
+
+	if (mlx->player->space)
+	{
+		printf("test\n");
+		// if (mlx->rays->colision_distance < 120)
+		// {
+		map_x = floor(mlx->rays->hit_y / mlx->cub_size);
+		map_y = floor(mlx->rays->hit_x / mlx->cub_size);
+		if (mlx->rays->door_state == 1)
+		{
+			printf("open door\n");
+			mlx->new_map[map_x][map_y] = 'O';
+			mlx->rays->door_state = 0;
+		}
+		else if (mlx->rays->door_state == 0)
+		{
+			printf("close door\n");
+			mlx->new_map[map_x][map_y] = 'H';
+			mlx->rays->door_state = 1;
+		}
+	}
+}
+
 void	ft_hit_assigner(t_rays *ray, t_rays *hit)
 {
 	ray->s = hit->s;
@@ -31,6 +58,7 @@ void	ft_hit_assigner(t_rays *ray, t_rays *hit)
 	ray->hit_y = hit->hit_y;
 	ray->heading = hit->heading;
 	ray->colision_distance = hit->colision_distance;
+	ray->door_state = 1;
 }
 
 void	ft_hit_detector(t_mlx *mlx)
@@ -92,7 +120,8 @@ void	ft_prime_and_cast(t_mlx *mlx)
 		if (mlx->rays->ray_angle < 0)
 			mlx->rays->ray_angle += (2 * M_PI);
 		ft_hit_detector(mlx);
-		ft_ray_igniter(mlx, 0x0000070);
+		// if (mlx->rays->type == 'H' || mlx->rays->type == 'O')
+		// 	ft_change_door_state(mlx);
 		ft_3d_caster(mlx, i);
 		mlx->rays->ray_angle += mlx->player->fov / mlx->rays->rays_num;
 		i++;

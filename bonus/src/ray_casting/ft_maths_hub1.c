@@ -111,8 +111,15 @@ void	ft_vertical_detector(t_mlx *mlx, t_rays *v)
 	coor[0] = v->hit_x;
 	coor[1] = v->hit_y;
 	v->colision_distance = ft_hit_distance(coor, mlx);
-	if (v->type == 'D')
-		v->colision_distance += mlx->cub_size / 2;
+	if (v->type == 'H')
+	{
+		v->door_state = 1;
+		v->colision_distance += mlx->cub_size / 2.5;
+		v->hit_x = mlx->player->x + v->colision_distance
+			* cos(mlx->rays->ray_angle);
+		v->hit_y = mlx->player->y + v->colision_distance
+			* sin(mlx->rays->ray_angle);
+	}
 	v->s = 'v';
 }
 
@@ -134,7 +141,14 @@ void	ft_horizontal_detector(t_mlx *mlx, t_rays *h)
 	coor[0] = h->hit_x;
 	coor[1] = h->hit_y;
 	h->colision_distance = ft_hit_distance(coor, mlx);
-	if (h->type == 'D')
-		h->colision_distance += mlx->cub_size / 2;
+	if (h->type == 'H')
+	{
+		h->door_state = 1;
+		h->colision_distance += mlx->cub_size / 2.5;
+		h->hit_x = mlx->player->x + h->colision_distance
+			* cos(mlx->rays->ray_angle);
+		h->hit_y = mlx->player->y + h->colision_distance
+			* sin(mlx->rays->ray_angle);
+	}
 	h->s = 'h';
 }

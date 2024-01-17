@@ -30,17 +30,35 @@ t_img	*ft_file_to_image(t_mlx *mlx, char *path)
 	return (texture);
 }
 
-t_img	ft_animated_select(t_mlx *mlx)
+t_img	ft_animated_wall_select(t_mlx *mlx)
 {
 	if (mlx->animation % (4 * ANIMATION) == 0)
 		mlx->animation = 0;
 	return (*mlx->a_wall[mlx->animation++ / ANIMATION]);
 }
 
+t_img	ft_animated_slime_select(t_mlx *mlx)
+{
+	if (mlx->d_animation % (4 * ANIMATION) == 0)
+		mlx->d_animation = 0;
+	return (*mlx->d_wall[mlx->d_animation++ / ANIMATION]);
+}
+
+t_img	ft_animated_door_select(t_mlx *mlx)
+{
+	if (mlx->d_animation % (4 * ANIMATION) == 0)
+		mlx->d_animation = 0;
+	return (*mlx->d_wall[mlx->d_animation++ / ANIMATION]);
+}
+
 t_img	ft_texture_selector(t_mlx *mlx)
 {
 	if (mlx->rays->type == 'A')
-		return (ft_animated_select(mlx));
+		return (ft_animated_wall_select(mlx));
+	else if (mlx->rays->type == 'H')
+		return (ft_animated_slime_select(mlx));
+	else if (mlx->rays->type == 'D')
+		return (ft_animated_door_select(mlx));
 	if (mlx->rays->heading == 'N')
 		return (*mlx->n_wall);
 	else if (mlx->rays->heading == 'S')
@@ -103,7 +121,8 @@ void	ft_draw_textured_wall(t_mlx *mlx, t_pos *coordinates,
 	while (y < coordinates->y + width_n_height.y && y < mlx->win_y)
 	{
 		pos->y += scale;
-		ft_put_pixel(mlx, x, y++, ft_my_mlx_pixel_get(mlx, pos->x, pos->y));
+		ft_put_pixel(mlx, x, y, ft_my_mlx_pixel_get(mlx, pos->x, pos->y));
+		y++;
 	}
 	free (pos);
 }
