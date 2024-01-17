@@ -21,7 +21,8 @@ int	ft_wall_inspection(t_mlx *mlx, t_rays *ray, float *coord, int n)
 			*coord -= (SPACE + 2);
 		else if (!mlx->rays->up)
 			*coord += (SPACE + 2);
-		if (ft_wall_detector(ray->hit_x, *coord, mlx))
+		if (ft_wall_detector(ray->hit_x, *coord, mlx) != 'O'
+			&& ft_wall_detector(ray->hit_x, *coord, mlx) != 0)
 			return (1);
 	}
 	else
@@ -31,7 +32,8 @@ int	ft_wall_inspection(t_mlx *mlx, t_rays *ray, float *coord, int n)
 			*coord -= (SPACE + 2);
 		else if (mlx->rays->right)
 			*coord += (SPACE + 2);
-		if (ft_wall_detector(*coord, ray->hit_y, mlx))
+		if (ft_wall_detector(*coord, ray->hit_y, mlx) != 'O'
+			&& ft_wall_detector(*coord, ray->hit_y, mlx) != 0)
 			return (1);
 	}
 	return (0);
@@ -113,7 +115,6 @@ void	ft_vertical_detector(t_mlx *mlx, t_rays *v)
 	v->colision_distance = ft_hit_distance(coor, mlx);
 	if (v->type == 'H')
 	{
-		v->door_state = 1;
 		v->colision_distance += mlx->cub_size / 2.5;
 		v->hit_x = mlx->player->x + v->colision_distance
 			* cos(mlx->rays->ray_angle);
@@ -143,7 +144,6 @@ void	ft_horizontal_detector(t_mlx *mlx, t_rays *h)
 	h->colision_distance = ft_hit_distance(coor, mlx);
 	if (h->type == 'H')
 	{
-		h->door_state = 1;
 		h->colision_distance += mlx->cub_size / 2.5;
 		h->hit_x = mlx->player->x + h->colision_distance
 			* cos(mlx->rays->ray_angle);

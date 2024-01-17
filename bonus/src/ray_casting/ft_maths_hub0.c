@@ -33,8 +33,6 @@ int	ft_wall_detector(float x, float y, t_mlx *mlx)
 		return (0);
 	else if (mlx->new_map[map_x][map_y] == 'H')
 		return ('H');
-	else if (mlx->new_map[map_x][map_y] == 'D')
-		return ('D');
 	else if (mlx->new_map[map_x][map_y] == 'A')
 		return ('A');
 	else if (mlx->new_map[map_x][map_y] == 'O')
@@ -62,7 +60,7 @@ int	ft_wall_colision(t_mlx *mlx)
 			if (dx * dx + dy * dy <= r * r)
 				if (ft_wall_detector(i, j, mlx) == 1
 					|| ft_wall_detector(i, j, mlx) == 'A'
-					|| ft_wall_detector(i, j, mlx) == 'D')
+					|| ft_wall_detector(i, j, mlx) == 'H')
 					return (1);
 			j++;
 		}

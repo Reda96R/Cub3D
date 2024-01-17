@@ -6,7 +6,7 @@
 /*   By: rerayyad <rerayyad@student.42.fr>            +#+  +:+       +#+      */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 10:43:20 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/13 21:25:17 by rerayyad         ###   ########.fr       */
+/*   Updated: 2024/01/17 06:18:42 by rerayyad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,22 @@ void	ft_ray_igniter(t_mlx *mlx, int color)
 	ft_draw_line(mlx, cord, color);
 }
 
-void	ft_change_door_state(t_mlx *mlx)
+void	ft_change_door_state(t_mlx *mlx, int *d, int x, int y)
 {
-	int	map_x;
-	int	map_y;
-
-	if (mlx->player->space)
+	if (mlx->rays->colision_distance < 100)
 	{
-		printf("test\n");
-		// if (mlx->rays->colision_distance < 120)
-		// {
-		map_x = floor(mlx->rays->hit_y / mlx->cub_size);
-		map_y = floor(mlx->rays->hit_x / mlx->cub_size);
-		if (mlx->rays->door_state == 1)
+		*d = 1;
+		x = floor(mlx->rays->hit_y / mlx->cub_size);
+		y = floor(mlx->rays->hit_x / mlx->cub_size);
+		if (mlx->new_map[x][y] == 'H')
 		{
-			printf("open door\n");
-			mlx->new_map[map_x][map_y] = 'O';
-			mlx->rays->door_state = 0;
+			mlx->player->space = 0;
+			mlx->new_map[x][y] = 'O';
 		}
-		else if (mlx->rays->door_state == 0)
+		else if (mlx->new_map[x][y] == 'O')
 		{
-			printf("close door\n");
-			mlx->new_map[map_x][map_y] = 'H';
-			mlx->rays->door_state = 1;
+			mlx->player->space = 0;
+			mlx->new_map[x][y] = 'H';
 		}
 	}
 }
@@ -111,8 +104,12 @@ void	ft_3d_caster(t_mlx *mlx, int i)
 void	ft_prime_and_cast(t_mlx *mlx)
 {
 	int		i;
+	int		d;
+	int		map_x;
+	int		map_y;
 
 	i = 0;
+	d = 0;
 	mlx->rays->ray_angle = mlx->player->rot - (mlx->player->fov / 2);
 	while (i < mlx->rays->rays_num)
 	{
@@ -120,8 +117,11 @@ void	ft_prime_and_cast(t_mlx *mlx)
 		if (mlx->rays->ray_angle < 0)
 			mlx->rays->ray_angle += (2 * M_PI);
 		ft_hit_detector(mlx);
-		// if (mlx->rays->type == 'H' || mlx->rays->type == 'O')
-		// 	ft_change_door_state(mlx);
+		map_x = floor(mlx->rays->hit_y / mlx->cub_size);
+		map_y = floor(mlx->rays->hit_x / mlx->cub_size);
+		if (mlx->player->space && (mlx->new_map[map_x][map_y] == 'H'
+			|| mlx->new_map[map_x][map_y] == 'O') && !d)
+			ft_change_door_state(mlx, &d, map_x, map_y);
 		ft_3d_caster(mlx, i);
 		mlx->rays->ray_angle += mlx->player->fov / mlx->rays->rays_num;
 		i++;

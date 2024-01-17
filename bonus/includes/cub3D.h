@@ -60,8 +60,9 @@ typedef struct s_mlx
 	t_player		*player;
 	t_rays			*rays;
 	t_pos			*pos;
-	t_pos			*point;
 }	t_mlx;
+
+void	ft_change_door_state(t_mlx *mlx, int *d, int x, int y);
 
 /*::::::::::::ft_janitor::::::::::::*/
 void	ft_error_buster(int id, t_mlx *mlx);

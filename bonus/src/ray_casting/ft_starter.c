@@ -109,9 +109,6 @@ void	ft_slime_textures_init(t_mlx *mlx)
 {
 	int	i;
 
-	mlx->point = malloc (sizeof (t_pos));
-	mlx->point->x = -1;
-	mlx->point->y = -1;
 	mlx->door = malloc(sizeof (char *) * 5);
 	if (!mlx->door)
 		ft_error_buster(1, mlx);
@@ -132,9 +129,6 @@ void	ft_slime_textures_init(t_mlx *mlx)
 
 void	ft_textures_init(t_mlx *mlx)
 {
-	mlx->point = malloc(sizeof(t_pos));
-	mlx->point->x = -1;
-	mlx->point->y = -1;
 	mlx->n_wall = ft_file_to_image(mlx, mlx->north_texture);
 	if (!mlx->n_wall)
 		ft_error_buster(6, mlx);
