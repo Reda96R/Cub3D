@@ -143,5 +143,4 @@ void	ft_textures_init(t_mlx *mlx)
 		ft_error_buster(6, mlx);
 	ft_animated_textures_init(mlx);
 	ft_slime_textures_init(mlx);
-	// ft_door_textures_init(mlx);
 }

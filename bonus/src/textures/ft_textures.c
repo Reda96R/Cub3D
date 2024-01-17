@@ -57,8 +57,6 @@ t_img	ft_texture_selector(t_mlx *mlx)
 		return (ft_animated_wall_select(mlx));
 	else if (mlx->rays->type == 'H')
 		return (ft_animated_slime_select(mlx));
-	else if (mlx->rays->type == 'D')
-		return (ft_animated_door_select(mlx));
 	if (mlx->rays->heading == 'N')
 		return (*mlx->n_wall);
 	else if (mlx->rays->heading == 'S')
