@@ -79,6 +79,7 @@ int		skip_vide_line(t_mlx *mlx);
 			/*---texter_check---*/
 void	get_texters(t_mlx *mlx);
 void	fill_texter_map(int i, int j, int size, t_mlx *mlx);
+void	check_color_arg(char *tmp, t_mlx *mlx);
 
 			/*---map_check0---*/
 void	ft_map_parser(t_mlx *mlx);

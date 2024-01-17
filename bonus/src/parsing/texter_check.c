@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 03:08:06 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/14 17:19:43 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/17 21:31:30 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,10 @@ void	get_texters(t_mlx *mlx)
 		ft_error_buster(1, mlx);
 	mlx->map[size] = NULL;
 	fill_texter_map(i, j, size, mlx);
+}
+
+void	colors_existence(t_mlx *mlx)
+{
+	if (!mlx->c_color || !mlx->f_color)
+		ft_error_buster(7, mlx);
 }

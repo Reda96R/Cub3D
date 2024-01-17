@@ -6,17 +6,12 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 03:07:45 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/14 20:31:01 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/17 21:31:23 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-void	colors_existence(t_mlx *mlx)
-{
-	if (!mlx->c_color || !mlx->f_color)
-		ft_error_buster(7, mlx);
-}
 
 void	check_colors_format(char *str, t_mlx *mlx, char c)
 {
@@ -74,10 +69,11 @@ void	colors_range(t_mlx *mlx, char *tmp, int i, char c)
 	int		j;
 	char	*str;
 
-	j = 0;
 	k = 0;
-	while (tmp[j] == '0' || tmp[j] == ' ')
+	j = skip_spaces(tmp);
+	while (tmp[j] == '0' && tmp[j + 1] != '\0' && tmp[j + 1] != ' ')
 		j++;
+	check_color_arg(tmp + j, mlx);
 	while (tmp[j])
 	{
 		if (tmp[j] != ' ')
