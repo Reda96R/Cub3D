@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 14:38:19 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/14 17:28:53 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/17 15:09:54 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,43 +28,6 @@ t_img	*ft_file_to_image(t_mlx *mlx, char *path)
 	if (!texture->id)
 		ft_error_buster(6, mlx);
 	return (texture);
-}
-
-t_img	ft_animated_wall_select(t_mlx *mlx)
-{
-	if (mlx->animation % (4 * ANIMATION) == 0)
-		mlx->animation = 0;
-	return (*mlx->a_wall[mlx->animation++ / ANIMATION]);
-}
-
-t_img	ft_animated_slime_select(t_mlx *mlx)
-{
-	if (mlx->d_animation % (4 * ANIMATION) == 0)
-		mlx->d_animation = 0;
-	return (*mlx->d_wall[mlx->d_animation++ / ANIMATION]);
-}
-
-t_img	ft_animated_door_select(t_mlx *mlx)
-{
-	if (mlx->d_animation % (4 * ANIMATION) == 0)
-		mlx->d_animation = 0;
-	return (*mlx->d_wall[mlx->d_animation++ / ANIMATION]);
-}
-
-t_img	ft_texture_selector(t_mlx *mlx)
-{
-	if (mlx->rays->type == 'A')
-		return (ft_animated_wall_select(mlx));
-	else if (mlx->rays->type == 'H')
-		return (ft_animated_slime_select(mlx));
-	if (mlx->rays->heading == 'N')
-		return (*mlx->n_wall);
-	else if (mlx->rays->heading == 'S')
-		return (*mlx->s_wall);
-	else if (mlx->rays->heading == 'E')
-		return (*mlx->e_wall);
-	else
-		return (*mlx->w_wall);
 }
 
 void	ft_render_skyfloor(t_mlx *mlx, int i, t_pos width_n_height, int n)

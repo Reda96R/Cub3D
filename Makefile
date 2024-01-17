@@ -51,12 +51,13 @@ R_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix mandatory/src/ray_c
 R_OBJS_B = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix bonus/src/ray_casting/, $(R_FILES))))
 
 #::::::::::::::::TXT:::::::::::::::#
-T_FILES = ft_textures
+T_FILES_M = ft_textures
 
+T_FILES_B =  ft_textures ft_textures_selection
 			#---mandatory---#
-T_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix mandatory/src/textures/, $(T_FILES))))
+T_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix mandatory/src/textures/, $(T_FILES_M))))
 			#---bonus---#
-T_OBJS_B = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix bonus/src/textures/, $(T_FILES))))
+T_OBJS_B = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix bonus/src/textures/, $(T_FILES_B))))
 
 #:::::::::::::Compile::::::::::::::#
 			#---mandatory---#

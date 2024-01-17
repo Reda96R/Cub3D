@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 16:24:25 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/14 17:09:43 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/17 07:16:20 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	cheack_map_borders(t_mlx *mlx)
 			if (i == 0 || j == 0 || !mlx->map[i + 1] || !mlx->map[i][j + 1])
 			{
 				if (mlx->map[i][j] != '1' && mlx->map[i][j] != ' '
-					&& mlx->map[i][j] != '\n')//add the ability for the borders to be A
+					&& mlx->map[i][j] != '\n' && mlx->map[i][j] != 'A')
 					ft_error_buster(10, mlx);
 			}
 			j++;

@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 16:34:30 by rerayyad          #+#    #+#             */
-/*   Updated: 2024/01/14 17:13:54 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/17 14:24:01 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,8 @@ void	check_map_format(t_mlx *mlx)
 		while (mlx->map[i][j])
 		{
 			if (mlx->map[i][j] != '1' && mlx->map[i][j] != '0'
-				&& mlx->map[i][j] != 'N'
-				&& mlx->map[i][j] != 'S' && mlx->map[i][j] != 'E'
-				&& mlx->map[i][j] != 'W'
+				&& mlx->map[i][j] != 'N' && mlx->map[i][j] != 'S'
+				&& mlx->map[i][j] != 'E' && mlx->map[i][j] != 'W'
 				&& mlx->map[i][j] != ' ')
 				ft_error_buster(10, mlx);
 			j++;
@@ -91,9 +90,8 @@ int	new_line_check(t_mlx *mlx, int i, int j)
 			while (mlx->map[i][j])
 			{
 				if (mlx->map[i][j] != '1' && mlx->map[i][j] != '0'
-					&& mlx->map[i][j] != 'N'
-					&& mlx->map[i][j] != 'S' && mlx->map[i][j] != 'E'
-					&& mlx->map[i][j] != 'W')
+					&& mlx->map[i][j] != 'N' && mlx->map[i][j] != 'S'
+					&& mlx->map[i][j] != 'E' && mlx->map[i][j] != 'W')	
 					j++;
 				else
 					ft_error_buster(10, mlx);
