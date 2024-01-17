@@ -87,6 +87,7 @@ int		skip_vide_line(t_mlx *mlx);
 			/*---texter_check---*/
 void	get_texters(t_mlx *mlx);
 void	fill_texter_map(int i, int j, int size, t_mlx *mlx);
+void	colors_existence(t_mlx *mlx);
 
 			/*---map_check0---*/
 void	ft_map_parser(t_mlx *mlx);
@@ -102,11 +103,11 @@ void	cheack_map_borders(t_mlx *mlx);
 void	check_map_is_locked(t_mlx *mlx);
 
 			/*---color_check---*/
-void	colors_existence(t_mlx *mlx);
 void	colors_range(t_mlx *mlx, char *tmp, int i, char c);
 void	check_colors_format(char	*str, t_mlx *mlx, char c);
 void	check_colors_range(char	*str, t_mlx *mlx, char c);
 void	ft_color_assigner(t_mlx *mlx, char c, int a, int i);
+void	check_color_arg(char *tmp, t_mlx *mlx);
 
 			/*---new_map---*/
 void	copy_map(t_mlx *mlx);

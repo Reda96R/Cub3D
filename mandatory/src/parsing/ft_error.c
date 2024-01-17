@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 03:08:13 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/14 17:11:37 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/17 20:49:02 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	skip_spaces(char *line)
 {
 	int	i;
 
+	if (!line)
+		return (0);
 	i = 0;
 	while (line[i] && line[i] == ' ')
 		i++;

@@ -6,16 +6,31 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 03:07:45 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/14 20:31:01 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/17 22:20:43 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3D.h"
 
-void	colors_existence(t_mlx *mlx)
+void	check_color_arg(char *tmp, t_mlx *mlx)
 {
-	if (!mlx->c_color || !mlx->f_color)
-		ft_error_buster(7, mlx);
+	int	i;
+	int	flag;
+	
+	i = 0;
+	flag = 0;
+	while (tmp[i])
+	{
+		if (tmp[i] == ' ')
+		{
+			flag = 1;
+			while (tmp[i] == ' ')
+				i++;
+			if (flag == 1 && tmp[i] != '\0' && tmp[i] != ',')
+				ft_error_buster(8, mlx);
+		}
+		i++;
+	}
 }
 
 void	check_colors_format(char *str, t_mlx *mlx, char c)
@@ -74,10 +89,11 @@ void	colors_range(t_mlx *mlx, char *tmp, int i, char c)
 	int		j;
 	char	*str;
 
-	j = 0;
 	k = 0;
-	while (tmp[j] == '0' || tmp[j] == ' ')
+	j = skip_spaces(tmp);
+	while (tmp[j] == '0' && tmp[j + 1] != '\0' && tmp[j + 1] != ' ')
 		j++;
+	check_color_arg(tmp + j, mlx);
 	while (tmp[j])
 	{
 		if (tmp[j] != ' ')
