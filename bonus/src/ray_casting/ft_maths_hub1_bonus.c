@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3D.h"
+#include "../../includes/cub3D_bonus.h"
 
 int	ft_wall_inspection(t_mlx *mlx, t_rays *ray, float *coord, int n)
 {

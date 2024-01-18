@@ -49,6 +49,7 @@ void	ft_free_all(t_mlx *mlx)
 
 void	ft_error_buster(int id, t_mlx *mlx)
 {
+	(void)mlx;
 	if (id == 1)
 		ft_putstr_fd("\033[0;31mError: Unable to allocate memory\n", 2);
 	else if (id == 2)
@@ -63,12 +64,9 @@ void	ft_error_buster(int id, t_mlx *mlx)
 		ft_putstr_fd("\033[0;31mError: Wrong file format\n", 2);
 		ft_putstr_fd("\033[0;32m\tUsage: ./cub3D <mapname>.cub\n", 2);
 	}
-
 	else
 		ft_error_buster2(id);
 	printf("\033[0m");
-		//ft_free_all(mlx);
-	(void)mlx;
 	exit (1);
 }
 

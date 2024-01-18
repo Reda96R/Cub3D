@@ -16,17 +16,15 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
-#include <string.h>
+# include <string.h>
 # include <unistd.h>
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 4
 # endif
 
-
 char			*read_line(int fd, char *str);
 char			*end_line(char *str);
 char			*rest_val(char *str);
 char			*m_get_next_line(int fd);
-
 
 #endif

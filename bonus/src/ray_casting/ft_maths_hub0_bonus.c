@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3D.h"
+#include "../../includes/cub3D_bonus.h"
 
 float	ft_hit_distance(float *coor, t_mlx *mlx)
 {
@@ -48,7 +48,7 @@ int	ft_wall_colision(t_mlx *mlx)
 	int		dy;
 	float	r;
 
-	r = mlx->player->r + 5;
+	r = mlx->player->r + ((mlx->cub_size * 4) / 3);
 	i = mlx->player->x - (r * MINIMAP_SCALE);
 	while (i <= mlx->player->x + (r * MINIMAP_SCALE))
 	{

@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/m_get_next_line.h"
-#include "../includes/libft.h"
+#include "../../includes/m_get_next_line_bonus.h"
+#include "../../includes/libft_bonus.h"
 
 int	ft_chr(char *s)
 {

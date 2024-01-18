@@ -16,7 +16,7 @@ void	check_color_arg(char *tmp, t_mlx *mlx)
 {
 	int	i;
 	int	flag;
-	
+
 	i = 0;
 	flag = 0;
 	while (tmp[i])

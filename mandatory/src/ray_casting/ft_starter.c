@@ -30,7 +30,8 @@ t_mlx	*ft_data_init(char *av[])
 	if (!mlx->win_ptr)
 		ft_error_buster(2, mlx);
 	mlx->img.img = mlx_new_image(mlx->mlx_ptr, mlx->win_x, mlx->win_y);
-	mlx->img.id = mlx_get_data_addr(mlx->img.img, &mlx->img.bpp, &mlx->img.len, &mlx->img.endian);
+	mlx->img.id = mlx_get_data_addr(mlx->img.img, &mlx->img.bpp,
+			&mlx->img.len, &mlx->img.endian);
 	ft_free(mlx->map);
 	return (mlx);
 }
@@ -40,8 +41,8 @@ void	ft_mlx_init(t_mlx **mlx)
 	*mlx = malloc (sizeof (t_mlx));
 	if (!(*mlx))
 		ft_error_buster(1, *mlx);
-	(*mlx)->win_x = 1337;//(CUB_SIZE + SPACE) * MAP_X;
-	(*mlx)->win_y = 800;//(CUB_SIZE + SPACE) * MAP_Y;
+	(*mlx)->win_x = 1337;
+	(*mlx)->win_y = 800;
 	(*mlx)->east_texture = NULL;
 	(*mlx)->west_texture = NULL;
 	(*mlx)->south_texture = NULL;

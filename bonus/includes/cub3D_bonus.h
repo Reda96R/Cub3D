@@ -10,18 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <math.h>
-# include "libft.h"
-# include "get_next_line.h"
-# include "m_get_next_line.h"
-# include "structs.h"
-# include "cub_macros.h"
+# include "libft_bonus.h"
+# include "get_next_line_bonus.h"
+# include "m_get_next_line_bonus.h"
+# include "structs_bonus.h"
+# include "cub_macros_bonus.h"
 # include "../../mlx_linux/mlx.h"
 // # include <mlx.h>
 

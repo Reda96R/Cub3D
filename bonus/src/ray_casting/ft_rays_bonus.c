@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3D.h"
+#include "../../includes/cub3D_bonus.h"
 
 void	ft_ray_igniter(t_mlx *mlx, int color)
 {
@@ -28,7 +28,7 @@ void	ft_change_door_state(t_mlx *mlx, int *d, int x, int y)
 	int	p_x;
 	int	p_y;
 
-	if (mlx->rays->colision_distance < 100)
+	if (mlx->rays->colision_distance < mlx->player->r * 15)
 	{
 		x = floor(mlx->rays->hit_y / mlx->cub_size);
 		y = floor(mlx->rays->hit_x / mlx->cub_size);

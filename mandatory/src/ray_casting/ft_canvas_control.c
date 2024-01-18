@@ -15,9 +15,9 @@
 void	ft_canvas_maker(t_mlx *mlx)
 {
 	ft_prime_and_cast(mlx);
-	mlx->player->r = (mlx->cub_size * MINIMAP_SCALE) / 5;
-	mlx->player->spd = SPEED * (mlx->cub_size / 35); 
-	mlx->player->rot_spd = (ROT_SPEED * (M_PI / 180)) * (mlx->cub_size / 40);
+	mlx->player->r = (mlx->cub_size) / 10;
+	mlx->player->spd = SPEED * (mlx->player->r);
+	mlx->player->rot_spd = (mlx->player->spd) / mlx->cub_size;
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->img.img, 0, 0);
 	mlx_do_sync(mlx->mlx_ptr);
 	mlx_hook(mlx->win_ptr, 17, (1L << 17), ft_cross, mlx);

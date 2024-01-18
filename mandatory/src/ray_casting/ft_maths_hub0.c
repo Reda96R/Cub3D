@@ -44,7 +44,7 @@ int	ft_wall_colision(t_mlx *mlx)
 	int		dy;
 	float	r;
 
-	r = mlx->player->r + 5;
+	r = mlx->player->r + ((mlx->cub_size * 4) / 3);
 	i = mlx->player->x - (r * MINIMAP_SCALE);
 	while (i <= mlx->player->x + (r * MINIMAP_SCALE))
 	{

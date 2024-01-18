@@ -18,8 +18,8 @@ M_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix mandatory/src/, $(M
 #:::::::::::::::BONUS:::::::::::::::#
 BONUS 		= cub3D_bonus
 HEADER = -I bonus/includes
-MAIN_B = main ft_janitor 
-M_OBJS_B = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix mandatory/src/, $(MAIN_B))))
+MAIN_B = main_bonus ft_janitor_bonus 
+M_OBJS_B = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix bonus/src/, $(MAIN_B))))
 
 #::::::::::::::::MLX:::::::::::::::#
 ifeq ($(OS), Darwin)
@@ -39,24 +39,29 @@ P_FILES = file_check texter_check colors_check map_check0 map_check1 ft_error m_
 			#---mandatory---#
 P_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix mandatory/src/parsing/, $(P_FILES))))
 			#---bonus---#
-P_OBJS_B = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix bonus/src/parsing/, $(P_FILES))))
+P_FILES_B = file_check_bonus texter_check_bonus colors_check_bonus map_check0_bonus map_check1_bonus \
+			ft_error_bonus m_get_next_line_bonus new_map_bonus
+P_OBJS_B = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix bonus/src/parsing/, $(P_FILES_B))))
 
 #::::::::::::::::RAY:::::::::::::::#
+			#---mandatory---#
 R_FILES = ft_shapes ft_drawer ft_keylogger ft_maths_hub0 ft_maths_hub1 ft_starter ft_rays \
 		  ft_player_movements ft_canvas_control
-
-			#---mandatory---#
 R_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix mandatory/src/ray_casting/, $(R_FILES))))
+
 			#---bonus---#
-R_OBJS_B = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix bonus/src/ray_casting/, $(R_FILES))))
+R_FILES_B = ft_shapes_bonus ft_drawer_bonus ft_keylogger_bonus ft_maths_hub0_bonus ft_maths_hub1_bonus \
+			ft_starter_bonus ft_rays_bonus ft_player_movements_bonus ft_canvas_control_bonus
+
+R_OBJS_B = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix bonus/src/ray_casting/, $(R_FILES_B))))
 
 #::::::::::::::::TXT:::::::::::::::#
-T_FILES_M = ft_textures
-
-T_FILES_B =  ft_textures ft_textures_selection
 			#---mandatory---#
+T_FILES_M = ft_textures
 T_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix mandatory/src/textures/, $(T_FILES_M))))
+
 			#---bonus---#
+T_FILES_B =  ft_textures_bonus ft_textures_selection_bonus
 T_OBJS_B = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix bonus/src/textures/, $(T_FILES_B))))
 
 #:::::::::::::Compile::::::::::::::#
@@ -71,7 +76,7 @@ $(NAME): $(M_OBJS) $(P_OBJS) $(R_OBJS) $(T_OBJS)
 $(BONUS): $(M_OBJS_B) $(P_OBJS_B) $(R_OBJS_B) $(T_OBJS_B)
 	@echo $(cursive)$(grey)":::Making object files:::"$(reset)
 	@echo $(cursive)$(grey)":::Compiling $(BONUS):::"$(reset)
-	@$(CC) $(CFLAGS) $(M_OBJS) $(P_OBJS_B) $(R_OBJS_B) $(T_OBJS_B) $(LIB) $(COMP) -o $(BONUS)
+	@$(CC) $(CFLAGS) $(M_OBJS_B) $(P_OBJS_B) $(R_OBJS_B) $(T_OBJS_B) $(LIB) $(COMP) -o $(BONUS)
 	@echo $(f_green)":::✅ $(BONUS) is ready ✅:::"$(reset)
 
 $(OBJ_DIR)%.o: %.c 
