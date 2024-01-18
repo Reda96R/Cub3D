@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   texter_check.c                                     :+:      :+:    :+:   */
+/*   texter_check_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 03:08:06 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/17 22:26:41 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/18 23:35:39 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,10 @@ void	fill_texter_map(int i, int j, int size, t_mlx *mlx)
 	{
 		if (fill_texter(mlx, mlx->full_file[i]) == 1)
 		{
-			if (mlx->full_file[i][0] != '\0' && mlx->full_file[i][0] != '\n')
-				if (!mlx->east_texture || !mlx->west_texture
-					|| !mlx->south_texture || !mlx->north_texture
-					|| !mlx->c_color || !mlx->f_color)
-					ft_error_buster(15, mlx);
-			if (!mlx->full_file[i + 1])
+			if (!mlx->full_file[i + 1] && !texter_color_exist(mlx))
 				mlx->map[j++] = ft_substr(mlx->full_file[i], 0, \
 				ft_strlen(mlx->full_file[i]));
-			else
+			else if (!texter_color_exist(mlx))
 				mlx->map[j++] = ft_substr(mlx->full_file[i], 0, \
 				ft_strlen(mlx->full_file[i]) - 1);
 		}
@@ -79,6 +74,15 @@ void	get_texters(t_mlx *mlx)
 		ft_error_buster(1, mlx);
 	mlx->map[size] = NULL;
 	fill_texter_map(i, j, size, mlx);
+}
+
+int	texter_color_exist(t_mlx *mlx)
+{
+	if (!mlx->east_texture || !mlx->west_texture
+		|| !mlx->south_texture || !mlx->north_texture
+		|| !mlx->c_color || !mlx->f_color)
+		return (1);
+	return (0);
 }
 
 void	colors_existence(t_mlx *mlx)

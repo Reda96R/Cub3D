@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 03:07:45 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/17 21:29:25 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/18 23:31:22 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	check_color_arg(char *tmp, t_mlx *mlx)
 				i++;
 			if (flag == 1 && tmp[i] != '\0' && tmp[i] != ',')
 				ft_error_buster(8, mlx);
+			if (!tmp[i])
+				break ;
 		}
 		i++;
 	}
