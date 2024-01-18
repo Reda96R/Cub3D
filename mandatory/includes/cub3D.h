@@ -75,6 +75,7 @@ void	fill_file(t_mlx *mlx, char *line, int fd);
 void	get_file_size(t_mlx *mlx, char *file);
 void	is_deplecate(t_mlx *mlx);
 int		skip_vide_line(t_mlx *mlx);
+int		texter_color_exist(t_mlx *mlx);
 
 			/*---texter_check---*/
 void	get_texters(t_mlx *mlx);
