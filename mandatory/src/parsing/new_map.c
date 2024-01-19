@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 22:18:53 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/14 17:22:29 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/19 03:28:41 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	get_start(t_mlx *mlx, char *line, int type)
 	else if (type == 2)
 	{
 		line += 2;
-		while (line[i] && !ft_isdigit(line[i]))
+		while (line[i] && line[i] != ',' && !ft_isdigit(line[i]))
 			i++;
 		i += 2;
 	}

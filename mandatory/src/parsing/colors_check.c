@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 03:07:45 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/18 23:31:22 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/19 03:35:47 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	check_color_arg(char *tmp, t_mlx *mlx)
 
 	i = 0;
 	flag = 0;
+	if (tmp[i] == ',' || tmp[i] == '\0')
+		ft_error_buster(8, mlx);
 	while (tmp[i])
 	{
 		if (tmp[i] == ' ')
@@ -120,7 +122,7 @@ void	check_colors_range(char	*str, t_mlx *mlx, char c)
 	char	*tmp;
 
 	i = 0;
-	while (str[i] != ',')
+	while (str[i] != ',' && str[i] != '\0')
 		i++;
 	tmp = ft_substr(str, 0, i);
 	colors_range(mlx, tmp, 0, c);

@@ -3,37 +3,39 @@
                                 
 
                 
-        NO                    textres/image1.xpm              
+        NO                    textres/image1.xpm         
+     
 
-
-
-                       EA                    textres/image2.xpm
+                       EA                    textres/image2.xpm 
 
 
 
             SO              textres/image4.xpm               
 
                              
-                                WE                 textres/image3.xpm        
+                                WE                 textres/image3.xpm       
 
                                
 
-             F        80      ,       90,         3      
+             F         44     ,          , 4
 
-C 0,60,122  
-
+C   4 , 4 , 4   
 
 
 11111
+11111
 10001
 10S01
+10001    
+10001    
+10001
 10001
 10001
 10001
 11001
 10001
 10001
-10001
+10101
 10001
 10001
 11111
