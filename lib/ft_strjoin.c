@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rerayyad <rerayyad@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 12:37:15 by rerayyad          #+#    #+#             */
-/*   Updated: 2023/05/19 09:19:20 by rerayyad         ###   ########.fr       */
+/*   Updated: 2024/01/19 08:06:00 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	}
 	while (s1 && s1[j] != '\0')
-	str[i++] = s1[j++];
+		str[i++] = s1[j++];
 	j = 0;
 	while (s2 && s2[j] != '\0')
 		str[i++] = s2[j++];

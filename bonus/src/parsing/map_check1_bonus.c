@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_check1.c                                       :+:      :+:    :+:   */
+/*   map_check1_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 16:24:25 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/17 07:16:20 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/19 08:04:55 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,21 +89,26 @@ void	cheack_map_borders(t_mlx *mlx)
 {
 	int	i;
 	int	j;
+	int	f;
 
 	i = 0;
 	j = 0;
+	f = 0;
 	while (mlx->map[i])
 	{
 		j = 0;
 		while (mlx->map[i][j])
 		{
-			if (i == 0 || j == 0 || !mlx->map[i + 1] || !mlx->map[i][j + 1])
+			if (i == 0 || j == 0 || f == 0
+				|| !mlx->map[i + 1] || !mlx->map[i][j + 1])
 			{
 				if (mlx->map[i][j] != '1' && mlx->map[i][j] != ' '
 					&& mlx->map[i][j] != '\n' && mlx->map[i][j] != 'A')
 					ft_error_buster(10, mlx);
 			}
 			j++;
+			if (!mlx->map[i][j])
+				f = 1;
 		}
 		i++;
 	}

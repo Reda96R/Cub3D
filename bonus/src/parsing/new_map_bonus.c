@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_map.c                                          :+:      :+:    :+:   */
+/*   new_map_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 22:18:53 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/14 17:22:29 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/19 07:30:21 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ int	get_start(t_mlx *mlx, char *line, int type)
 	else if (type == 2)
 	{
 		line += 2;
-		while (line[i] && !ft_isdigit(line[i]))
-			i++;
+		i = skip_spaces(line);
 		i += 2;
 	}
 	if (line[i] == '\0' || line[i] == '\n')

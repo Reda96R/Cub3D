@@ -3,8 +3,8 @@ EA textres/metal.xpm
 SO textres/image4.xpm
 WE textres/image3.xpm
 
-F       80 ,,1  
-C  1, 1, 1
+F 50,100,80  
+C 30, 50,100
 
 111111111111111
 111111000111111
