@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 16:24:25 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/19 08:04:55 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/19 09:23:32 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,8 @@ void	check_map_is_locked(t_mlx *mlx)
 		j = 0;
 		while (mlx->map[i][j])
 		{
-			if (mlx->map[i][j] == '0' && i > 0 && j > 0)
+			if ((mlx->map[i][j] == '0' || mlx->map[i][j] == 'H')
+				&& i > 0 && j > 0)
 			{
 				if (mlx->map[i - 1][0] == '\0' || mlx->map[i + 1][0] == '\0'
 					|| mlx->map[i][j + 1] == '\0' || mlx->map[i][j - 1] == '\0'
