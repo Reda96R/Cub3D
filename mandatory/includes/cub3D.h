@@ -67,6 +67,8 @@ void	ft_free_all(t_mlx *mlx);
 			/*---ft_error---*/
 int		skip_spaces(char *line);
 int		skip_vide_line(t_mlx *mlx);
+void	colors_existence(t_mlx *mlx);
+int		texter_color_exist(t_mlx *mlx);
 
 			/*---file_check---*/
 void	ft_file_parser(t_mlx *mlx, char *av);
@@ -74,11 +76,12 @@ void	get_file(t_mlx *mlx, char *file);
 void	fill_file(t_mlx *mlx, char *line, int fd);
 void	get_file_size(t_mlx *mlx, char *file);
 void	is_deplecate(t_mlx *mlx);
-int		skip_vide_line(t_mlx *mlx);
-int		texter_color_exist(t_mlx *mlx);
 
 			/*---texter_check---*/
 void	get_texters(t_mlx *mlx);
+int		fill_texter_color(t_mlx *mlx, char *str);
+int		fill_texter(t_mlx *mlx, char *str);
+int		fill_color(t_mlx *mlx, char *str);
 void	fill_texter_map(int i, int j, int size, t_mlx *mlx);
 void	check_color_arg(char *tmp, t_mlx *mlx);
 
@@ -96,7 +99,6 @@ void	cheack_map_borders(t_mlx *mlx);
 void	check_map_is_locked(t_mlx *mlx);
 
 			/*---color_check---*/
-void	colors_existence(t_mlx *mlx);
 void	colors_range(t_mlx *mlx, char *tmp, int i, char c);
 void	check_colors_format(char	*str, t_mlx *mlx, char c);
 void	check_colors_range(char	*str, t_mlx *mlx, char c);

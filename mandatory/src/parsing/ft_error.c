@@ -6,7 +6,7 @@
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 03:08:13 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/18 23:30:18 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/19 02:34:17 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,19 @@ int	skip_vide_line(t_mlx *mlx)
 		i++;
 	}
 	return (i);
+}
+
+int	texter_color_exist(t_mlx *mlx)
+{
+	if (!mlx->east_texture || !mlx->west_texture
+		|| !mlx->south_texture || !mlx->north_texture
+		|| !mlx->c_color || !mlx->f_color)
+		return (1);
+	return (0);
+}
+
+void	colors_existence(t_mlx *mlx)
+{
+	if (!mlx->c_color || !mlx->f_color)
+		ft_error_buster(7, mlx);
 }

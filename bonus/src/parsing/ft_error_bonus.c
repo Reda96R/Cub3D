@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_error_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maouzal <maouzal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 03:08:13 by maouzal           #+#    #+#             */
-/*   Updated: 2024/01/14 17:11:37 by maouzal          ###   ########.fr       */
+/*   Updated: 2024/01/19 02:32:43 by maouzal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,19 @@ int	skip_vide_line(t_mlx *mlx)
 		i++;
 	}
 	return (i);
+}
+
+int	texter_color_exist(t_mlx *mlx)
+{
+	if (!mlx->east_texture || !mlx->west_texture
+		|| !mlx->south_texture || !mlx->north_texture
+		|| !mlx->c_color || !mlx->f_color)
+		return (1);
+	return (0);
+}
+
+void	colors_existence(t_mlx *mlx)
+{
+	if (!mlx->c_color || !mlx->f_color)
+		ft_error_buster(7, mlx);
 }
