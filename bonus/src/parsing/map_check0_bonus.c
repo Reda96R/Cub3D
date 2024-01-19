@@ -91,9 +91,9 @@ int	new_line_check(t_mlx *mlx, int i, int j)
 			while (mlx->map[i][j])
 			{
 				if (mlx->map[i][j] != '1' && mlx->map[i][j] != '0'
-					&& mlx->map[i][j] != 'N'&& mlx->map[i][j] != 'S'
+					&& mlx->map[i][j] != 'N' && mlx->map[i][j] != 'S'
 					&& mlx->map[i][j] != 'E' && mlx->map[i][j] != 'W'
-					&& mlx->map[i][j] != 'A'&& mlx->map[i][j] != 'H')
+					&& mlx->map[i][j] != 'A' && mlx->map[i][j] != 'H')
 					j++;
 				else
 					ft_error_buster(10, mlx);

@@ -62,7 +62,10 @@ typedef struct s_mlx
 	t_pos			*pos;
 }	t_mlx;
 
+/*::::::::::::ft_bonus_stuff::::::::::::*/
 void	ft_change_door_state(t_mlx *mlx, int *d, int x, int y);
+void	ft_slime_textures_init(t_mlx *mlx);
+void	ft_textures_init(t_mlx *mlx);
 
 /*::::::::::::ft_janitor::::::::::::*/
 void	ft_error_buster(int id, t_mlx *mlx);
@@ -133,6 +136,7 @@ void	ft_mlx_init(t_mlx **mlx);
 void	ft_player_init(t_player **player, t_mlx *mlx);
 void	ft_rays_init(t_rays **rays, t_mlx *mlx);
 void	ft_textures_init(t_mlx *mlx);
+void	ft_animated_textures_init(t_mlx *mlx);
 
 			/*---ft_canvas_control---*/
 void	ft_canvas_maker(t_mlx *mlx);

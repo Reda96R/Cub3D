@@ -41,13 +41,12 @@ int	fill_texter(t_mlx *mlx, char *str)
 
 void	fill_texter_map(int i, int j, int size, t_mlx *mlx)
 {
-
 	while (mlx->full_file[i])
 	{
 		if (fill_texter(mlx, mlx->full_file[i]) == 1)
 		{
 			if (!mlx->full_file[i + 1] && !texter_color_exist(mlx))
-					mlx->map[j++] = ft_substr(mlx->full_file[i], 0, \
+				mlx->map[j++] = ft_substr(mlx->full_file[i], 0, \
 					ft_strlen(mlx->full_file[i]));
 			else if (!texter_color_exist(mlx))
 				mlx->map[j++] = ft_substr(mlx->full_file[i], 0, \

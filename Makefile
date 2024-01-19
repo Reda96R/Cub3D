@@ -51,7 +51,7 @@ R_OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix mandatory/src/ray_c
 
 			#---bonus---#
 R_FILES_B = ft_shapes_bonus ft_drawer_bonus ft_keylogger_bonus ft_maths_hub0_bonus ft_maths_hub1_bonus \
-			ft_starter_bonus ft_rays_bonus ft_player_movements_bonus ft_canvas_control_bonus
+			ft_starter_bonus ft_rays_bonus ft_player_movements_bonus ft_canvas_control_bonus ft_bonus_stuff
 
 R_OBJS_B = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(addprefix bonus/src/ray_casting/, $(R_FILES_B))))
 

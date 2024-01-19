@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB_MACROS_H
-# define CUB_MACROS_H
+#ifndef CUB_MACROS_BONUS_H
+# define CUB_MACROS_BONUS_H
 
 /*::::Cube propreties::::*/
 # define SPACE 0

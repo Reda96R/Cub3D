@@ -23,34 +23,6 @@ void	ft_ray_igniter(t_mlx *mlx, int color)
 	ft_draw_line(mlx, cord, color);
 }
 
-void	ft_change_door_state(t_mlx *mlx, int *d, int x, int y)
-{
-	int	p_x;
-	int	p_y;
-
-	if (mlx->rays->colision_distance < mlx->player->r * 15)
-	{
-		x = floor(mlx->rays->hit_y / mlx->cub_size);
-		y = floor(mlx->rays->hit_x / mlx->cub_size);
-		p_y = floor(mlx->player->x / mlx->cub_size);
-		p_x = floor(mlx->player->y / mlx->cub_size);
-		if (p_x != x || p_y != y)
-		{
-			*d = 1;
-			if (mlx->new_map[x][y] == 'H')
-			{
-				mlx->player->space = 0;
-				mlx->new_map[x][y] = 'O';
-			}
-			else if (mlx->new_map[x][y] == 'O')
-			{
-				mlx->player->space = 0;
-				mlx->new_map[x][y] = 'H';
-			}
-		}
-	}
-}
-
 void	ft_hit_assigner(t_rays *ray, t_rays *hit)
 {
 	ray->s = hit->s;
